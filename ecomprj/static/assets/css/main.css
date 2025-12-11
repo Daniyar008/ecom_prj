@@ -6512,6 +6512,7 @@ h6.post-title {
     display: inline-block;
     vertical-align: middle;
     -webkit-appearance: none;
+    appearance: none;
     text-transform: capitalize;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
