@@ -4,6 +4,8 @@ botocore
 Django
 dj-database-url
 django-auto-logout
+gunicorn
+environs
 django-ckeditor_5
 django-crispy-forms
 django-dotenv

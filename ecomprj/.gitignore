@@ -6,16 +6,31 @@ __pycache__/
 
 cache/
 
-
-
 .vscode
 
 .idea
 
-
-
-
 db.sqlite3
 
 media/
+
+# Environment variables
+.env
+.env.local
+
+# Static files collected
+staticfiles/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
 
