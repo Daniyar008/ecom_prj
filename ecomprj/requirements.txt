@@ -5,7 +5,7 @@ Django==4.2.7
 dj-database-url
 gunicorn
 environs
-django-ckeditor
+django-ckeditor-5
 crispy-bootstrap5
 django-crispy-forms
 django-jazzmin
