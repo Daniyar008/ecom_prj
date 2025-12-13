@@ -2,11 +2,16 @@
 # exit on error
 set -o errexit
 
-# Установка зависимостей
+echo "====== Starting build process ======"
+
+echo "====== Installing dependencies ======"
+pip install --upgrade pip
 pip install -r requirements.txt
 
-# Сбор статических файлов
-python manage.py collectstatic --no-input
+echo "====== Collecting static files ======"
+python manage.py collectstatic --no-input --clear
 
-# Применение миграций
-python manage.py migrate
+echo "====== Running migrations ======"
+python manage.py migrate --no-input
+
+echo "====== Build completed successfully ======"
