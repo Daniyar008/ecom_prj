@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     "taggit",
     "crispy_bootstrap5",
-    "ckeditor",
+    "django_ckeditor_5",
     "paypal.standard.ipn",
     "core",
     "userauths",
