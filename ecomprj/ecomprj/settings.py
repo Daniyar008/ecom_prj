@@ -169,10 +169,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # WhiteNoise configuration для Render.com
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Игнорировать отсутствующие .map файлы
-WHITENOISE_MANIFEST_STRICT = False
+# Используем CompressedStaticFilesStorage вместо Manifest версии чтобы избежать ошибок с .map файлами
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 
