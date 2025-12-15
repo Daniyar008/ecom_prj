@@ -188,7 +188,9 @@ def celery_stats(request):
                     )
                 else:
                     stats["celery_connected"] = False
-                    stats["message"] = "No active workers found - need Background Worker ($7/month on Render)"
+                    stats["message"] = (
+                        "No active workers found - need Background Worker ($7/month on Render)"
+                    )
             except Exception as e:
                 stats["celery_connected"] = False
                 stats["broker_error"] = str(e)
@@ -200,9 +202,13 @@ def celery_stats(request):
         try:
             result = test_celery_task.delay()
             stats["test_task_sent"] = True
-            stats["test_task_id"] = str(result.id) if hasattr(result, "id") else "executed-immediately"
+            stats["test_task_id"] = (
+                str(result.id) if hasattr(result, "id") else "executed-immediately"
+            )
             if is_eager:
-                stats["test_task_result"] = result.get() if hasattr(result, "get") else "Task completed"
+                stats["test_task_result"] = (
+                    result.get() if hasattr(result, "get") else "Task completed"
+                )
         except Exception as e:
             stats["test_task_sent"] = False
             stats["test_task_error"] = str(e)

@@ -21,6 +21,11 @@ def send_email_notification(self, subject, message, recipient_list):
         message: Текст письма
         recipient_list: Список получателей
     """
+    # Проверяем есть ли настройки EMAIL
+    if not hasattr(settings, "EMAIL_HOST") or not settings.EMAIL_HOST:
+        logger.warning(f"EMAIL not configured. Message to {recipient_list}: {subject}")
+        return f"Email skipped (no SMTP configured): {subject}"
+
     try:
         send_mail(
             subject=subject,
@@ -33,8 +38,13 @@ def send_email_notification(self, subject, message, recipient_list):
         return f"Email sent to {len(recipient_list)} recipients"
     except Exception as exc:
         logger.error(f"Error sending email: {exc}")
-        # Повторная попытка через 5 минут
-        raise self.retry(exc=exc, countdown=300)
+        # Не ломаем сайт если email не работает
+        if self.request.retries < self.max_retries:
+            # Повторная попытка через 5 минут
+            raise self.retry(exc=exc, countdown=300)
+        else:
+            logger.error(f"Email failed after {self.max_retries} retries: {exc}")
+            return f"Email failed: {str(exc)}"
 
 
 @shared_task

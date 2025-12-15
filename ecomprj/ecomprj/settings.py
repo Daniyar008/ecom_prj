@@ -223,6 +223,24 @@ CELERY_TASK_EAGER_PROPAGATES = True  # Показывать ошибки сра�
 # Раскомментируйте если запустите Background Worker на Render:
 # CELERY_TASK_ALWAYS_EAGER = False
 
+# ============================================================================
+# Email Configuration (Console backend for development/free tier)
+# ============================================================================
+# На бесплатном Render используем console backend - email выводятся в логи
+# Для продакшена добавьте переменные: EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+
+EMAIL_BACKEND = env.str(
+    "EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+)
+EMAIL_HOST = env.str("EMAIL_HOST", default="")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = env.str(
+    "DEFAULT_FROM_EMAIL", default="noreply@multivendor-shop.com"
+)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

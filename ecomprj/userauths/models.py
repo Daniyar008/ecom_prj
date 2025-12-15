@@ -51,7 +51,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    # Безопасное сохранение профиля только если он существует
+    try:
+        if hasattr(instance, "profile"):
+            instance.profile.save()
+    except Profile.DoesNotExist:
+        # Профиль еще не создан, пропускаем
+        pass
 
 
 post_save.connect(create_user_profile, sender=User)

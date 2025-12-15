@@ -24,6 +24,13 @@ def send_order_confirmation_email(self, order_id):
     try:
         order = CartOrder.objects.get(id=order_id)
 
+        # Проверяем настройки EMAIL перед отправкой
+        if not hasattr(settings, "EMAIL_HOST") or not settings.EMAIL_HOST:
+            logger.warning(
+                f"EMAIL not configured. Would send confirmation for order {order.oid}"
+            )
+            return f"Email skipped (no SMTP): order {order.oid}"
+
         subject = f"Order Confirmation #{order.oid}"
         message = f"""
         Thank you for your order!
@@ -51,7 +58,11 @@ def send_order_confirmation_email(self, order_id):
         return f"Order {order_id} not found"
     except Exception as exc:
         logger.error(f"Error sending order email: {exc}")
-        raise self.retry(exc=exc, countdown=300)
+        # Не ломаем сайт если email не работает
+        if self.request.retries < self.max_retries:
+            raise self.retry(exc=exc, countdown=300)
+        else:
+            return f"Email failed after retries: {str(exc)}"
 
 
 @shared_task
@@ -96,6 +107,11 @@ def process_abandoned_carts():
     from datetime import timedelta
 
     try:
+        # Проверяем настройки EMAIL
+        if not hasattr(settings, "EMAIL_HOST") or not settings.EMAIL_HOST:
+            logger.warning("EMAIL not configured. Skipping abandoned cart processing")
+            return "Email not configured"
+
         # Находим заказы старше 24 часов со статусом pending
         cutoff_time = timezone.now() - timedelta(hours=24)
         abandoned_orders = CartOrder.objects.filter(
@@ -104,29 +120,33 @@ def process_abandoned_carts():
 
         count = 0
         for order in abandoned_orders:
-            # Отправляем напоминание
-            subject = f"Complete Your Order #{order.oid}"
-            message = f"""
-            You have an incomplete order.
-            
-            Order ID: {order.oid}
-            Total: ${order.price}
-            
-            Click here to complete your purchase.
-            """
+            try:
+                # Отправляем напоминание
+                subject = f"Complete Your Order #{order.oid}"
+                message = f"""
+                You have an incomplete order.
+                
+                Order ID: {order.oid}
+                Total: ${order.price}
+                
+                Click here to complete your purchase.
+                """
 
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[order.email],
-                fail_silently=True,
-            )
-            count += 1
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[order.email],
+                    fail_silently=True,
+                )
+                count += 1
+            except Exception as e:
+                logger.error(f"Error sending reminder for order {order.oid}: {e}")
+                continue
 
         logger.info(f"Processed {count} abandoned carts")
         return f"Sent {count} reminders"
 
     except Exception as exc:
         logger.error(f"Error processing abandoned carts: {exc}")
-        raise
+        return f"Error: {str(exc)}"
