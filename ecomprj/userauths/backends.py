@@ -13,7 +13,7 @@ class EmailBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         if username is None or password is None:
             return None
-            
+
         try:
             # Try to fetch the user by email first (case-insensitive)
             user = User.objects.get(email__iexact=username)

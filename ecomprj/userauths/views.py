@@ -76,7 +76,7 @@ def login_view(request):
                 # Показываем ошибки валидации
                 for field, errors in form.errors.items():
                     for error in errors:
-                        if field == '__all__':
+                        if field == "__all__":
                             messages.error(request, error)
                         else:
                             messages.error(request, f"{field}: {error}")
