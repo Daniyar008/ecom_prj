@@ -217,7 +217,7 @@ CELERY_TASK_SEND_SENT_EVENT = True
 # Подходит для бесплатного Render без Background Worker
 # Задачи будут выполняться в том же процессе что и Django
 CELERY_TASK_ALWAYS_EAGER = True  # Выполнять задачи сразу, без очереди
-CELERY_TASK_EAGER_PROPAGATES = True  # Показывать ошибки сразу
+CELERY_TASK_EAGER_PROPAGATES = False  # НЕ показывать ошибки задач - не ломать сайт
 
 # ВАРИАНТ 2: Асинхронный режим (требует отдельный Celery Worker $7/месяц)
 # Раскомментируйте если запустите Background Worker на Render:
@@ -240,6 +240,52 @@ EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = env.str(
     "DEFAULT_FROM_EMAIL", default="noreply@multivendor-shop.com"
 )
+
+# ============================================================================
+# Logging Configuration (для отладки ошибок на Render)
+# ============================================================================
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[{levelname}] {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "userauths": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Детальные логи регистрации/входа
+            "propagate": False,
+        },
+        "core": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "cartorders": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
 
 
 # Password validation
