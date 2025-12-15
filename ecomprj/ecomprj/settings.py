@@ -69,12 +69,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # Для статических файлов на Render
+    "django.middleware.cache.UpdateCacheMiddleware",  # Redis cache - сначала
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",  # Redis cache - в конце
 ]
 
 ROOT_URLCONF = "ecomprj.urls"
@@ -124,6 +126,37 @@ else:
             "OPTIONS": {"options": "-c search_path=multivendor_data_sh,public"},
         }
     }
+
+
+# Redis Cache Configuration
+# https://docs.djangoproject.com/en/4.2/topics/cache/
+REDIS_URL = env.str("REDIS_URL", default="redis://127.0.0.1:6379/1")
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PARSER_CLASS": "redis.connection.HiredisParser",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 50},
+            "SOCKET_CONNECT_TIMEOUT": 5,
+            "SOCKET_TIMEOUT": 5,
+            "RETRY_ON_TIMEOUT": True,
+        },
+        "KEY_PREFIX": "ecomprj",
+        "TIMEOUT": 300,  # 5 минут по умолчанию
+    }
+}
+
+# Кеширование сессий в Redis
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+# Настройки кеширования для всего сайта
+CACHE_MIDDLEWARE_ALIAS = "default"
+CACHE_MIDDLEWARE_SECONDS = 300  # 5 минут
+CACHE_MIDDLEWARE_KEY_PREFIX = "ecomprj"
 
 
 # Password validation

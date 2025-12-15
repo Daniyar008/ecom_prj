@@ -21,3 +21,6 @@ paypal-payouts-sdk
 paypalhttp
 django-paypal
 requests
+django-redis
+redis
+hiredis
