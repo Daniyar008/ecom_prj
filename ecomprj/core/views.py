@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 from userauths.models import ContactUs, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 import calendar
 from django.db.models import Count, Avg
@@ -12,9 +14,17 @@ from goods.models import Product
 from cartorders.models import CartOrder, Address
 
 
+@cache_page(60 * 5)  # Кешируем на 5 минут
 def index(request):
-    # bannanas = Product.objects.all().order_by("-id")
-    products = Product.objects.filter(product_status="published", featured=True).order_by("-id")
+    # Пробуем получить из кеша
+    cache_key = 'homepage_products'
+    products = cache.get(cache_key)
+    
+    if products is None:
+        # Если нет в кеше, запрашиваем из БД
+        products = Product.objects.filter(product_status="published", featured=True).order_by("-id")
+        # Сохраняем в кеш на 5 минут
+        cache.set(cache_key, products, 60 * 5)
 
     context = {
         "products":products
@@ -99,6 +109,38 @@ def ajax_contact_form(request):
 
 def about_us(request):
     return render(request, "core/about_us.html")
+
+
+def redis_stats(request):
+    """Проверка статистики Redis для отладки"""
+    import datetime
+    from django.conf import settings
+    
+    stats = {}
+    
+    # Проверяем подключение к Redis
+    try:
+        today = datetime.date.today().isoformat()
+        cache_key = f'requests_count_{today}'
+        requests_count = cache.get(cache_key, 0)
+        last_request = cache.get('last_request_time', 'No data')
+        
+        stats['redis_connected'] = True
+        stats['requests_today'] = requests_count
+        stats['last_request_time'] = last_request
+        stats['redis_url'] = bool(settings.CACHES['default']['LOCATION'])
+        stats['cache_backend'] = settings.CACHES['default']['BACKEND']
+        
+        # Тестируем set/get
+        cache.set('test_key', 'test_value', 60)
+        test_value = cache.get('test_key')
+        stats['test_passed'] = test_value == 'test_value'
+        
+    except Exception as e:
+        stats['redis_connected'] = False
+        stats['error'] = str(e)
+    
+    return JsonResponse(stats)
 
 
 def purchase_guide(request):

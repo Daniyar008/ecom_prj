@@ -1,6 +1,6 @@
 from django import views
 from django.urls import path, include
-from .views import ajax_contact_form, customer_dashboard, index, contact, about_us, purchase_guide, privacy_policy, terms_of_service
+from .views import ajax_contact_form, customer_dashboard, index, contact, about_us, purchase_guide, privacy_policy, terms_of_service, redis_stats
 
 app_name = "core"
 
@@ -15,5 +15,8 @@ urlpatterns = [
     path("dashboard/", customer_dashboard, name="dashboard"),
     path("contact/", contact, name="contact"),
     path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
+    
+    # Redis stats для отладки
+    path("redis-stats/", redis_stats, name="redis-stats"),
 
 ]

@@ -4,6 +4,8 @@ from taggit.models import Tag
 from django.template.loader import render_to_string
 from django.db.models import Count, Avg
 from django.db.models import Q, F
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 
 from .models import Product, Category, ProductImages, ProductReview
 from cartorders.models import Address
@@ -63,10 +65,19 @@ def product_list_view(request, category_cid=None):
     else:
         products = products.order_by('-date')
     
-    categories = Category.objects.all()
+    # Кешируем категории на 10 минут
+    cache_key = 'all_categories'
+    categories = cache.get(cache_key)
+    if categories is None:
+        categories = Category.objects.all()
+        cache.set(cache_key, categories, 60 * 10)
     
-
-    tags = Tag.objects.all().order_by("-id")[:6]
+    # Кешируем теги на 10 минут
+    cache_key_tags = 'popular_tags'
+    tags = cache.get(cache_key_tags)
+    if tags is None:
+        tags = Tag.objects.all().order_by("-id")[:6]
+        cache.set(cache_key_tags, tags, 60 * 10)
     
 
 
@@ -121,7 +132,22 @@ def category_product_list__view(request, cid):
 
 
 def product_detail_view(request, pid):
-    product = Product.objects.get(pid=pid)
+    # Кешируем детали продукта на 10 минут
+    cache_key = f'product_detail_{pid}'
+    product = cache.get(cache_key)
+    
+    if product is None:
+        product = Product.objects.get(pid=pid)
+        cache.set(cache_key, product, 60 * 10)
+    else:
+        # Перезагружаем из БД для актуальности
+        try:
+            product = Product.objects.get(pid=pid)
+            cache.set(cache_key, product, 60 * 10)
+        except Product.DoesNotExist:
+            cache.delete(cache_key)
+            return redirect('goods:product-list')
+    
     # product = get_object_or_404(Product, pid=pid)
     products = Product.objects.filter(category=product.category).exclude(pid=pid)
 
