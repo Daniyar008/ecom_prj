@@ -19,22 +19,24 @@ def register_view(request):
                 messages.success(
                     request, f"Hey {username}, Your account was created successfully."
                 )
-                
+
                 # Authenticate user
                 new_user = authenticate(
                     request,
                     username=form.cleaned_data["email"],
                     password=form.cleaned_data["password1"],
                 )
-                
+
                 if new_user is not None:
                     login(request, new_user)
                     next_url = request.GET.get("next", "core:index")
                     return redirect(next_url)
                 else:
-                    messages.error(request, "Authentication failed. Please try logging in.")
+                    messages.error(
+                        request, "Authentication failed. Please try logging in."
+                    )
                     return redirect("userauths:sign-in")
-                    
+
             except Exception as e:
                 logger.error(f"Registration error: {str(e)}", exc_info=True)
                 messages.error(request, f"Registration failed: {str(e)}")
@@ -60,21 +62,27 @@ def login_view(request):
 
     if request.method == "POST":
         try:
-            form = UserLoginForm(request, data=request.POST)
+            form = UserLoginForm(data=request.POST, request=request)
             if form.is_valid():
                 user = form.get_user()
-                login(request, user)
-                messages.success(request, "You are logged in.")
-                next_url = request.GET.get("next", "core:index")
-                return redirect(next_url)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, "You are logged in.")
+                    next_url = request.GET.get("next", "core:index")
+                    return redirect(next_url)
+                else:
+                    messages.error(request, "Invalid credentials. Please try again.")
             else:
                 # Показываем ошибки валидации
                 for field, errors in form.errors.items():
                     for error in errors:
-                        messages.error(request, f"{field}: {error}")
+                        if field == '__all__':
+                            messages.error(request, error)
+                        else:
+                            messages.error(request, f"{field}: {error}")
         except Exception as e:
             logger.error(f"Login error: {str(e)}", exc_info=True)
-            messages.error(request, f"Login failed: {str(e)}")
+            messages.error(request, "Login failed. Please try again.")
     else:
         form = UserLoginForm()
 
