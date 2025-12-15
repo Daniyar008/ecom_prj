@@ -165,6 +165,52 @@ else:
     SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 
+# ============================================================================
+# CELERY CONFIGURATION
+# ============================================================================
+
+# URL брокера RabbitMQ (CloudAMQP на Render)
+CELERY_BROKER_URL = env.str(
+    "RABBITMQ_URL", default="amqp://guest:guest@localhost:5672//"
+)
+
+# URL для результатов задач (используем Redis если доступен)
+if REDIS_URL:
+    CELERY_RESULT_BACKEND = REDIS_URL
+else:
+    CELERY_RESULT_BACKEND = "django-db"  # Fallback на БД
+
+# Формат сериализации
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+# Настройки времени
+CELERY_TIMEZONE = "UTC"
+CELERY_ENABLE_UTC = True
+
+# Настройки задач
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 минут максимум
+CELERY_TASK_SOFT_TIME_LIMIT = 25 * 60  # Мягкий лимит 25 минут
+CELERY_TASK_ACKS_LATE = True
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+
+# Результаты задач
+CELERY_RESULT_EXPIRES = 60 * 60 * 24  # Хранить результаты 24 часа
+CELERY_RESULT_BACKEND_ALWAYS_RETRY = True
+CELERY_RESULT_BACKEND_MAX_RETRIES = 10
+
+# Настройки брокера
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BROKER_CONNECTION_RETRY = True
+CELERY_BROKER_CONNECTION_MAX_RETRIES = 10
+
+# Логирование
+CELERY_WORKER_SEND_TASK_EVENTS = True
+CELERY_TASK_SEND_SENT_EVENT = True
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

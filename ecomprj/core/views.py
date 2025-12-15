@@ -144,6 +144,58 @@ def redis_stats(request):
     return JsonResponse(stats)
 
 
+def celery_stats(request):
+    """Проверка статистики Celery и RabbitMQ"""
+    from django.conf import settings
+    from celery import current_app
+
+    stats = {}
+
+    try:
+        # Проверяем настройки Celery
+        stats["broker_url"] = (
+            settings.CELERY_BROKER_URL.split("@")[0] + "@***"
+        )  # Скрываем пароль
+        stats["result_backend"] = (
+            settings.CELERY_RESULT_BACKEND.split("@")[0] + "@***"
+            if "@" in str(settings.CELERY_RESULT_BACKEND)
+            else str(settings.CELERY_RESULT_BACKEND)
+        )
+
+        # Проверяем подключение к брокеру
+        try:
+            inspect = current_app.control.inspect()
+            active_tasks = inspect.active()
+            if active_tasks:
+                stats["celery_connected"] = True
+                stats["workers"] = list(active_tasks.keys())
+                stats["active_tasks_count"] = sum(
+                    len(tasks) for tasks in active_tasks.values()
+                )
+            else:
+                stats["celery_connected"] = False
+                stats["message"] = "No active workers found"
+        except Exception as e:
+            stats["celery_connected"] = False
+            stats["broker_error"] = str(e)
+
+        # Тестируем отправку задачи
+        from core.tasks import test_celery_task
+
+        try:
+            result = test_celery_task.delay()
+            stats["test_task_sent"] = True
+            stats["test_task_id"] = result.id
+        except Exception as e:
+            stats["test_task_sent"] = False
+            stats["test_task_error"] = str(e)
+
+    except Exception as e:
+        stats["error"] = str(e)
+
+    return JsonResponse(stats)
+
+
 def purchase_guide(request):
     return render(request, "core/purchase_guide.html")
 

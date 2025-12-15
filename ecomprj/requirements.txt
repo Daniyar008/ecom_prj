@@ -24,3 +24,6 @@ requests
 django-redis
 redis
 hiredis
+celery
+kombu
+amqp

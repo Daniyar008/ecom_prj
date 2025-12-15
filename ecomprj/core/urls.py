@@ -10,6 +10,7 @@ from .views import (
     privacy_policy,
     terms_of_service,
     redis_stats,
+    celery_stats,
 )
 
 app_name = "core"
@@ -25,4 +26,6 @@ urlpatterns = [
     path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
     # Redis stats для отладки
     path("redis-stats/", redis_stats, name="redis-stats"),
+    # Celery stats для отладки
+    path("celery-stats/", celery_stats, name="celery-stats"),
 ]
