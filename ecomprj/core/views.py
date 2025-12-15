@@ -145,39 +145,54 @@ def redis_stats(request):
 
 
 def celery_stats(request):
-    """Проверка статистики Celery и RabbitMQ"""
+    """Проверка статистики Celery и режима работы"""
     from django.conf import settings
     from celery import current_app
 
     stats = {}
 
     try:
-        # Проверяем настройки Celery
-        stats["broker_url"] = (
-            settings.CELERY_BROKER_URL.split("@")[0] + "@***"
-        )  # Скрываем пароль
-        stats["result_backend"] = (
-            settings.CELERY_RESULT_BACKEND.split("@")[0] + "@***"
-            if "@" in str(settings.CELERY_RESULT_BACKEND)
-            else str(settings.CELERY_RESULT_BACKEND)
-        )
+        # Определяем режим работы Celery
+        is_eager = getattr(settings, "CELERY_TASK_ALWAYS_EAGER", False)
+        stats["mode"] = "EAGER (synchronous)" if is_eager else "ASYNC (requires worker)"
+        stats["is_eager"] = is_eager
 
-        # Проверяем подключение к брокеру
-        try:
-            inspect = current_app.control.inspect()
-            active_tasks = inspect.active()
-            if active_tasks:
-                stats["celery_connected"] = True
-                stats["workers"] = list(active_tasks.keys())
-                stats["active_tasks_count"] = sum(
-                    len(tasks) for tasks in active_tasks.values()
-                )
-            else:
+        # Проверяем настройки Celery
+        broker_url = settings.CELERY_BROKER_URL
+        if "@" in broker_url:
+            stats["broker_url"] = broker_url.split("@")[0] + "@***"
+        else:
+            stats["broker_url"] = broker_url
+
+        result_backend = str(settings.CELERY_RESULT_BACKEND)
+        if "@" in result_backend:
+            stats["result_backend"] = result_backend.split("@")[0] + "@***"
+        else:
+            stats["result_backend"] = result_backend
+
+        # В EAGER режиме worker не нужен
+        if is_eager:
+            stats["celery_connected"] = True
+            stats["workers"] = None
+            stats["message"] = "Tasks execute immediately without worker (FREE mode)"
+        else:
+            # Проверяем подключение к брокеру в ASYNC режиме
+            try:
+                inspect = current_app.control.inspect()
+                active_tasks = inspect.active()
+                if active_tasks:
+                    stats["celery_connected"] = True
+                    stats["workers"] = list(active_tasks.keys())
+                    stats["active_tasks_count"] = sum(
+                        len(tasks) for tasks in active_tasks.values()
+                    )
+                else:
+                    stats["celery_connected"] = False
+                    stats["message"] = "No active workers found - need Background Worker ($7/month on Render)"
+            except Exception as e:
                 stats["celery_connected"] = False
-                stats["message"] = "No active workers found"
-        except Exception as e:
-            stats["celery_connected"] = False
-            stats["broker_error"] = str(e)
+                stats["broker_error"] = str(e)
+                stats["message"] = "Worker not running - using EAGER mode instead"
 
         # Тестируем отправку задачи
         from core.tasks import test_celery_task
@@ -185,7 +200,9 @@ def celery_stats(request):
         try:
             result = test_celery_task.delay()
             stats["test_task_sent"] = True
-            stats["test_task_id"] = result.id
+            stats["test_task_id"] = str(result.id) if hasattr(result, "id") else "executed-immediately"
+            if is_eager:
+                stats["test_task_result"] = result.get() if hasattr(result, "get") else "Task completed"
         except Exception as e:
             stats["test_task_sent"] = False
             stats["test_task_error"] = str(e)

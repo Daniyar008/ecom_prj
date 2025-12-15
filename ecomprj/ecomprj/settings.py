@@ -169,10 +169,9 @@ else:
 # CELERY CONFIGURATION
 # ============================================================================
 
-# URL брокера RabbitMQ (CloudAMQP на Render)
-CELERY_BROKER_URL = env.str(
-    "RABBITMQ_URL", default="amqp://guest:guest@localhost:5672//"
-)
+# URL брокера - используем Redis вместо RabbitMQ (бесплатно!)
+# Redis на Render бесплатно, а Background Worker стоит $7/месяц
+CELERY_BROKER_URL = REDIS_URL or "redis://localhost:6379/0"
 
 # URL для результатов задач (используем Redis если доступен)
 if REDIS_URL:
@@ -209,6 +208,20 @@ CELERY_BROKER_CONNECTION_MAX_RETRIES = 10
 # Логирование
 CELERY_WORKER_SEND_TASK_EVENTS = True
 CELERY_TASK_SEND_SENT_EVENT = True
+
+# ============================================================================
+# Режим работы Celery: Выберите один из вариантов
+# ============================================================================
+
+# ВАРИАНТ 1 (Рекомендуемый): Синхронный режим - задачи выполняются сразу
+# Подходит для бесплатного Render без Background Worker
+# Задачи будут выполняться в том же процессе что и Django
+CELERY_TASK_ALWAYS_EAGER = True  # Выполнять задачи сразу, без очереди
+CELERY_TASK_EAGER_PROPAGATES = True  # Показывать ошибки сразу
+
+# ВАРИАНТ 2: Асинхронный режим (требует отдельный Celery Worker $7/месяц)
+# Раскомментируйте если запустите Background Worker на Render:
+# CELERY_TASK_ALWAYS_EAGER = False
 
 
 # Password validation
