@@ -17,9 +17,12 @@ from cartorders.models import CartOrder, Address
 def index(request):
     # Оптимизированный запрос с select_related для избежания N+1
     try:
-        products = Product.objects.filter(
-            product_status="published", featured=True
-        ).select_related('category', 'vendor').prefetch_related('reviews').order_by("-id")[:20]
+        products = (
+            Product.objects.filter(product_status="published", featured=True)
+            .select_related("category", "vendor")
+            .prefetch_related("reviews")
+            .order_by("-id")[:20]
+        )
     except Exception:
         products = []
 

@@ -22,17 +22,21 @@ def product_list_view(request, category_cid=None):
     category_filter = request.GET.getlist("category[]")
     vendor_filter = request.GET.getlist("vendor[]")
 
+    base_queryset = Product.objects.select_related(
+        "category", "vendor"
+    ).prefetch_related("reviews")
+
     if category_cid == "all" or not category_cid:
-        products = Product.objects.filter(product_status="published")
+        products = base_queryset.filter(product_status="published")
     elif query:
-        products = Product.objects.filter(
+        products = base_queryset.filter(
             Q(title__icontains=query) | Q(description__icontains=query),
             product_status="published",
         )
     else:
         # Фильтрация по категории
         category = get_object_or_404(Category, cid=category_cid)
-        products = Product.objects.filter(category=category, product_status="published")
+        products = base_queryset.filter(category=category, product_status="published")
 
     # Применяем дополнительные фильтры
     if on_sale:
@@ -115,7 +119,7 @@ def category_list_view(request):
 def category_product_list__view(request, cid):
 
     category = Category.objects.get(cid=cid)  # food, Cosmetics
-    products = Product.objects.filter(product_status="published", category=category)
+    products = Product.objects.filter(product_status="published", category=category).select_related('category', 'vendor')[:50]
 
     context = {
         "category": category,
@@ -131,17 +135,17 @@ def product_detail_view(request, pid):
         product = cache.get(cache_key)
 
         if product is None:
-            product = Product.objects.get(pid=pid)
+            product = Product.objects.select_related('category', 'vendor').get(pid=pid)
             cache.set(cache_key, product, 60 * 10)
     except Exception:
         # Если кеш не работает, просто получаем из БД
-        product = Product.objects.get(pid=pid)
+        product = Product.objects.select_related('category', 'vendor').get(pid=pid)
 
     # product = get_object_or_404(Product, pid=pid)
-    products = Product.objects.filter(category=product.category).exclude(pid=pid)
+    products = Product.objects.filter(category=product.category).exclude(pid=pid).select_related('category', 'vendor')[:10]
 
     # Getting all reviews related to a product
-    reviews = ProductReview.objects.filter(product=product).order_by("-date")
+    reviews = ProductReview.objects.filter(product=product).select_related('user').order_by("-date")
 
     # Getting average review
     average_rating = ProductReview.objects.filter(product=product).aggregate(
