@@ -64,7 +64,7 @@
                                             <form action="{% url 'set_language' %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="language" value="en">
-                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <input type="hidden" name="next" value="/">
                                                 <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
                                                     <img src="{% static 'assets/imgs/theme/flag-us.png' %}" alt="EN" style="width:20px;margin-right:8px;" />English
                                                 </button>
@@ -74,7 +74,7 @@
                                             <form action="{% url 'set_language' %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="language" value="kk">
-                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <input type="hidden" name="next" value="/">
                                                 <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
                                                     <img src="{% static 'assets/imgs/theme/flag-kz.png' %}" alt="KZ" style="width:20px;margin-right:8px;" />Қазақша
                                                 </button>
@@ -84,7 +84,7 @@
                                             <form action="{% url 'set_language' %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="language" value="ru">
-                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <input type="hidden" name="next" value="/">
                                                 <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
                                                     <img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="RU" style="width:20px;margin-right:8px;" />Русский
                                                 </button>
