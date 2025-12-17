@@ -1,0 +1,1166 @@
+# English translations for E-commerce project.
+# Copyright (C) 2025
+# This file is distributed under the same license as the ecomprj project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ecomprj 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-17 12:00+0000\n"
+"PO-Revision-Date: 2025-12-17 12:00+0000\n"
+"Last-Translator: Daniyar <daniyar@example.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Navigation
+msgid "Home"
+msgstr "Home"
+
+msgid "Shop"
+msgstr "Shop"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Vendors"
+msgstr "Vendors"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "About Us"
+msgstr "About Us"
+
+msgid "My Account"
+msgstr "My Account"
+
+msgid "Wishlist"
+msgstr "Wishlist"
+
+msgid "Order Tracking"
+msgstr "Order Tracking"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Sign In"
+msgstr "Sign In"
+
+msgid "Sign Out"
+msgstr "Sign Out"
+
+msgid "Register"
+msgstr "Register"
+
+# Header
+msgid "Need help? Call Us:"
+msgstr "Need help? Call Us:"
+
+msgid "All Categories"
+msgstr "All Categories"
+
+msgid "Browse"
+msgstr "Browse"
+
+msgid "Search for items..."
+msgstr "Search for items..."
+
+msgid "View cart"
+msgstr "View cart"
+
+msgid "Deals"
+msgstr "Deals"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Terms of Service"
+msgstr "Terms of Service"
+
+msgid "Purchase Guide"
+msgstr "Purchase Guide"
+
+msgid "My Dashboard"
+msgstr "My Dashboard"
+
+# Product
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
+msgid "Add to Wishlist"
+msgstr "Add to Wishlist"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "In Stock"
+msgstr "In Stock"
+
+msgid "Out of Stock"
+msgstr "Out of Stock"
+
+msgid "Quantity"
+msgstr "Quantity"
+
+# Cart & Checkout
+msgid "Shopping Cart"
+msgstr "Shopping Cart"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Shipping"
+msgstr "Shipping"
+
+msgid "Place Order"
+msgstr "Place Order"
+
+msgid "Apply Coupon"
+msgstr "Apply Coupon"
+
+msgid "Order placed successfully!"
+msgstr "Order placed successfully!"
+
+# Footer
+msgid "Best prices & offers"
+msgstr "Best prices & offers"
+
+msgid "Free delivery"
+msgstr "Free delivery"
+
+msgid "Great daily deal"
+msgstr "Great daily deal"
+
+msgid "Wide assortment"
+msgstr "Wide assortment"
+
+msgid "Easy returns"
+msgstr "Easy returns"
+
+msgid "Safe delivery"
+msgstr "Safe delivery"
+
+msgid "Follow Us"
+msgstr "Follow Us"
+
+msgid "Company"
+msgstr "Company"
+
+msgid "Corporate"
+msgstr "Corporate"
+
+msgid "Popular"
+msgstr "Popular"
+
+msgid "Install App"
+msgstr "Install App"
+
+# Auth
+msgid "Email"
+msgstr "Email"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Remember me"
+msgstr "Remember me"
+
+msgid "Forgot Password?"
+msgstr "Forgot Password?"
+
+msgid "Create Account"
+msgstr "Create Account"
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+# Messages
+msgid "Welcome back!"
+msgstr "Welcome back!"
+
+msgid "Registration successful!"
+msgstr "Registration successful!"
+
+msgid "Item added to cart"
+msgstr "Item added to cart"
+
+msgid "Item removed from cart"
+msgstr "Item removed from cart"
+
+msgid "Item added to wishlist"
+msgstr "Item added to wishlist"
+
+# Title
+msgid "E-commerce - Multipurpose eCommerce"
+msgstr "E-commerce - Multipurpose eCommerce"
+
+msgid "English"
+msgstr "English"
+
+msgid "Қазақша"
+msgstr "Қазақша"
+
+msgid "Русский"
+msgstr "Русский"
+
+# Additional translations
+msgid "Browse"
+msgstr "Browse"
+
+msgid "Show more..."
+msgstr "Show more..."
+
+msgid "Deals"
+msgstr "Deals"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "My Dashboard"
+msgstr "My Dashboard"
+
+msgid "Admin Dashboard"
+msgstr "Admin Dashboard"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Sign out"
+msgstr "Sign out"
+
+msgid "24/7 Support Center"
+msgstr "24/7 Support Center"
+
+msgid "Stay home & get your daily"
+msgstr "Stay home & get your daily"
+
+msgid "needs from our shop"
+msgstr "needs from our shop"
+
+msgid "Start Your Daily Shopping with"
+msgstr "Start Your Daily Shopping with"
+
+msgid "Orders $50 or more"
+msgstr "Orders $50 or more"
+
+msgid "24/7 amazing services"
+msgstr "24/7 amazing services"
+
+msgid "When you sign up"
+msgstr "When you sign up"
+
+msgid "Mega Discounts"
+msgstr "Mega Discounts"
+
+msgid "Within 30 days"
+msgstr "Within 30 days"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Call Us"
+msgstr "Call Us"
+
+msgid "Hours"
+msgstr "Hours"
+
+msgid "Terms & Conditions"
+msgstr "Terms & Conditions"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "View Cart"
+msgstr "View Cart"
+
+msgid "My Wishlist"
+msgstr "My Wishlist"
+
+msgid "Track My Order"
+msgstr "Track My Order"
+
+msgid "Become a Vendor"
+msgstr "Become a Vendor"
+
+msgid "Affiliate Program"
+msgstr "Affiliate Program"
+
+msgid "Farm Business"
+msgstr "Farm Business"
+
+msgid "Farm Careers"
+msgstr "Farm Careers"
+
+msgid "From App Store or Google Play"
+msgstr "From App Store or Google Play"
+
+msgid "Secured Payment Gateways"
+msgstr "Secured Payment Gateways"
+
+msgid "Follow Us"
+msgstr "Follow Us"
+
+msgid "Search for items..."
+msgstr "Search for items..."
+
+msgid "View cart"
+msgstr "View cart"
+
+# Contact Page
+msgid "How can we help you?"
+msgstr "How can we help you?"
+
+msgid "Let us know how we can help you"
+msgstr "Let us know how we can help you"
+
+msgid "We are always ready to help you with any questions. Feel free to contact us anytime."
+msgstr "We are always ready to help you with any questions. Feel free to contact us anytime."
+
+msgid "Our team of experts is available 24/7 to assist you with your inquiries."
+msgstr "Our team of experts is available 24/7 to assist you with your inquiries."
+
+msgid "01. Visit Feedback"
+msgstr "01. Visit Feedback"
+
+msgid "Share your experience with us. Your feedback helps us improve our services."
+msgstr "Share your experience with us. Your feedback helps us improve our services."
+
+msgid "02. Employer Services"
+msgstr "02. Employer Services"
+
+msgid "Looking to partner with us? Contact our business development team."
+msgstr "Looking to partner with us? Contact our business development team."
+
+msgid "03. Billing Inquiries"
+msgstr "03. Billing Inquiries"
+
+msgid "Questions about your orders or payments? Our billing team is here to help."
+msgstr "Questions about your orders or payments? Our billing team is here to help."
+
+msgid "04. General Inquiries"
+msgstr "04. General Inquiries"
+
+msgid "For any other questions, please don't hesitate to reach out to us."
+msgstr "For any other questions, please don't hesitate to reach out to us."
+
+msgid "Office"
+msgstr "Office"
+
+msgid "Warehouse"
+msgstr "Warehouse"
+
+msgid "Kazakhstan"
+msgstr "Kazakhstan"
+
+msgid "Industrial District"
+msgstr "Industrial District"
+
+msgid "Main Street"
+msgstr "Main Street"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "View map"
+msgstr "View map"
+
+msgid "Contact form"
+msgstr "Contact form"
+
+msgid "Drop Us a Line"
+msgstr "Drop Us a Line"
+
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr "Your email address will not be published. Required fields are marked *"
+
+msgid "Your Name"
+msgstr "Your Name"
+
+msgid "Your Email"
+msgstr "Your Email"
+
+msgid "Your Phone"
+msgstr "Your Phone"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Send message"
+msgstr "Send message"
+
+# About Page
+msgid "Welcome to E-commerce"
+msgstr "Welcome to E-commerce"
+
+msgid "We are a leading online marketplace connecting buyers with quality vendors. Our platform offers a wide range of products at competitive prices with fast delivery."
+msgstr "We are a leading online marketplace connecting buyers with quality vendors. Our platform offers a wide range of products at competitive prices with fast delivery."
+
+msgid "Our mission is to provide the best shopping experience with secure payments, reliable delivery, and excellent customer service. We work with trusted vendors to ensure product quality."
+msgstr "Our mission is to provide the best shopping experience with secure payments, reliable delivery, and excellent customer service. We work with trusted vendors to ensure product quality."
+
+msgid "What We Provide?"
+msgstr "What We Provide?"
+
+msgid "Best Prices & Offers"
+msgstr "Best Prices & Offers"
+
+msgid "We offer competitive prices and regular discounts to help you save money on every purchase."
+msgstr "We offer competitive prices and regular discounts to help you save money on every purchase."
+
+msgid "Wide Assortment"
+msgstr "Wide Assortment"
+
+msgid "Browse through thousands of products from various categories to find exactly what you need."
+msgstr "Browse through thousands of products from various categories to find exactly what you need."
+
+msgid "Free Delivery"
+msgstr "Free Delivery"
+
+msgid "Enjoy free delivery on orders over a certain amount. Fast and reliable shipping nationwide."
+msgstr "Enjoy free delivery on orders over a certain amount. Fast and reliable shipping nationwide."
+
+msgid "Easy Returns"
+msgstr "Easy Returns"
+
+msgid "Not satisfied? Return products within 30 days for a full refund. No questions asked."
+msgstr "Not satisfied? Return products within 30 days for a full refund. No questions asked."
+
+msgid "100% Satisfaction"
+msgstr "100% Satisfaction"
+
+msgid "We guarantee your satisfaction with every purchase. Quality products and excellent service."
+msgstr "We guarantee your satisfaction with every purchase. Quality products and excellent service."
+
+msgid "Great Daily Deal"
+msgstr "Great Daily Deal"
+
+msgid "Check our daily deals section for amazing discounts on popular products every day."
+msgstr "Check our daily deals section for amazing discounts on popular products every day."
+
+msgid "Our performance"
+msgstr "Our performance"
+
+msgid "Your Partner for e-commerce grocery solution"
+msgstr "Your Partner for e-commerce grocery solution"
+
+msgid "We strive to be your trusted partner in online shopping, offering a seamless experience from browsing to delivery."
+msgstr "We strive to be your trusted partner in online shopping, offering a seamless experience from browsing to delivery."
+
+msgid "Our platform connects you with verified vendors, ensuring quality products and reliable service every time."
+msgstr "Our platform connects you with verified vendors, ensuring quality products and reliable service every time."
+
+msgid "Who we are"
+msgstr "Who we are"
+
+msgid "We are a team of passionate professionals dedicated to revolutionizing online shopping in Kazakhstan."
+msgstr "We are a team of passionate professionals dedicated to revolutionizing online shopping in Kazakhstan."
+
+msgid "Our history"
+msgstr "Our history"
+
+msgid "Founded with a vision to make quality products accessible to everyone, we continue to grow and improve."
+msgstr "Founded with a vision to make quality products accessible to everyone, we continue to grow and improve."
+
+msgid "Our mission"
+msgstr "Our mission"
+
+msgid "To provide the best online shopping experience with competitive prices, quality products, and excellent service."
+msgstr "To provide the best online shopping experience with competitive prices, quality products, and excellent service."
+
+msgid "Glorious years"
+msgstr "Glorious years"
+
+msgid "Happy clients"
+msgstr "Happy clients"
+
+msgid "Projects complete"
+msgstr "Projects complete"
+
+msgid "Team advisor"
+msgstr "Team advisor"
+
+msgid "Products Sale"
+msgstr "Products Sale"
+
+msgid "Our Team"
+msgstr "Our Team"
+
+msgid "Meet Our Expert Team"
+msgstr "Meet Our Expert Team"
+
+msgid "Our team consists of experienced professionals dedicated to providing the best service."
+msgstr "Our team consists of experienced professionals dedicated to providing the best service."
+
+msgid "We work together to ensure your shopping experience is seamless and enjoyable."
+msgstr "We work together to ensure your shopping experience is seamless and enjoyable."
+
+msgid "Daniyar S."
+msgstr "Daniyar S."
+
+msgid "CEO & Co-Founder"
+msgstr "CEO & Co-Founder"
+
+msgid "Nurislam A."
+msgstr "Nurislam A."
+
+msgid "Head Engineer"
+msgstr "Head Engineer"
+
+# Login Page
+msgid "Login"
+msgstr "Login"
+
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+msgid "Create here"
+msgstr "Create here"
+
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+msgid "Log in"
+msgstr "Log in"
+
+# Registration Page
+msgid "Create an Account"
+msgstr "Create an Account"
+
+msgid "Submit & Register"
+msgstr "Submit & Register"
+
+msgid "Note:"
+msgstr "Note:"
+
+msgid "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy"
+msgstr "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy"
+
+msgid "Continue with Facebook"
+msgstr "Continue with Facebook"
+
+msgid "Continue with Google"
+msgstr "Continue with Google"
+
+msgid "Continue with Apple"
+msgstr "Continue with Apple"
+
+# Dashboard
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Orders"
+msgstr "Orders"
+
+msgid "My Address"
+msgstr "My Address"
+
+msgid "Account details"
+msgstr "Account details"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "My Profile"
+msgstr "My Profile"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Bio"
+msgstr "Bio"
+
+msgid "Verified"
+msgstr "Verified"
+
+msgid "Not verified"
+msgstr "Not verified"
+
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+msgid "Hello"
+msgstr "Hello"
+
+msgid "From your account dashboard you can easily check & view your"
+msgstr "From your account dashboard you can easily check & view your"
+
+msgid "recent orders"
+msgstr "recent orders"
+
+msgid "manage your"
+msgstr "manage your"
+
+msgid "shipping and billing addresses"
+msgstr "shipping and billing addresses"
+
+msgid "and"
+msgstr "and"
+
+msgid "edit your password and account details"
+msgstr "edit your password and account details"
+
+msgid "Your Orders"
+msgstr "Your Orders"
+
+msgid "Order"
+msgstr "Order"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Paid Status"
+msgstr "Paid Status"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "View"
+msgstr "View"
+
+msgid "Orders tracking"
+msgstr "Orders tracking"
+
+msgid "To track your order please enter your OrderID in the box below and press Track button. This was given to you on your receipt and in the confirmation email you should have received."
+msgstr "To track your order please enter your OrderID in the box below and press Track button. This was given to you on your receipt and in the confirmation email you should have received."
+
+msgid "Order ID"
+msgstr "Order ID"
+
+msgid "Found in your order confirmation email"
+msgstr "Found in your order confirmation email"
+
+msgid "Billing email"
+msgstr "Billing email"
+
+msgid "Email you used during checkout"
+msgstr "Email you used during checkout"
+
+msgid "Track"
+msgstr "Track"
+
+msgid "Add Address"
+msgstr "Add Address"
+
+msgid "Save Address"
+msgstr "Save Address"
+
+msgid "Make Default"
+msgstr "Make Default"
+
+msgid "Account Details"
+msgstr "Account Details"
+
+msgid "Log in instead!"
+msgstr "Log in instead!"
+
+msgid "First Name"
+msgstr "First Name"
+
+msgid "Last Name"
+msgstr "Last Name"
+
+msgid "Display Name"
+msgstr "Display Name"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Current Password"
+msgstr "Current Password"
+
+msgid "New Password"
+msgstr "New Password"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Save Change"
+msgstr "Save Change"
+
+# Privacy Policy Page
+msgid "By"
+msgstr "By"
+
+msgid "Administration"
+msgstr "Administration"
+
+msgid "Last updated"
+msgstr "Last updated"
+
+msgid "Welcome to Our Privacy Policy"
+msgstr "Welcome to Our Privacy Policy"
+
+msgid "This Privacy Policy describes how we collect, use, and protect your personal information when you use our e-commerce platform."
+msgstr "This Privacy Policy describes how we collect, use, and protect your personal information when you use our e-commerce platform."
+
+msgid "Information We Collect"
+msgstr "Information We Collect"
+
+msgid "We collect the following types of personal information:"
+msgstr "We collect the following types of personal information:"
+
+msgid "Name, email address, and contact information"
+msgstr "Name, email address, and contact information"
+
+msgid "Billing and shipping addresses"
+msgstr "Billing and shipping addresses"
+
+msgid "Payment information (processed securely through our payment providers)"
+msgstr "Payment information (processed securely through our payment providers)"
+
+msgid "Order history and preferences"
+msgstr "Order history and preferences"
+
+msgid "Device and browser information for analytics"
+msgstr "Device and browser information for analytics"
+
+msgid "How We Use Your Information"
+msgstr "How We Use Your Information"
+
+msgid "We use your personal information to:"
+msgstr "We use your personal information to:"
+
+msgid "Process and fulfill your orders"
+msgstr "Process and fulfill your orders"
+
+msgid "Communicate with you about your orders and account"
+msgstr "Communicate with you about your orders and account"
+
+msgid "Improve our products and services"
+msgstr "Improve our products and services"
+
+msgid "Send promotional offers (with your consent)"
+msgstr "Send promotional offers (with your consent)"
+
+msgid "Prevent fraud and ensure security"
+msgstr "Prevent fraud and ensure security"
+
+msgid "Data Protection"
+msgstr "Data Protection"
+
+msgid "We implement industry-standard security measures to protect your personal information, including SSL encryption, secure servers, and regular security audits."
+msgstr "We implement industry-standard security measures to protect your personal information, including SSL encryption, secure servers, and regular security audits."
+
+msgid "Your Rights"
+msgstr "Your Rights"
+
+msgid "You have the right to:"
+msgstr "You have the right to:"
+
+msgid "Access your personal data"
+msgstr "Access your personal data"
+
+msgid "Request correction of inaccurate data"
+msgstr "Request correction of inaccurate data"
+
+msgid "Request deletion of your data"
+msgstr "Request deletion of your data"
+
+msgid "Opt-out of marketing communications"
+msgstr "Opt-out of marketing communications"
+
+msgid "Export your data in a portable format"
+msgstr "Export your data in a portable format"
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "We use cookies to improve your browsing experience, analyze site traffic, and personalize content. You can manage cookie preferences in your browser settings."
+msgstr "We use cookies to improve your browsing experience, analyze site traffic, and personalize content. You can manage cookie preferences in your browser settings."
+
+msgid "If you have questions about this Privacy Policy, please contact us through our Contact page."
+msgstr "If you have questions about this Privacy Policy, please contact us through our Contact page."
+
+msgid "Search..."
+msgstr "Search..."
+
+# Terms of Service Page
+msgid "Please read these Terms of Service carefully before using our website and services."
+msgstr "Please read these Terms of Service carefully before using our website and services."
+
+msgid "Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms."
+msgstr "Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms."
+
+msgid "User Agreement"
+msgstr "User Agreement"
+
+msgid "By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service."
+msgstr "By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service."
+
+msgid "Rights & Restrictions"
+msgstr "Rights & Restrictions"
+
+msgid "Users must be at least 18 years of age"
+msgstr "Users must be at least 18 years of age"
+
+msgid "Users are responsible for maintaining the confidentiality of their account"
+msgstr "Users are responsible for maintaining the confidentiality of their account"
+
+msgid "Users agree not to use the service for any illegal purposes"
+msgstr "Users agree not to use the service for any illegal purposes"
+
+msgid "All content remains the property of respective owners"
+msgstr "All content remains the property of respective owners"
+
+msgid "Orders and Payments"
+msgstr "Orders and Payments"
+
+msgid "When placing an order, you agree to provide accurate and complete information. All payments are processed securely through our payment providers."
+msgstr "When placing an order, you agree to provide accurate and complete information. All payments are processed securely through our payment providers."
+
+msgid "Shipping and Delivery"
+msgstr "Shipping and Delivery"
+
+msgid "Delivery times may vary depending on your location and the products ordered. We are not responsible for delays caused by customs or other factors beyond our control."
+msgstr "Delivery times may vary depending on your location and the products ordered. We are not responsible for delays caused by customs or other factors beyond our control."
+
+msgid "Returns and Refunds"
+msgstr "Returns and Refunds"
+
+msgid "Products may be returned within 14 days of delivery for a full refund, provided they are in original condition. Some items may not be eligible for return."
+msgstr "Products may be returned within 14 days of delivery for a full refund, provided they are in original condition. Some items may not be eligible for return."
+
+msgid "Limitation of Liability"
+msgstr "Limitation of Liability"
+
+msgid "We shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service."
+msgstr "We shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service."
+
+msgid "Changes to Terms"
+msgstr "Changes to Terms"
+
+msgid "We reserve the right to modify or replace these Terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms."
+msgstr "We reserve the right to modify or replace these Terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms."
+
+msgid "If you have any questions about these Terms, please contact us through our Contact page."
+msgstr "If you have any questions about these Terms, please contact us through our Contact page."
+
+# Purchase Guide Page
+msgid "1. Account Registration"
+msgstr "1. Account Registration"
+
+msgid "To make purchases on our platform, you need to create an account. Here's what you'll need:"
+msgstr "To make purchases on our platform, you need to create an account. Here's what you'll need:"
+
+msgid "Full name (required)"
+msgstr "Full name (required)"
+
+msgid "Email address (required)"
+msgstr "Email address (required)"
+
+msgid "Phone number (required)"
+msgstr "Phone number (required)"
+
+msgid "Delivery address (required)"
+msgstr "Delivery address (required)"
+
+msgid "Password (required)"
+msgstr "Password (required)"
+
+msgid "2. Browse and Select Products"
+msgstr "2. Browse and Select Products"
+
+msgid "Browse through our categories or use the search function to find products. Click on any product to view details, specifications, and customer reviews."
+msgstr "Browse through our categories or use the search function to find products. Click on any product to view details, specifications, and customer reviews."
+
+msgid "3. Add to Cart"
+msgstr "3. Add to Cart"
+
+msgid "Once you've found a product you like, select the quantity and click 'Add to Cart'. You can continue shopping or proceed to checkout."
+msgstr "Once you've found a product you like, select the quantity and click 'Add to Cart'. You can continue shopping or proceed to checkout."
+
+msgid "4. Review Your Order"
+msgstr "4. Review Your Order"
+
+msgid "Before checkout, review your cart to ensure you have the correct items and quantities. You can modify quantities or remove items at this stage."
+msgstr "Before checkout, review your cart to ensure you have the correct items and quantities. You can modify quantities or remove items at this stage."
+
+msgid "5. Checkout and Payment"
+msgstr "5. Checkout and Payment"
+
+msgid "Enter your shipping details and select your preferred payment method. We accept the following payment options:"
+msgstr "Enter your shipping details and select your preferred payment method. We accept the following payment options:"
+
+msgid "Bank Transfer"
+msgstr "Bank Transfer"
+
+msgid "*Taxes are calculated based on your location."
+msgstr "*Taxes are calculated based on your location."
+
+msgid "6. Order Confirmation"
+msgstr "6. Order Confirmation"
+
+msgid "After successful payment, you'll receive an order confirmation email with:"
+msgstr "After successful payment, you'll receive an order confirmation email with:"
+
+msgid "Order number and details"
+msgstr "Order number and details"
+
+msgid "Estimated delivery date"
+msgstr "Estimated delivery date"
+
+msgid "Tracking information (when available)"
+msgstr "Tracking information (when available)"
+
+msgid "Access to order history in your dashboard"
+msgstr "Access to order history in your dashboard"
+
+msgid "7. Need Help?"
+msgstr "7. Need Help?"
+
+msgid "If you have any questions or need assistance with your purchase, please don't hesitate to contact our customer support team through the Contact page."
+msgstr "If you have any questions or need assistance with your purchase, please don't hesitate to contact our customer support team through the Contact page."
+
+# Product List Page
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Filters"
+msgstr "Filters"
+
+msgid "By Categories"
+msgstr "By Categories"
+
+msgid "By Vendors"
+msgstr "By Vendors"
+
+msgid "By Price"
+msgstr "By Price"
+
+msgid "From"
+msgstr "From"
+
+msgid "To"
+msgstr "To"
+
+msgid "On Sale"
+msgstr "On Sale"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Default"
+msgstr "Default"
+
+msgid "Price: Low to High"
+msgstr "Price: Low to High"
+
+msgid "Price: High to Low"
+msgstr "Price: High to Low"
+
+msgid "Newest First"
+msgstr "Newest First"
+
+msgid "Apply Filters"
+msgstr "Apply Filters"
+
+msgid "Clear Filters"
+msgstr "Clear Filters"
+
+msgid "We found"
+msgstr "We found"
+
+msgid "items for you!"
+msgstr "items for you!"
+
+msgid "Show"
+msgstr "Show"
+
+msgid "All"
+msgstr "All"
+
+msgid "Featured"
+msgstr "Featured"
+
+msgid "Release Date"
+msgstr "Release Date"
+
+msgid "Avg. Rating"
+msgstr "Avg. Rating"
+
+msgid "Add"
+msgstr "Add"
+
+# Index/Home Page
+msgid "Don't miss amazing"
+msgstr "Don't miss amazing"
+
+msgid "grocery deals"
+msgstr "grocery deals"
+
+msgid "Sign up for the daily newsletter"
+msgstr "Sign up for the daily newsletter"
+
+msgid "Your email address"
+msgstr "Your email address"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Fresh Vegetables"
+msgstr "Fresh Vegetables"
+
+msgid "Big discount"
+msgstr "Big discount"
+
+msgid "Save up to 50% off on your first order"
+msgstr "Save up to 50% off on your first order"
+
+msgid "Popular Products"
+msgstr "Popular Products"
+
+msgid "Add To Wishlist"
+msgstr "Add To Wishlist"
+
+msgid "Shop by Categories"
+msgstr "Shop by Categories"
+
+msgid "All Categories"
+msgstr "All Categories"
+
+# Product Detail Page
+msgid "reviews"
+msgstr "reviews"
+
+msgid "Off"
+msgstr "Off"
+
+msgid "Add to cart"
+msgstr "Add to cart"
+
+msgid "Stock"
+msgstr "Stock"
+
+msgid "Items In Stock"
+msgstr "Items In Stock"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Additional info"
+msgstr "Additional info"
+
+msgid "Vendor"
+msgstr "Vendor"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+# Cart Page
+msgid "Shop"
+msgstr "Shop"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Your Cart"
+msgstr "Your Cart"
+
+msgid "There are"
+msgstr "There are"
+
+msgid "products in your cart"
+msgstr "products in your cart"
+
+msgid "Product"
+msgstr "Product"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Unit Price"
+msgstr "Unit Price"
+
+msgid "Quantity"
+msgstr "Quantity"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Bio Data"
+msgstr "Bio Data"
+
+msgid "Full Name"
+msgstr "Full Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "Shipping Details"
+msgstr "Shipping Details"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "City"
+msgstr "City"
+
+msgid "State"
+msgstr "State"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "Tax"
+msgstr "Tax"
+
+msgid "Shipping"
+msgstr "Shipping"
+
+msgid "Discount"
+msgstr "Discount"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed To CheckOut"
+msgstr "Proceed To CheckOut"

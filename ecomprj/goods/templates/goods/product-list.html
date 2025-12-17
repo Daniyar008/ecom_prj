@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
     <head>
@@ -40,8 +41,8 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> Shop <span></span> Fillter
+                    <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>{% trans "Home" %}</a>
+                    <span></span> {% trans "Shop" %} <span></span> {% trans "Filter" %}
                 </div>
             </div>
         </div>
@@ -50,7 +51,7 @@
                 <div class="col-lg-12">
                     <a class="shop-filter-toogle" href="#">
                         <span class="fi-rs-filter mr-5"></span>
-                        Filters
+                        {% trans "Filters" %}
                         <i class="fi-rs-angle-small-down angle-down"></i>
                         <i class="fi-rs-angle-small-up angle-up"></i>
                     </a>
@@ -59,7 +60,7 @@
                             <div class="row">
                                 <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
                                     <div class="card">
-                                        <h5 class="mb-30">By Categories</h5>
+                                        <h5 class="mb-30">{% trans "By Categories" %}</h5>
                                         <div class="categories-dropdown-wrap font-heading">
                                             <ul>
                                                 {% for c in categories %}
@@ -78,7 +79,7 @@
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
                                     <div class="card">
-                                        <h5 class="mb-30">By Vendors</h5>
+                                        <h5 class="mb-30">{% trans "By Vendors" %}</h5>
                                         <div class="d-flex">
                                             <div class="customeee-checkbox mr-80">
                                                 {% for v in vendors %}
@@ -96,7 +97,7 @@
                                 
                                 <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
                                     <div class="card">
-                                        <h5 class="mb-10">By Price</h5>
+                                        <h5 class="mb-10">{% trans "By Price" %}</h5>
                                         <div class="sidebar-widget price_range range">
                                             <div class="price-filter mb-20">
                                                 
@@ -109,7 +110,7 @@
                                                         oninput="max_price.value=this.value; min_price_display.textContent='$' + this.value">
                                                     
                                                     <div class="d-flex justify-content-between">
-                                                        <div class="caption">From: 
+                                                        <div class="caption">{% trans "From" %}: 
                                                             <strong id="slider-range-value1" class="text-brand">
                                                                 $<span id="min_price_display">{% if request.GET.min_price %}{{ request.GET.min_price }}{% else %}{{ min_max_price.price__min|floatformat:'2' }}{% endif %}</span>
                                                             </strong>
@@ -148,17 +149,17 @@
                                                     <input class="form-check-input" type="checkbox" name="on_sale" id="on_sale" value="on" 
                                                     {% if request.GET.on_sale == 'on' %}checked{% endif %}>
                                                     <label class="form-check-label text-dark" for="on_sale">
-                                                        On Sale
+                                                        {% trans "On Sale" %}
                                                     </label>
                                                 </div>
                                                 
-                                                <p class="text-dark mt-3 mb-2">Sort by:</p>
+                                                <p class="text-dark mt-3 mb-2">{% trans "Sort by" %}:</p>
                                                 
                                                 <div class="form-check text-dark">
                                                     <input class="form-check-input" type="radio" name="order_by" id="order_default" value="default"
                                                     {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked{% endif %}>
                                                     <label class="form-check-label text-dark" for="order_default">
-                                                        Default
+                                                        {% trans "Default" %}
                                                     </label>
                                                 </div>
 
@@ -166,7 +167,7 @@
                                                     <input class="form-check-input" type="radio" name="order_by" id="order_price_asc" value="price" 
                                                     {% if request.GET.order_by == 'price' %}checked{% endif %}>
                                                     <label class="form-check-label text-dark" for="order_price_asc">
-                                                        Price: Low to High
+                                                        {% trans "Price: Low to High" %}
                                                     </label>
                                                 </div>
                                                 
@@ -174,7 +175,7 @@
                                                     <input class="form-check-input" type="radio" name="order_by" id="order_price_desc" value="-price"
                                                     {% if request.GET.order_by == '-price' %}checked{% endif %}>
                                                     <label class="form-check-label text-dark" for="order_price_desc">
-                                                        Price: High to Low
+                                                        {% trans "Price: High to Low" %}
                                                     </label>
                                                 </div>
                                                 
@@ -182,18 +183,18 @@
                                                     <input class="form-check-input" type="radio" name="order_by" id="order_newest" value="-date"
                                                     {% if request.GET.order_by == '-date' %}checked{% endif %}>
                                                     <label class="form-check-label text-dark" for="order_newest">
-                                                        Newest First
+                                                        {% trans "Newest First" %}
                                                     </label>
                                                 </div>
                                             </div>
                                             
                                             <div class="d-grid gap-2 mt-3">
                                                 <button class="btn btn-primary mt-20 w-100" type="submit" id="price-filter-btn">
-                                                    <i class="fi-rs-filter mr-10"></i> Apply Filters
+                                                    <i class="fi-rs-filter mr-10"></i> {% trans "Apply Filters" %}
                                                 </button>
                                                 {% if request.GET %}
                                                 <a href="{% url 'catalog:product-list' %}" class="btn btn-outline-secondary w-100">
-                                                    <i class="fi-rs-refresh mr-10"></i> Clear Filters
+                                                    <i class="fi-rs-refresh mr-10"></i> {% trans "Clear Filters" %}
                                                 </a>
                                                 {% endif %}
                                             </div>
@@ -208,13 +209,13 @@
                 <div class="col-12">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">{{products.count}}</strong> items for you!</p>
+                            <p>{% trans "We found" %} <strong class="text-brand">{{products.count}}</strong> {% trans "items for you!" %}</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
                                 <div class="sort-by-product-wrap">
                                     <div class="sort-by">
-                                        <span><i class="fi-rs-apps"></i>Show:</span>
+                                        <span><i class="fi-rs-apps"></i>{% trans "Show" %}:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
                                         <span> 50 <i class="fi-rs-angle-small-down"></i></span>
@@ -233,19 +234,19 @@
                             <div class="sort-by-cover">
                                 <div class="sort-by-product-wrap">
                                     <div class="sort-by">
-                                        <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                        <span><i class="fi-rs-apps-sort"></i>{% trans "Sort by" %}:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                        <span> {% trans "Featured" %} <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
                                 <div class="sort-by-dropdown">
                                     <ul>
-                                        <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
+                                        <li><a class="active" href="#">{% trans "Featured" %}</a></li>
+                                        <li><a href="#">{% trans "Price: Low to High" %}</a></li>
+                                        <li><a href="#">{% trans "Price: High to Low" %}</a></li>
+                                        <li><a href="#">{% trans "Release Date" %}</a></li>
+                                        <li><a href="#">{% trans "Avg. Rating" %}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -298,7 +299,7 @@
                                             <input type="hidden" class="product-id-{{ p.id }}" value="{{ p.id }}">
                                             <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
                                             <div class="d-flex">
-                                                <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                                                <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button>
                                                 <button style="border: none; background: none;" class="add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart" style="fill: aqua;"></i></button>
                                             </div>
                                             <!-- <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button> -->

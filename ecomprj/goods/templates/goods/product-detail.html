@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
@@ -12,7 +13,7 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                    <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>{% trans "Home" %}</a>
                     <span></span> <a href="shop-grid-right.html">{{ p.category.title }}</a> <span></span> {{ p.title }}
                 </div>
             </div>
@@ -64,7 +65,7 @@
                                                 <div class="product-price primary-color float-left">
                                                     <span class="current-price text-brand">$</span><span class="current-price text-brand current-price current-product-price-{{ p.id }}" id="current-product-price">{{p.price}}</span>
                                                     <span>
-                                                        <span class="save-price font-md color3 ml-15">-{{p.get_precentage|floatformat:0}}% Off</span>
+                                                        <span class="save-price font-md color3 ml-15">-{{p.get_precentage|floatformat:0}}% {% trans "Off" %}</span>
                                                     <span class="old-price font-md ml-15">${{p.old_price}}</span>
                                                     </span>
                                                 </div>
@@ -85,7 +86,7 @@
                                                         <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
 
                                                     
-                                                    <button type="submit" class="button button-add-to-cart add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                    <button type="submit" class="button button-add-to-cart add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>{% trans "Add to cart" %}</button>
                                                     <a aria-label="Add To Wishlist" class="action-btn hover-up add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart"></i></a>
                                                     {% comment %} <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> {% endcomment %}
                                                 </div>
@@ -101,7 +102,7 @@
                                                     {% if p.tags %}
                                                     <li class="mb-5">Tags: {% for tag in p.tags.all %}<a href="{% url 'catalog:tags' tag.slug %}" rel="tag"> #{{tag.name}}</a>,{% endfor %} </li>
                                                     {% endif %}
-                                                    <li>Stock:<span class="in-stock text-brand ml-5">{{p.stock_count}} Items In Stock</span></li>
+                                                    <li>{% trans "Stock" %}:<span class="in-stock text-brand ml-5">{{p.stock_count}} {% trans "Items In Stock" %}</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -112,16 +113,16 @@
                                     <div class="tab-style3">
                                         <ul class="nav nav-tabs text-uppercase">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
+                                                <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">{% trans "Description" %}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
+                                                <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">{% trans "Additional info" %}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
+                                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">{% trans "Vendor" %}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{ reviews.count }})</a>
+                                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">{% trans "Reviews" %} ({{ reviews.count }})</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content shop_info_tab entry-main-content">

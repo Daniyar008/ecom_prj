@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import dj_database_url
 
 from environs import Env
 
@@ -27,13 +28,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%o9!c3rf02q6usr!vw^s96^t*(dsv&ezbs)_u_k7^z1oa$ik0r"
+SECRET_KEY = env.str(
+    "SECRET_KEY",
+    default="django-insecure-%o9!c3rf02q6usr!vw^s96^t*(dsv&ezbs)_u_k7^z1oa$ik0r",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://development-server.up.railway.app"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+CSRF_TRUSTED_ORIGINS = env.list(
+    "CSRF_TRUSTED_ORIGINS", default=["https://development-server.up.railway.app"]
+)
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 
@@ -48,12 +54,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
-
     "taggit",
     "crispy_bootstrap5",
-    "ckeditor",
+    "django_ckeditor_5",
     "paypal.standard.ipn",
-
     "core",
     "userauths",
     "goods",
@@ -64,12 +68,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Для статических файлов на Render
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # Локализация - после session, перед common
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "core.middleware.CacheStatsMiddleware",  # Middleware для отслеживания Redis
 ]
 
 ROOT_URLCONF = "ecomprj.urls"
@@ -97,15 +104,188 @@ WSGI_APPLICATION = "ecomprj.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ecomprj_2",
-        "USER": "Nutelliks",
-        "PASSWORD": "12345",
-        "HOST": "localhost",
-        "PORT": "5432",
+# Используем переменную окружения DATABASE_URL для production (Render)
+# Локальная БД для разработки
+if env.str("DATABASE_URL", default=None):
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=env.str("DATABASE_URL"),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "2008",
+            "HOST": "localhost",
+            "PORT": "5432",
+            "OPTIONS": {"options": "-c search_path=multivendor_data_sh,public"},
+        }
+    }
+
+
+# Redis Cache Configuration
+# https://docs.djangoproject.com/en/4.2/topics/cache/
+REDIS_URL = env.str("REDIS_URL", default=None)
+
+# Используем Redis если он доступен, иначе используем локальную память
+if REDIS_URL:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                # Используем стандартный PythonParser (HiredisParser несовместим)
+                "CONNECTION_POOL_KWARGS": {"max_connections": 50},
+                "SOCKET_CONNECT_TIMEOUT": 5,
+                "SOCKET_TIMEOUT": 5,
+                "RETRY_ON_TIMEOUT": True,
+                "IGNORE_EXCEPTIONS": True,  # Не ломать сайт если Redis недоступен
+            },
+            "KEY_PREFIX": "ecomprj",
+            "TIMEOUT": 300,  # 5 минут по умолчанию
+        }
+    }
+    # Кеширование сессий в Redis
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+    SESSION_CACHE_ALIAS = "default"
+else:
+    # Fallback на локальную память если Redis не настроен
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "unique-snowflake",
+        }
+    }
+    # Используем обычные сессии в БД
+    SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+
+# ============================================================================
+# CELERY CONFIGURATION
+# ============================================================================
+
+# URL брокера - используем Redis вместо RabbitMQ (бесплатно!)
+# Redis на Render бесплатно, а Background Worker стоит $7/месяц
+CELERY_BROKER_URL = REDIS_URL or "redis://localhost:6379/0"
+
+# URL для результатов задач (используем Redis если доступен)
+if REDIS_URL:
+    CELERY_RESULT_BACKEND = REDIS_URL
+else:
+    CELERY_RESULT_BACKEND = "django-db"  # Fallback на БД
+
+# Формат сериализации
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+# Настройки времени
+CELERY_TIMEZONE = "UTC"
+CELERY_ENABLE_UTC = True
+
+# Настройки задач
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 минут максимум
+CELERY_TASK_SOFT_TIME_LIMIT = 25 * 60  # Мягкий лимит 25 минут
+CELERY_TASK_ACKS_LATE = True
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+
+# Результаты задач
+CELERY_RESULT_EXPIRES = 60 * 60 * 24  # Хранить результаты 24 часа
+CELERY_RESULT_BACKEND_ALWAYS_RETRY = True
+CELERY_RESULT_BACKEND_MAX_RETRIES = 10
+
+# Настройки брокера
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BROKER_CONNECTION_RETRY = True
+CELERY_BROKER_CONNECTION_MAX_RETRIES = 10
+
+# Логирование
+CELERY_WORKER_SEND_TASK_EVENTS = True
+CELERY_TASK_SEND_SENT_EVENT = True
+
+# ============================================================================
+# Режим работы Celery: Выберите один из вариантов
+# ============================================================================
+
+# ВАРИАНТ 1 (Рекомендуемый): Синхронный режим - задачи выполняются сразу
+# Подходит для бесплатного Render без Background Worker
+# Задачи будут выполняться в том же процессе что и Django
+CELERY_TASK_ALWAYS_EAGER = True  # Выполнять задачи сразу, без очереди
+CELERY_TASK_EAGER_PROPAGATES = False  # НЕ показывать ошибки задач - не ломать сайт
+
+# ВАРИАНТ 2: Асинхронный режим (требует отдельный Celery Worker $7/месяц)
+# Раскомментируйте если запустите Background Worker на Render:
+# CELERY_TASK_ALWAYS_EAGER = False
+
+# ============================================================================
+# Email Configuration (Console backend for development/free tier)
+# ============================================================================
+# На бесплатном Render используем console backend - email выводятся в логи
+# Для продакшена добавьте переменные: EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+
+EMAIL_BACKEND = env.str(
+    "EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+)
+EMAIL_HOST = env.str("EMAIL_HOST", default="")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = env.str(
+    "DEFAULT_FROM_EMAIL", default="noreply@multivendor-shop.com"
+)
+
+# ============================================================================
+# Logging Configuration (для отладки ошибок на Render)
+# ============================================================================
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[{levelname}] {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "userauths": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Детальные логи регистрации/входа
+            "propagate": False,
+        },
+        "core": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "cartorders": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
 }
 
 
@@ -131,15 +311,29 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+from django.utils.translation import gettext_lazy as _
 
-TIME_ZONE = "UTC"
+# Поддерживаемые языки
+LANGUAGES = [
+    ("en", _("English")),
+    ("kk", _("Қазақша")),
+    ("ru", _("Русский")),
+]
 
-USE_I18N = True
+LANGUAGE_CODE = "en"  # Язык по умолчанию
 
-USE_L10N = True
+TIME_ZONE = "Asia/Almaty"  # Казахстан
+
+USE_I18N = True  # Включить интернационализацию
+
+USE_L10N = True  # Включить локализацию форматов
 
 USE_TZ = True
+
+# Путь к файлам переводов
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -150,6 +344,10 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# WhiteNoise configuration для Render.com
+# Используем CompressedStaticFilesStorage вместо Manifest версии чтобы избежать ошибок с .map файлами
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 

@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ LANGUAGE_CODE }}">
 
 <head>
     <meta charset="utf-8" />
-    <title>E-commerce - Multipurpose eCommerce HTML Template</title>
+    <title>{% trans "E-commerce - Multipurpose eCommerce" %}</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,40 +41,68 @@
                 <div class="row align-items-center">
                         <div class="header-info header-info-left">
                             <ul>
-                                <li><a href="{% url 'core:about_us' %}">About Us</a></li>
-                                <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
-                                <li><a href="{% url 'wishlist:wishlist' %}">Wishlist</a></li>
-                                <li><a href="{% url 'core:dashboard' %}">Order Tracking</a></li>
+                                <li><a href="{% url 'core:about_us' %}">{% trans "About Us" %}</a></li>
+                                <li><a href="{% url 'core:dashboard' %}">{% trans "My Account" %}</a></li>
+                                <li><a href="{% url 'wishlist:wishlist' %}">{% trans "Wishlist" %}</a></li>
+                                <li><a href="{% url 'core:dashboard' %}">{% trans "Order Tracking" %}</a></li>
                             </ul>
                         </div>
                         <div class="header-info header-info-right">
                             <ul>
-                                <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                                <li>{% trans "Need help? Call Us:" %} <strong class="text-brand"> +7 777 888 99 00</strong></li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
+                                    <!-- Language Switcher -->
+                                    <a class="language-dropdown-active" href="#">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == 'kk' %}Қазақша
+                                        {% elif LANGUAGE_CODE == 'ru' %}Русский
+                                        {% else %}English{% endif %}
+                                        <i class="fi-rs-angle-small-down"></i>
+                                    </a>
                                     <ul class="language-dropdown">
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-fr.png' %}" alt="" />Français</a>
+                                            <form action="{% url 'set_language' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="language" value="en">
+                                                <input type="hidden" name="next" value="/">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-us.png' %}" alt="EN" style="width:20px;margin-right:8px;" />English
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-dt.png' %}" alt="" />Deutsch</a>
+                                            <form action="{% url 'set_language' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="language" value="kk">
+                                                <input type="hidden" name="next" value="/">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-kz.png' %}" alt="KZ" style="width:20px;margin-right:8px;" />Қазақша
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />Pусский</a>
+                                            <form action="{% url 'set_language' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="language" value="ru">
+                                                <input type="hidden" name="next" value="/">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="RU" style="width:20px;margin-right:8px;" />Русский
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">USD <i class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">KZT <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown Right-aligned lg">
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-fr.png' %}" alt="" />INR</a>
+                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-kz.png' %}" alt="" />KZT</a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-dt.png' %}" alt="" />MBP</a>
+                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />RUB</a>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />EU</a>
+                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-us.png' %}" alt="" />USD</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -93,12 +122,12 @@
                         <div class="search-style-2">
                             <form action="{% url 'catalog:search' %}" method="GET">
                                 <select class="select-active">
-                                    <option>All Categories</option>
+                                    <option>{% trans "All Categories" %}</option>
                                     {% for c in categories %}
                                     <option>{{ c.title }}</option>
                                     {% endfor %}
                                 </select>
-                                <input type="text" placeholder="Search for items..." name="q" />
+                                <input type="text" placeholder="{% trans 'Search for items...' %}" name="q" />
                                 <button class="material-symbols-outlined" type="submit"><span class="material-symbols-outlined">search</span></button>
 
                             </form>
@@ -114,20 +143,20 @@
                                         <span class="pro-count blue">0</span>
                                         {% endif %}
                                     </a>
-                                    <a href="{% url 'wishlist:wishlist' %}"><span class="lable">Wishlist</span></a>
+                                    <a href="{% url 'wishlist:wishlist' %}"><span class="lable">{% trans "Wishlist" %}</span></a>
                                 </div>
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{% url 'cartorder:cart' %}">
                                         <img alt="E-commerce" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                         <span class="pro-count blue cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                                     </a>
-                                    <a href="{% url 'cartorder:cart' %}"><span class="lable">Cart</span></a>
+                                    <a href="{% url 'cartorder:cart' %}"><span class="lable">{% trans "Cart" %}</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
 
                                         <div class="shopping-cart-footer">
 
                                             <div class="shopping-cart-button">
-                                                <a href="{% url 'cartorder:cart' %}" class="outline">View cart</a>
+                                                <a href="{% url 'cartorder:cart' %}" class="outline">{% trans "View cart" %}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -136,21 +165,21 @@
                                     <a href="{% url 'core:dashboard' %}">
                                         <img class="svgInject" alt="E-commerce" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}" />
                                     </a>
-                                    <a href="{% url 'core:dashboard' %}"><span class="lable ml-0">Account</span></a>
+                                    <a href="{% url 'core:dashboard' %}"><span class="lable ml-0">{% trans "Account" %}</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
-                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
+                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>{% trans "My Account" %}</a></li>
                                             {% if request.user.is_admin or request.user.is_staff %}
-                                            <li><a href="{% url 'useradmin:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>Admin Dashboard</a></li>
+                                            <li><a href="{% url 'useradmin:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>{% trans "Admin Dashboard" %}</a></li>
                                             {% endif %}
                                             <!-- <li><a href="#"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li> -->
-                                            <li><a href="{% url 'wishlist:wishlist' %}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a></li>
-                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
+                                            <li><a href="{% url 'wishlist:wishlist' %}"><i class="fi fi-rs-heart mr-10"></i>{% trans "My Wishlist" %}</a></li>
+                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-settings-sliders mr-10"></i>{% trans "Settings" %}</a></li>
 
                                             {% if request.user.is_authenticated %}
-                                            <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a></li>
+                                            <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-out mr-10"></i>{% trans "Sign out" %}</a></li>
                                             {% else %}
-                                            <li><a href="{% url 'userauths:sign-in' %}"><i class="fi fi-rs-sign-in mr-10"></i>Sign In</a></li>
+                                            <li><a href="{% url 'userauths:sign-in' %}"><i class="fi fi-rs-sign-in mr-10"></i>{% trans "Sign In" %}</a></li>
                                             {% endif %}
                                         </ul>
                                     </div>
@@ -170,7 +199,7 @@
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
                             <a class="categories-button-active" href="#">
-                                <span class="fi-rs-apps"></span> <span class="et">Browse</span> All Categories
+                                <span class="fi-rs-apps"></span> <span class="et">{% trans "Browse" %}</span> {% trans "All Categories" %}
                                 <i class="fi-rs-angle-down"></i>
                             </a>
                             <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
@@ -187,36 +216,36 @@
 
                                 </div>
 
-                                <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
+                                <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">{% trans "Show more..." %}</span></div>
                             </div>
                         </div>
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
-                                    <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="{% url 'catalog:product-list' %}">Deals</a></li>
+                                    <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="{% url 'catalog:product-list' %}">{% trans "Deals" %}</a></li>
                                     <li>
-                                        <a class="active" href="{% url 'core:index' %}">Home</a>
+                                        <a class="active" href="{% url 'core:index' %}">{% trans "Home" %}</a>
 
                                     </li>
 
                                     <li>
-                                        <a href="#">Category <i class="fi-rs-angle-down"></i></a>
+                                        <a href="#">{% trans "Category" %} <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             {% for c in categories %}
                                             <li><a href="{% url 'catalog:category-product-list' c.cid %}">{{c.title}}</a></li>
                                             {% endfor %}
                                             <hr>
-                                            <li><a href="{% url 'catalog:category-list' %}">All Categories</a></li>
+                                            <li><a href="{% url 'catalog:category-list' %}">{% trans "All Categories" %}</a></li>
 
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="{% url 'catalog:product-list'  %}">Shop</a>
+                                        <a href="{% url 'catalog:product-list'  %}">{% trans "Shop" %}</a>
                                     </li>
 
                                     <li>
-                                        <a href="{% url 'vendors:vendor-list' %}">Vendors </a>
+                                        <a href="{% url 'vendors:vendor-list' %}">{% trans "Vendors" %} </a>
 
                                     </li>
                                     <li class="position-static">
@@ -284,18 +313,18 @@
 
                                     </li> {% endcomment %}
                                     <li>
-                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
+                                        <a href="#">{% trans "Pages" %} <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{% url 'core:about_us' %}">About Us</a></li>
-                                            <li><a href="{% url 'core:contact' %}">Contact</a></li>
-                                            <li><a href="{% url 'core:dashboard' %}">My Dashboard</a></li>
-                                            <li><a href="{% url 'core:purchase_guide' %}">Purchase Guide</a></li>
-                                            <li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
-                                            <li><a href="{% url 'core:terms_of_service' %}">Terms of Service</a></li>
+                                            <li><a href="{% url 'core:about_us' %}">{% trans "About Us" %}</a></li>
+                                            <li><a href="{% url 'core:contact' %}">{% trans "Contact" %}</a></li>
+                                            <li><a href="{% url 'core:dashboard' %}">{% trans "My Dashboard" %}</a></li>
+                                            <li><a href="{% url 'core:purchase_guide' %}">{% trans "Purchase Guide" %}</a></li>
+                                            <li><a href="{% url 'core:privacy_policy' %}">{% trans "Privacy Policy" %}</a></li>
+                                            <li><a href="{% url 'core:terms_of_service' %}">{% trans "Terms of Service" %}</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="{% url 'core:contact' %}">Contact</a>
+                                        <a href="{% url 'core:contact' %}">{% trans "Contact" %}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -303,7 +332,7 @@
                     </div>
                     <div class="hotline d-none d-lg-flex">
                         <img src="{% static 'assets/imgs/theme/icons/icon-headphone.svg' %}" alt="hotline" />
-                        <p>7777 - 888<span>24/7 Support Center</span></p>
+                        <p>7777 - 888<span>{% trans "24/7 Support Center" %}</span></p>
                     </div>
                     <div class="header-action-icon-2 d-block d-lg-none">
                         <div class="burger-icon burger-icon-white">
@@ -463,9 +492,9 @@
                         <div class="position-relative newsletter-inner">
                             <div class="newsletter-content">
                                 <h2 class="mb-20">
-                                    Stay home & get your daily <br /> needs from our shop
+                                    {% trans "Stay home & get your daily" %} <br /> {% trans "needs from our shop" %}
                                 </h2>
-                                <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">E-commerce Mart</span></p>
+                                <p class="mb-45">{% trans "Start Your Daily Shopping with" %} <span class="text-brand">E-commerce Mart</span></p>
                                 {% comment %} <form class="form-subcriber d-flex">
                                     <input type="email" placeholder="Your emaill address" />
                                     <button class="btn" type="submit">Subscribe</button>
@@ -486,8 +515,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-1.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Best prices & offers</h3>
-                                <p>Orders $50 or more</p>
+                                <h3 class="icon-box-title">{% trans "Best prices & offers" %}</h3>
+                                <p>{% trans "Orders $50 or more" %}</p>
                             </div>
                         </div>
                     </div>
@@ -497,8 +526,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-2.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Free delivery</h3>
-                                <p>24/7 amazing services</p>
+                                <h3 class="icon-box-title">{% trans "Free delivery" %}</h3>
+                                <p>{% trans "24/7 amazing services" %}</p>
                             </div>
                         </div>
                     </div>
@@ -508,8 +537,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-3.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Great daily deal</h3>
-                                <p>When you sign up</p>
+                                <h3 class="icon-box-title">{% trans "Great daily deal" %}</h3>
+                                <p>{% trans "When you sign up" %}</p>
                             </div>
                         </div>
                     </div>
@@ -519,8 +548,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-4.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Wide assortment</h3>
-                                <p>Mega Discounts</p>
+                                <h3 class="icon-box-title">{% trans "Wide assortment" %}</h3>
+                                <p>{% trans "Mega Discounts" %}</p>
                             </div>
                         </div>
                     </div>
@@ -530,8 +559,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-5.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Easy returns</h3>
-                                <p>Within 30 days</p>
+                                <h3 class="icon-box-title">{% trans "Easy returns" %}</h3>
+                                <p>{% trans "Within 30 days" %}</p>
                             </div>
                         </div>
                     </div>
@@ -541,8 +570,8 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-6.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Safe delivery</h3>
-                                <p>Within 30 days</p>
+                                <h3 class="icon-box-title">{% trans "Safe delivery" %}</h3>
+                                <p>{% trans "Within 30 days" %}</p>
                             </div>
                         </div>
                     </div>
@@ -558,42 +587,42 @@
                                 <a href="/" class="mb-15"><img src="https://clipground.com/images/ecommerce-logo-png-11.png" alt="logo" /></a>
                             </div>
                             <ul class="contact-infor">
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>AITU College</span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>(+7) - 777-777-7777</span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-email-2.svg' %}" alt="" /><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a190b060f2a240f191e44090507">[email&#160;protected]</a></span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}" alt="" /><strong>Hours:</strong><span>8:00 - 14:00, Mon - Sat</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>{% trans "Address" %}: </strong> <span>AITU College</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>{% trans "Call Us" %}:</strong><span>(+7) - 777-777-7777</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-email-2.svg' %}" alt="" /><strong>{% trans "Email" %}:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a190b060f2a240f191e44090507">[email&#160;protected]</a></span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}" alt="" /><strong>{% trans "Hours" %}:</strong><span>8:00 - 14:00, Mon - Sat</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">Company</h4>
+                        <h4 class="widget-title">{% trans "Company" %}</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="{% url "core:about_us" %}">About Us</a></li>
-                            <li><a href="{% url "core:privacy_policy" %}">Privacy Policy</a></li>
-                            <li><a href="{% url "core:terms_of_service" %}">Terms &amp; Conditions</a></li>
-                            <li><a href="{% url "core:contact" %}">Contact Us</a></li>
+                            <li><a href="{% url "core:about_us" %}">{% trans "About Us" %}</a></li>
+                            <li><a href="{% url "core:privacy_policy" %}">{% trans "Privacy Policy" %}</a></li>
+                            <li><a href="{% url "core:terms_of_service" %}">{% trans "Terms & Conditions" %}</a></li>
+                            <li><a href="{% url "core:contact" %}">{% trans "Contact Us" %}</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">Account</h4>
+                        <h4 class="widget-title">{% trans "Account" %}</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="{% url "userauths:sign-in" %}">Sign In</a></li>
-                            <li><a href="{% url "cartorder:cart" %}">View Cart</a></li>
-                            <li><a href="{% url "wishlist:wishlist" %}">My Wishlist</a></li>
-                            <li><a href="{% url "core:dashboard" %}">Track My Order</a></li>
+                            <li><a href="{% url "userauths:sign-in" %}">{% trans "Sign In" %}</a></li>
+                            <li><a href="{% url "cartorder:cart" %}">{% trans "View Cart" %}</a></li>
+                            <li><a href="{% url "wishlist:wishlist" %}">{% trans "My Wishlist" %}</a></li>
+                            <li><a href="{% url "core:dashboard" %}">{% trans "Track My Order" %}</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">Corporate</h4>
+                        <h4 class="widget-title">{% trans "Corporate" %}</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">Become a Vendor</a></li>
-                            <li><a href="#">Affiliate Program</a></li>
-                            <li><a href="#">Farm Business</a></li>
-                            <li><a href="#">Farm Careers</a></li>
+                            <li><a href="#">{% trans "Become a Vendor" %}</a></li>
+                            <li><a href="#">{% trans "Affiliate Program" %}</a></li>
+                            <li><a href="#">{% trans "Farm Business" %}</a></li>
+                            <li><a href="#">{% trans "Farm Careers" %}</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">Popular</h4>
+                        <h4 class="widget-title">{% trans "Popular" %}</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             {% for c in categories %}
                             <li><a href="{% url "catalog:category-product-list" c.cid %}">{{ c.title }}</a></li>
@@ -601,13 +630,13 @@
                         </ul>
                     </div>
                     <div class="footer-link-widget widget-install-app col">
-                        <h4 class="widget-title">Install App</h4>
-                        <p class="wow fadeIn animated">From App Store or Google Play</p>
+                        <h4 class="widget-title">{% trans "Install App" %}</h4>
+                        <p class="wow fadeIn animated">{% trans "From App Store or Google Play" %}</p>
                         <div class="download-app">
                             <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active" src="{% static 'assets/imgs/theme/app-store.jpg' %}" alt="" /></a>
                             <a href="#" class="hover-up mb-sm-2"><img src="{% static 'assets/imgs/theme/google-play.jpg' %}" alt="" /></a>
                         </div>
-                        <p class="mb-20">Secured Payment Gateways</p>
+                        <p class="mb-20">{% trans "Secured Payment Gateways" %}</p>
                         <img class="wow fadeIn animated" src="{% static 'assets/imgs/theme/payment-method.png' %}" alt="" />
                     </div>
                 </div>
@@ -630,7 +659,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                     <div class="mobile-social-icon">
-                        <h6>Follow Us</h6>
+                        <h6>{% trans "Follow Us" %}</h6>
                         <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-facebook-white.svg' %}" alt="" /></a>
                         <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-twitter-white.svg' %}" alt="" /></a>
                         <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-instagram-white.svg' %}" alt="" /></a>

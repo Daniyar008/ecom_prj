@@ -1,0 +1,1166 @@
+# Russian translations for E-commerce project.
+# Copyright (C) 2025
+# This file is distributed under the same license as the ecomprj project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ecomprj 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-17 12:00+0000\n"
+"PO-Revision-Date: 2025-12-17 12:00+0000\n"
+"Last-Translator: Daniyar <daniyar@example.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+# Navigation
+msgid "Home"
+msgstr "Главная"
+
+msgid "Shop"
+msgstr "Магазин"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Vendors"
+msgstr "Продавцы"
+
+msgid "Contact"
+msgstr "Контакты"
+
+msgid "About Us"
+msgstr "О нас"
+
+msgid "My Account"
+msgstr "Мой аккаунт"
+
+msgid "Wishlist"
+msgstr "Избранное"
+
+msgid "Order Tracking"
+msgstr "Отслеживание заказа"
+
+msgid "Cart"
+msgstr "Корзина"
+
+msgid "Account"
+msgstr "Аккаунт"
+
+msgid "Sign In"
+msgstr "Войти"
+
+msgid "Sign Out"
+msgstr "Выйти"
+
+msgid "Register"
+msgstr "Регистрация"
+
+# Header
+msgid "Need help? Call Us:"
+msgstr "Нужна помощь? Позвоните нам:"
+
+msgid "All Categories"
+msgstr "Все категории"
+
+msgid "Browse"
+msgstr "Обзор"
+
+msgid "Search for items..."
+msgstr "Поиск товаров..."
+
+msgid "View cart"
+msgstr "Просмотр корзины"
+
+msgid "Deals"
+msgstr "Акции"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+msgid "Terms of Service"
+msgstr "Условия использования"
+
+msgid "Purchase Guide"
+msgstr "Руководство по покупке"
+
+msgid "My Dashboard"
+msgstr "Моя панель"
+
+# Product
+msgid "Add to Cart"
+msgstr "В корзину"
+
+msgid "Add to Wishlist"
+msgstr "В избранное"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Reviews"
+msgstr "Отзывы"
+
+msgid "In Stock"
+msgstr "В наличии"
+
+msgid "Out of Stock"
+msgstr "Нет в наличии"
+
+msgid "Quantity"
+msgstr "Количество"
+
+# Cart & Checkout
+msgid "Shopping Cart"
+msgstr "Корзина покупок"
+
+msgid "Checkout"
+msgstr "Оформление заказа"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Subtotal"
+msgstr "Промежуточный итог"
+
+msgid "Shipping"
+msgstr "Доставка"
+
+msgid "Place Order"
+msgstr "Оформить заказ"
+
+msgid "Apply Coupon"
+msgstr "Применить купон"
+
+msgid "Order placed successfully!"
+msgstr "Заказ успешно оформлен!"
+
+# Footer
+msgid "Best prices & offers"
+msgstr "Лучшие цены и предложения"
+
+msgid "Free delivery"
+msgstr "Бесплатная доставка"
+
+msgid "Great daily deal"
+msgstr "Отличные ежедневные предложения"
+
+msgid "Wide assortment"
+msgstr "Широкий ассортимент"
+
+msgid "Easy returns"
+msgstr "Простой возврат"
+
+msgid "Safe delivery"
+msgstr "Безопасная доставка"
+
+msgid "Follow Us"
+msgstr "Подписывайтесь"
+
+msgid "Company"
+msgstr "Компания"
+
+msgid "Corporate"
+msgstr "Корпоративным клиентам"
+
+msgid "Popular"
+msgstr "Популярное"
+
+msgid "Install App"
+msgstr "Установить приложение"
+
+# Auth
+msgid "Email"
+msgstr "Эл. почта"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+msgid "Forgot Password?"
+msgstr "Забыли пароль?"
+
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+# Messages
+msgid "Welcome back!"
+msgstr "С возвращением!"
+
+msgid "Registration successful!"
+msgstr "Регистрация успешна!"
+
+msgid "Item added to cart"
+msgstr "Товар добавлен в корзину"
+
+msgid "Item removed from cart"
+msgstr "Товар удален из корзины"
+
+msgid "Item added to wishlist"
+msgstr "Товар добавлен в избранное"
+
+# Title
+msgid "E-commerce - Multipurpose eCommerce"
+msgstr "E-commerce - Многофункциональный интернет-магазин"
+
+msgid "English"
+msgstr "English"
+
+msgid "Қазақша"
+msgstr "Қазақша"
+
+msgid "Русский"
+msgstr "Русский"
+
+# Additional translations
+msgid "Browse"
+msgstr "Обзор"
+
+msgid "Show more..."
+msgstr "Показать ещё..."
+
+msgid "Deals"
+msgstr "Акции"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "My Dashboard"
+msgstr "Моя панель"
+
+msgid "Admin Dashboard"
+msgstr "Панель администратора"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Sign out"
+msgstr "Выйти"
+
+msgid "24/7 Support Center"
+msgstr "Центр поддержки 24/7"
+
+msgid "Stay home & get your daily"
+msgstr "Оставайтесь дома и получайте ежедневные"
+
+msgid "needs from our shop"
+msgstr "товары из нашего магазина"
+
+msgid "Start Your Daily Shopping with"
+msgstr "Начните ежедневные покупки с"
+
+msgid "Orders $50 or more"
+msgstr "Заказы от $50"
+
+msgid "24/7 amazing services"
+msgstr "Отличный сервис 24/7"
+
+msgid "When you sign up"
+msgstr "При регистрации"
+
+msgid "Mega Discounts"
+msgstr "Мега скидки"
+
+msgid "Within 30 days"
+msgstr "В течение 30 дней"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Call Us"
+msgstr "Позвоните нам"
+
+msgid "Hours"
+msgstr "Часы работы"
+
+msgid "Terms & Conditions"
+msgstr "Условия и положения"
+
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+msgid "View Cart"
+msgstr "Просмотр корзины"
+
+msgid "My Wishlist"
+msgstr "Мой список желаний"
+
+msgid "Track My Order"
+msgstr "Отследить заказ"
+
+msgid "Become a Vendor"
+msgstr "Стать продавцом"
+
+msgid "Affiliate Program"
+msgstr "Партнёрская программа"
+
+msgid "Farm Business"
+msgstr "Фермерский бизнес"
+
+msgid "Farm Careers"
+msgstr "Карьера на ферме"
+
+msgid "From App Store or Google Play"
+msgstr "Из App Store или Google Play"
+
+msgid "Secured Payment Gateways"
+msgstr "Безопасные платёжные системы"
+
+msgid "Follow Us"
+msgstr "Подписывайтесь"
+
+msgid "Search for items..."
+msgstr "Поиск товаров..."
+
+msgid "View cart"
+msgstr "Просмотр корзины"
+
+# Contact Page
+msgid "How can we help you?"
+msgstr "Чем мы можем вам помочь?"
+
+msgid "Let us know how we can help you"
+msgstr "Расскажите, как мы можем вам помочь"
+
+msgid "We are always ready to help you with any questions. Feel free to contact us anytime."
+msgstr "Мы всегда готовы помочь вам с любыми вопросами. Обращайтесь к нам в любое время."
+
+msgid "Our team of experts is available 24/7 to assist you with your inquiries."
+msgstr "Наша команда экспертов доступна 24/7, чтобы помочь вам с вашими вопросами."
+
+msgid "01. Visit Feedback"
+msgstr "01. Обратная связь"
+
+msgid "Share your experience with us. Your feedback helps us improve our services."
+msgstr "Поделитесь своим опытом с нами. Ваши отзывы помогают нам улучшать наши услуги."
+
+msgid "02. Employer Services"
+msgstr "02. Партнёрские услуги"
+
+msgid "Looking to partner with us? Contact our business development team."
+msgstr "Хотите стать нашим партнёром? Свяжитесь с нашей командой по развитию бизнеса."
+
+msgid "03. Billing Inquiries"
+msgstr "03. Вопросы об оплате"
+
+msgid "Questions about your orders or payments? Our billing team is here to help."
+msgstr "Вопросы о заказах или оплате? Наша команда по расчётам готова помочь."
+
+msgid "04. General Inquiries"
+msgstr "04. Общие вопросы"
+
+msgid "For any other questions, please don't hesitate to reach out to us."
+msgstr "По любым другим вопросам не стесняйтесь обращаться к нам."
+
+msgid "Office"
+msgstr "Офис"
+
+msgid "Warehouse"
+msgstr "Склад"
+
+msgid "Kazakhstan"
+msgstr "Казахстан"
+
+msgid "Industrial District"
+msgstr "Промышленный район"
+
+msgid "Main Street"
+msgstr "Главная улица"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "View map"
+msgstr "Показать на карте"
+
+msgid "Contact form"
+msgstr "Форма связи"
+
+msgid "Drop Us a Line"
+msgstr "Напишите нам"
+
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr "Ваш email не будет опубликован. Обязательные поля отмечены *"
+
+msgid "Your Name"
+msgstr "Ваше имя"
+
+msgid "Your Email"
+msgstr "Ваш email"
+
+msgid "Your Phone"
+msgstr "Ваш телефон"
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+# About Page
+msgid "Welcome to E-commerce"
+msgstr "Добро пожаловать в E-commerce"
+
+msgid "We are a leading online marketplace connecting buyers with quality vendors. Our platform offers a wide range of products at competitive prices with fast delivery."
+msgstr "Мы — ведущая онлайн-площадка, соединяющая покупателей с качественными продавцами. Наша платформа предлагает широкий ассортимент товаров по конкурентным ценам с быстрой доставкой."
+
+msgid "Our mission is to provide the best shopping experience with secure payments, reliable delivery, and excellent customer service. We work with trusted vendors to ensure product quality."
+msgstr "Наша миссия — обеспечить лучший опыт покупок с безопасными платежами, надёжной доставкой и отличным обслуживанием клиентов. Мы работаем с проверенными продавцами для гарантии качества продукции."
+
+msgid "What We Provide?"
+msgstr "Что мы предлагаем?"
+
+msgid "Best Prices & Offers"
+msgstr "Лучшие цены и предложения"
+
+msgid "We offer competitive prices and regular discounts to help you save money on every purchase."
+msgstr "Мы предлагаем конкурентные цены и регулярные скидки, чтобы помочь вам экономить на каждой покупке."
+
+msgid "Wide Assortment"
+msgstr "Широкий ассортимент"
+
+msgid "Browse through thousands of products from various categories to find exactly what you need."
+msgstr "Просматривайте тысячи товаров из различных категорий, чтобы найти именно то, что вам нужно."
+
+msgid "Free Delivery"
+msgstr "Бесплатная доставка"
+
+msgid "Enjoy free delivery on orders over a certain amount. Fast and reliable shipping nationwide."
+msgstr "Наслаждайтесь бесплатной доставкой при заказе на определённую сумму. Быстрая и надёжная доставка по всей стране."
+
+msgid "Easy Returns"
+msgstr "Простой возврат"
+
+msgid "Not satisfied? Return products within 30 days for a full refund. No questions asked."
+msgstr "Не довольны? Верните товар в течение 30 дней для полного возврата средств. Без лишних вопросов."
+
+msgid "100% Satisfaction"
+msgstr "100% удовлетворение"
+
+msgid "We guarantee your satisfaction with every purchase. Quality products and excellent service."
+msgstr "Мы гарантируем ваше удовлетворение каждой покупкой. Качественные товары и отличный сервис."
+
+msgid "Great Daily Deal"
+msgstr "Отличные ежедневные предложения"
+
+msgid "Check our daily deals section for amazing discounts on popular products every day."
+msgstr "Проверяйте раздел ежедневных предложений для потрясающих скидок на популярные товары каждый день."
+
+msgid "Our performance"
+msgstr "Наши показатели"
+
+msgid "Your Partner for e-commerce grocery solution"
+msgstr "Ваш партнёр для e-commerce решений"
+
+msgid "We strive to be your trusted partner in online shopping, offering a seamless experience from browsing to delivery."
+msgstr "Мы стремимся быть вашим надёжным партнёром в онлайн-шопинге, предлагая безупречный опыт от просмотра до доставки."
+
+msgid "Our platform connects you with verified vendors, ensuring quality products and reliable service every time."
+msgstr "Наша платформа связывает вас с проверенными продавцами, гарантируя качественные товары и надёжный сервис каждый раз."
+
+msgid "Who we are"
+msgstr "Кто мы"
+
+msgid "We are a team of passionate professionals dedicated to revolutionizing online shopping in Kazakhstan."
+msgstr "Мы — команда увлечённых профессионалов, посвящённых революции в онлайн-шопинге в Казахстане."
+
+msgid "Our history"
+msgstr "Наша история"
+
+msgid "Founded with a vision to make quality products accessible to everyone, we continue to grow and improve."
+msgstr "Основанные с видением сделать качественные товары доступными для всех, мы продолжаем расти и совершенствоваться."
+
+msgid "Our mission"
+msgstr "Наша миссия"
+
+msgid "To provide the best online shopping experience with competitive prices, quality products, and excellent service."
+msgstr "Обеспечить лучший опыт онлайн-покупок с конкурентными ценами, качественными товарами и отличным сервисом."
+
+msgid "Glorious years"
+msgstr "Славных лет"
+
+msgid "Happy clients"
+msgstr "Довольных клиентов"
+
+msgid "Projects complete"
+msgstr "Завершённых проектов"
+
+msgid "Team advisor"
+msgstr "Консультантов"
+
+msgid "Products Sale"
+msgstr "Проданных товаров"
+
+msgid "Our Team"
+msgstr "Наша команда"
+
+msgid "Meet Our Expert Team"
+msgstr "Познакомьтесь с нашей командой экспертов"
+
+msgid "Our team consists of experienced professionals dedicated to providing the best service."
+msgstr "Наша команда состоит из опытных профессионалов, посвящённых предоставлению лучшего сервиса."
+
+msgid "We work together to ensure your shopping experience is seamless and enjoyable."
+msgstr "Мы работаем вместе, чтобы обеспечить ваш комфортный и приятный опыт покупок."
+
+msgid "Daniyar S."
+msgstr "Данияр С."
+
+msgid "CEO & Co-Founder"
+msgstr "Генеральный директор и сооснователь"
+
+msgid "Nurislam A."
+msgstr "Нурислам А."
+
+msgid "Head Engineer"
+msgstr "Главный инженер"
+
+# Login Page
+msgid "Login"
+msgstr "Вход"
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Create here"
+msgstr "Создать здесь"
+
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+msgid "Log in"
+msgstr "Войти"
+
+# Registration Page
+msgid "Create an Account"
+msgstr "Создать аккаунт"
+
+msgid "Submit & Register"
+msgstr "Отправить и зарегистрироваться"
+
+msgid "Note:"
+msgstr "Примечание:"
+
+msgid "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy"
+msgstr "Ваши персональные данные будут использоваться для поддержки вашего опыта на этом сайте, управления доступом к вашему аккаунту и для других целей, описанных в нашей политике конфиденциальности"
+
+msgid "Continue with Facebook"
+msgstr "Продолжить с Facebook"
+
+msgid "Continue with Google"
+msgstr "Продолжить с Google"
+
+msgid "Continue with Apple"
+msgstr "Продолжить с Apple"
+
+# Dashboard
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Orders"
+msgstr "Заказы"
+
+msgid "My Address"
+msgstr "Мой адрес"
+
+msgid "Account details"
+msgstr "Данные аккаунта"
+
+msgid "Logout"
+msgstr "Выход"
+
+msgid "My Profile"
+msgstr "Мой профиль"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Bio"
+msgstr "О себе"
+
+msgid "Verified"
+msgstr "Подтверждён"
+
+msgid "Not verified"
+msgstr "Не подтверждён"
+
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+msgid "Hello"
+msgstr "Привет"
+
+msgid "From your account dashboard you can easily check & view your"
+msgstr "В панели управления аккаунтом вы можете легко проверить и просмотреть"
+
+msgid "recent orders"
+msgstr "последние заказы"
+
+msgid "manage your"
+msgstr "управлять вашими"
+
+msgid "shipping and billing addresses"
+msgstr "адресами доставки и оплаты"
+
+msgid "and"
+msgstr "и"
+
+msgid "edit your password and account details"
+msgstr "изменить пароль и данные аккаунта"
+
+msgid "Your Orders"
+msgstr "Ваши заказы"
+
+msgid "Order"
+msgstr "Заказ"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Paid Status"
+msgstr "Статус оплаты"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "View"
+msgstr "Просмотр"
+
+msgid "Orders tracking"
+msgstr "Отслеживание заказов"
+
+msgid "To track your order please enter your OrderID in the box below and press Track button. This was given to you on your receipt and in the confirmation email you should have received."
+msgstr "Для отслеживания заказа введите номер заказа в поле ниже и нажмите кнопку Отследить. Он был указан в вашем чеке и в письме с подтверждением."
+
+msgid "Order ID"
+msgstr "Номер заказа"
+
+msgid "Found in your order confirmation email"
+msgstr "Указан в письме с подтверждением заказа"
+
+msgid "Billing email"
+msgstr "Email для оплаты"
+
+msgid "Email you used during checkout"
+msgstr "Email, использованный при оформлении заказа"
+
+msgid "Track"
+msgstr "Отследить"
+
+msgid "Add Address"
+msgstr "Добавить адрес"
+
+msgid "Save Address"
+msgstr "Сохранить адрес"
+
+msgid "Make Default"
+msgstr "Сделать основным"
+
+msgid "Account Details"
+msgstr "Данные аккаунта"
+
+msgid "Log in instead!"
+msgstr "Войти вместо этого!"
+
+msgid "First Name"
+msgstr "Имя"
+
+msgid "Last Name"
+msgstr "Фамилия"
+
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+msgid "Email Address"
+msgstr "Email адрес"
+
+msgid "Current Password"
+msgstr "Текущий пароль"
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid "Confirm Password"
+msgstr "Подтвердить пароль"
+
+msgid "Save Change"
+msgstr "Сохранить изменения"
+
+# Privacy Policy Page
+msgid "By"
+msgstr "Автор"
+
+msgid "Administration"
+msgstr "Администрация"
+
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+msgid "Welcome to Our Privacy Policy"
+msgstr "Добро пожаловать в нашу Политику конфиденциальности"
+
+msgid "This Privacy Policy describes how we collect, use, and protect your personal information when you use our e-commerce platform."
+msgstr "Эта Политика конфиденциальности описывает, как мы собираем, используем и защищаем вашу личную информацию при использовании нашей платформы электронной коммерции."
+
+msgid "Information We Collect"
+msgstr "Информация, которую мы собираем"
+
+msgid "We collect the following types of personal information:"
+msgstr "Мы собираем следующие типы личной информации:"
+
+msgid "Name, email address, and contact information"
+msgstr "Имя, email адрес и контактная информация"
+
+msgid "Billing and shipping addresses"
+msgstr "Адреса оплаты и доставки"
+
+msgid "Payment information (processed securely through our payment providers)"
+msgstr "Платёжная информация (безопасно обрабатывается через наших платёжных провайдеров)"
+
+msgid "Order history and preferences"
+msgstr "История заказов и предпочтения"
+
+msgid "Device and browser information for analytics"
+msgstr "Информация об устройстве и браузере для аналитики"
+
+msgid "How We Use Your Information"
+msgstr "Как мы используем вашу информацию"
+
+msgid "We use your personal information to:"
+msgstr "Мы используем вашу личную информацию для:"
+
+msgid "Process and fulfill your orders"
+msgstr "Обработки и выполнения ваших заказов"
+
+msgid "Communicate with you about your orders and account"
+msgstr "Связи с вами по поводу заказов и аккаунта"
+
+msgid "Improve our products and services"
+msgstr "Улучшения наших продуктов и услуг"
+
+msgid "Send promotional offers (with your consent)"
+msgstr "Отправки рекламных предложений (с вашего согласия)"
+
+msgid "Prevent fraud and ensure security"
+msgstr "Предотвращения мошенничества и обеспечения безопасности"
+
+msgid "Data Protection"
+msgstr "Защита данных"
+
+msgid "We implement industry-standard security measures to protect your personal information, including SSL encryption, secure servers, and regular security audits."
+msgstr "Мы применяем стандартные отраслевые меры безопасности для защиты вашей личной информации, включая SSL-шифрование, защищённые серверы и регулярные проверки безопасности."
+
+msgid "Your Rights"
+msgstr "Ваши права"
+
+msgid "You have the right to:"
+msgstr "Вы имеете право:"
+
+msgid "Access your personal data"
+msgstr "Доступ к вашим личным данным"
+
+msgid "Request correction of inaccurate data"
+msgstr "Запросить исправление неточных данных"
+
+msgid "Request deletion of your data"
+msgstr "Запросить удаление ваших данных"
+
+msgid "Opt-out of marketing communications"
+msgstr "Отказаться от маркетинговых сообщений"
+
+msgid "Export your data in a portable format"
+msgstr "Экспортировать ваши данные в переносимом формате"
+
+msgid "Cookies"
+msgstr "Файлы cookie"
+
+msgid "We use cookies to improve your browsing experience, analyze site traffic, and personalize content. You can manage cookie preferences in your browser settings."
+msgstr "Мы используем файлы cookie для улучшения вашего опыта просмотра, анализа трафика сайта и персонализации контента. Вы можете управлять настройками cookie в настройках браузера."
+
+msgid "If you have questions about this Privacy Policy, please contact us through our Contact page."
+msgstr "Если у вас есть вопросы об этой Политике конфиденциальности, свяжитесь с нами через страницу Контакты."
+
+msgid "Search..."
+msgstr "Поиск..."
+
+# Terms of Service Page
+msgid "Please read these Terms of Service carefully before using our website and services."
+msgstr "Пожалуйста, внимательно прочитайте эти Условия обслуживания перед использованием нашего сайта и услуг."
+
+msgid "Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms."
+msgstr "Ваш доступ к Сервису и его использование обусловлены принятием и соблюдением этих Условий."
+
+msgid "User Agreement"
+msgstr "Пользовательское соглашение"
+
+msgid "By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service."
+msgstr "Получая доступ или используя наш Сервис, вы соглашаетесь соблюдать эти Условия. Если вы не согласны с какой-либо частью условий, вы не можете использовать Сервис."
+
+msgid "Rights & Restrictions"
+msgstr "Права и ограничения"
+
+msgid "Users must be at least 18 years of age"
+msgstr "Пользователи должны быть не моложе 18 лет"
+
+msgid "Users are responsible for maintaining the confidentiality of their account"
+msgstr "Пользователи несут ответственность за сохранение конфиденциальности своего аккаунта"
+
+msgid "Users agree not to use the service for any illegal purposes"
+msgstr "Пользователи соглашаются не использовать сервис в незаконных целях"
+
+msgid "All content remains the property of respective owners"
+msgstr "Весь контент остаётся собственностью соответствующих владельцев"
+
+msgid "Orders and Payments"
+msgstr "Заказы и платежи"
+
+msgid "When placing an order, you agree to provide accurate and complete information. All payments are processed securely through our payment providers."
+msgstr "При размещении заказа вы соглашаетесь предоставить точную и полную информацию. Все платежи безопасно обрабатываются через наших платёжных провайдеров."
+
+msgid "Shipping and Delivery"
+msgstr "Доставка"
+
+msgid "Delivery times may vary depending on your location and the products ordered. We are not responsible for delays caused by customs or other factors beyond our control."
+msgstr "Сроки доставки могут варьироваться в зависимости от вашего местоположения и заказанных товаров. Мы не несём ответственности за задержки, вызванные таможней или другими факторами, не зависящими от нас."
+
+msgid "Returns and Refunds"
+msgstr "Возврат и возмещение"
+
+msgid "Products may be returned within 14 days of delivery for a full refund, provided they are in original condition. Some items may not be eligible for return."
+msgstr "Товары могут быть возвращены в течение 14 дней с момента доставки для полного возврата средств при условии, что они находятся в оригинальном состоянии. Некоторые товары могут не подлежать возврату."
+
+msgid "Limitation of Liability"
+msgstr "Ограничение ответственности"
+
+msgid "We shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service."
+msgstr "Мы не несём ответственности за любые косвенные, случайные, специальные, последующие или штрафные убытки, возникающие в результате использования вами сервиса."
+
+msgid "Changes to Terms"
+msgstr "Изменения условий"
+
+msgid "We reserve the right to modify or replace these Terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms."
+msgstr "Мы оставляем за собой право изменять или заменять эти Условия в любое время. Продолжение использования Сервиса после изменений означает принятие новых условий."
+
+msgid "If you have any questions about these Terms, please contact us through our Contact page."
+msgstr "Если у вас есть вопросы об этих Условиях, свяжитесь с нами через страницу Контакты."
+
+# Purchase Guide Page
+msgid "1. Account Registration"
+msgstr "1. Регистрация аккаунта"
+
+msgid "To make purchases on our platform, you need to create an account. Here's what you'll need:"
+msgstr "Для совершения покупок на нашей платформе вам необходимо создать аккаунт. Вот что вам понадобится:"
+
+msgid "Full name (required)"
+msgstr "Полное имя (обязательно)"
+
+msgid "Email address (required)"
+msgstr "Email адрес (обязательно)"
+
+msgid "Phone number (required)"
+msgstr "Номер телефона (обязательно)"
+
+msgid "Delivery address (required)"
+msgstr "Адрес доставки (обязательно)"
+
+msgid "Password (required)"
+msgstr "Пароль (обязательно)"
+
+msgid "2. Browse and Select Products"
+msgstr "2. Просмотр и выбор товаров"
+
+msgid "Browse through our categories or use the search function to find products. Click on any product to view details, specifications, and customer reviews."
+msgstr "Просматривайте наши категории или используйте функцию поиска для нахождения товаров. Нажмите на любой товар для просмотра деталей, характеристик и отзывов покупателей."
+
+msgid "3. Add to Cart"
+msgstr "3. Добавить в корзину"
+
+msgid "Once you've found a product you like, select the quantity and click 'Add to Cart'. You can continue shopping or proceed to checkout."
+msgstr "Найдя понравившийся товар, выберите количество и нажмите 'Добавить в корзину'. Вы можете продолжить покупки или перейти к оформлению заказа."
+
+msgid "4. Review Your Order"
+msgstr "4. Проверьте ваш заказ"
+
+msgid "Before checkout, review your cart to ensure you have the correct items and quantities. You can modify quantities or remove items at this stage."
+msgstr "Перед оформлением заказа проверьте корзину, чтобы убедиться в правильности товаров и количества. На этом этапе вы можете изменить количество или удалить товары."
+
+msgid "5. Checkout and Payment"
+msgstr "5. Оформление заказа и оплата"
+
+msgid "Enter your shipping details and select your preferred payment method. We accept the following payment options:"
+msgstr "Введите данные доставки и выберите предпочитаемый способ оплаты. Мы принимаем следующие варианты оплаты:"
+
+msgid "Bank Transfer"
+msgstr "Банковский перевод"
+
+msgid "*Taxes are calculated based on your location."
+msgstr "*Налоги рассчитываются в зависимости от вашего местоположения."
+
+msgid "6. Order Confirmation"
+msgstr "6. Подтверждение заказа"
+
+msgid "After successful payment, you'll receive an order confirmation email with:"
+msgstr "После успешной оплаты вы получите письмо с подтверждением заказа, содержащее:"
+
+msgid "Order number and details"
+msgstr "Номер и детали заказа"
+
+msgid "Estimated delivery date"
+msgstr "Ожидаемая дата доставки"
+
+msgid "Tracking information (when available)"
+msgstr "Информация для отслеживания (при наличии)"
+
+msgid "Access to order history in your dashboard"
+msgstr "Доступ к истории заказов в панели управления"
+
+msgid "7. Need Help?"
+msgstr "7. Нужна помощь?"
+
+msgid "If you have any questions or need assistance with your purchase, please don't hesitate to contact our customer support team through the Contact page."
+msgstr "Если у вас есть вопросы или вам нужна помощь с покупкой, пожалуйста, свяжитесь с нашей службой поддержки через страницу Контакты."
+
+# Product List Page
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Filters"
+msgstr "Фильтры"
+
+msgid "By Categories"
+msgstr "По категориям"
+
+msgid "By Vendors"
+msgstr "По продавцам"
+
+msgid "By Price"
+msgstr "По цене"
+
+msgid "From"
+msgstr "От"
+
+msgid "To"
+msgstr "До"
+
+msgid "On Sale"
+msgstr "Распродажа"
+
+msgid "Sort by"
+msgstr "Сортировать по"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Price: Low to High"
+msgstr "Цена: от низкой к высокой"
+
+msgid "Price: High to Low"
+msgstr "Цена: от высокой к низкой"
+
+msgid "Newest First"
+msgstr "Сначала новые"
+
+msgid "Apply Filters"
+msgstr "Применить фильтры"
+
+msgid "Clear Filters"
+msgstr "Сбросить фильтры"
+
+msgid "We found"
+msgstr "Мы нашли"
+
+msgid "items for you!"
+msgstr "товаров для вас!"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Featured"
+msgstr "Рекомендуемые"
+
+msgid "Release Date"
+msgstr "Дата выпуска"
+
+msgid "Avg. Rating"
+msgstr "Средний рейтинг"
+
+msgid "Add"
+msgstr "Добавить"
+
+# Index/Home Page
+msgid "Don't miss amazing"
+msgstr "Не упустите удивительные"
+
+msgid "grocery deals"
+msgstr "выгодные предложения"
+
+msgid "Sign up for the daily newsletter"
+msgstr "Подпишитесь на ежедневную рассылку"
+
+msgid "Your email address"
+msgstr "Ваш email адрес"
+
+msgid "Subscribe"
+msgstr "Подписаться"
+
+msgid "Fresh Vegetables"
+msgstr "Свежие овощи"
+
+msgid "Big discount"
+msgstr "Большая скидка"
+
+msgid "Save up to 50% off on your first order"
+msgstr "Сэкономьте до 50% на первом заказе"
+
+msgid "Popular Products"
+msgstr "Популярные товары"
+
+msgid "Add To Wishlist"
+msgstr "В избранное"
+
+msgid "Shop by Categories"
+msgstr "Покупки по категориям"
+
+msgid "All Categories"
+msgstr "Все категории"
+
+# Product Detail Page
+msgid "reviews"
+msgstr "отзывов"
+
+msgid "Off"
+msgstr "скидка"
+
+msgid "Add to cart"
+msgstr "В корзину"
+
+msgid "Stock"
+msgstr "Наличие"
+
+msgid "Items In Stock"
+msgstr "товаров в наличии"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Additional info"
+msgstr "Дополнительная информация"
+
+msgid "Vendor"
+msgstr "Продавец"
+
+msgid "Reviews"
+msgstr "Отзывы"
+
+# Cart Page
+msgid "Shop"
+msgstr "Магазин"
+
+msgid "Cart"
+msgstr "Корзина"
+
+msgid "Your Cart"
+msgstr "Ваша корзина"
+
+msgid "There are"
+msgstr "В корзине"
+
+msgid "products in your cart"
+msgstr "товаров"
+
+msgid "Product"
+msgstr "Товар"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Unit Price"
+msgstr "Цена за единицу"
+
+msgid "Quantity"
+msgstr "Количество"
+
+msgid "Subtotal"
+msgstr "Подитог"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Bio Data"
+msgstr "Личные данные"
+
+msgid "Full Name"
+msgstr "Полное имя"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Mobile"
+msgstr "Телефон"
+
+msgid "Shipping Details"
+msgstr "Данные доставки"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "City"
+msgstr "Город"
+
+msgid "State"
+msgstr "Область"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Tax"
+msgstr "Налог"
+
+msgid "Shipping"
+msgstr "Доставка"
+
+msgid "Discount"
+msgstr "Скидка"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Proceed To CheckOut"
+msgstr "Перейти к оплате"
