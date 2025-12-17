@@ -1,0 +1,98 @@
+# ================================
+# .dockerignore - Исключения при билде Docker образа
+# ================================
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Static files (будут собраны в контейнере)
+/staticfiles/
+/static_collected/
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation
+*.md
+docs/
+Ztemplate/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node modules (если есть frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+tmp/
+temp/
+
+# Large files
+*.dump
+*.sql
+*.tar
+*.gz
+*.zip
+
+# Local settings
+local_settings.py
