@@ -6,6 +6,7 @@ from taggit.models import Tag
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from django.utils.translation import gettext as _
 
 from .models import Wishlist
 from goods.models import Product
@@ -23,7 +24,7 @@ def add_to_wishlist(request):
     try:
         product_id = request.GET.get("id", "")
         if not product_id:
-            return JsonResponse({"error": "Product ID is required"}, status=400)
+            return JsonResponse({"error": _("Product ID is required")}, status=400)
 
         product = Product.objects.get(id=product_id)
 
@@ -38,10 +39,10 @@ def add_to_wishlist(request):
                 product=product,
             )
 
-        return JsonResponse({"bool": True, "message": "Added to wishlist"})
+        return JsonResponse({"bool": True, "message": _("Added to wishlist")})
 
     except Product.DoesNotExist:
-        return JsonResponse({"error": "Product not found"}, status=404)
+        return JsonResponse({"error": _("Product not found")}, status=404)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
 
@@ -66,7 +67,7 @@ def remove_wishlist(request):
     try:
         wishlist_id = request.GET.get("id", "")
         if not wishlist_id:
-            return JsonResponse({"error": "Wishlist ID is required"}, status=400)
+            return JsonResponse({"error": _("Wishlist ID is required")}, status=400)
 
         wishlist_item = Wishlist.objects.get(id=wishlist_id, user=request.user)
         wishlist_item.delete()
@@ -80,6 +81,6 @@ def remove_wishlist(request):
         return JsonResponse({"data": t, "w": wishlist_json})
 
     except Wishlist.DoesNotExist:
-        return JsonResponse({"error": "Wishlist item not found"}, status=404)
+        return JsonResponse({"error": _("Wishlist item not found")}, status=404)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)

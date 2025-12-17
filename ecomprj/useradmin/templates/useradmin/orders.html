@@ -1,4 +1,5 @@
 {% extends 'useradmin/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load humanize %}
 {% block content %}    
@@ -10,14 +11,14 @@
             <p>Manage all your orders from here</p>
         </div>
         <div>
-            <input type="text" placeholder="Search order ID" class="form-control bg-white" />
+            <input type="text" placeholder="{% trans 'Search order ID' %}" class="form-control bg-white" />
         </div>
     </div>
     <div class="card mb-4">
         <header class="card-header">
             <div class="row gx-3">
                 <div class="col-lg-4 col-md-6 me-auto">
-                    <input type="text" placeholder="Search..." class="form-control" />
+                    <input type="text" placeholder="{% trans 'Search...' %}" class="form-control" />
                 </div>
                 <div class="col-lg-2 col-6 col-md-3">
                     <select class="form-select">

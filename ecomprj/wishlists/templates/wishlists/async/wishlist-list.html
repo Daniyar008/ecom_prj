@@ -1,4 +1,6 @@
 
+{% load i18n %}
+
     <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -24,7 +26,7 @@
                                         <label class="form-check-label" for="exampleCheckbox11"></label>
                                     </th>
                                     <th scope="col" colspan="2">Product</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">{% trans "Price" %}</th>
                                     <th scope="col">Stock Status</th>
                                     <th scope="col">Action</th>
                                     <th scope="col" class="end">Remove</th>
@@ -60,7 +62,7 @@
                                         <input type="hidden" class="product-id-{{ w.product.id }}" value="{{ w.product.id }}">
                                         <input type="hidden" class="product-title-{{ w.product.id }}" value="{{ w.product.title }}">
 
-                                        <button class="btn btn-sm add-to-cart-btn" data-index="{{ w.product.id }}">Add to cart</button>
+                                        <button class="btn btn-sm add-to-cart-btn" data-index="{{ w.product.id }}">{% trans "Add to cart" %}</button>
                                     </td>
                                     <td class="action text-center" data-title="Remove">
                                         <button style="border: none; background: none;" data-wishlist-product="{{ w.id }}"  class="text-body delete-wishlist-product"><i class="fi-rs-trash"></i></button>

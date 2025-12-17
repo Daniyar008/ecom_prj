@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main pages">
         <div class="page-header breadcrumb-wrap">
@@ -26,7 +27,7 @@
                                         </li>
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'userauths:sign-out' %}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                            <a class="nav-link" href="{% url 'userauths:sign-out' %}"><i class="fi-rs-sign-out mr-10"></i>{% trans "Logout" %}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -50,7 +51,7 @@
                                     <div class="tab-pane fade active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h3 class="mb-0">Your Orders</h3>
+                                                <h3 class="mb-0">{% trans "Your Orders" %}</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -60,9 +61,9 @@
                                                                 <th>Order INV</th>
                                                                 <th>Image</th>
                                                                 <th>Title</th>
-                                                                <th>Price</th>
-                                                                <th>Qty</th>
-                                                                <th>Total</th>
+                                                                <th>{% trans "Price" %}</th>
+                                                                <th>{% trans "Qty" %}</th>
+                                                                <th>{% trans "Total" %}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -89,10 +90,10 @@
                                     <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h3 class="mb-0">Orders tracking</h3>
-                                            </div>
-                                            <div class="card-body contact-from-area">
-                                                <p>To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
+                                                        <h3 class="mb-0">{% trans "Orders tracking" %}</h3>
+                                                    </div>
+                                                    <div class="card-body contact-from-area">
+                                                        {% blocktrans %}To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.{% endblocktrans %}
                                                 <div class="row">
                                                     <div class="col-lg-8">
                                                         <form class="contact-form-style mt-30 mb-50" action="#" method="post">
@@ -104,7 +105,7 @@
                                                                 <label>Billing email</label>
                                                                 <input name="billing-email" placeholder="Email you used during checkout" type="email" />
                                                             </div>
-                                                            <button class="submit submit-auto-width" type="submit">Track</button>
+                                                            <button class="submit submit-auto-width" type="submit">{% trans "Track" %}</button>
                                                         </form>
                                                     </div>
                                                 </div>

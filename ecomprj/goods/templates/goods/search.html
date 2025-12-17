@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main">
         <div class="page-header mt-30 mb-50">
@@ -13,7 +14,7 @@
                             <h3 class="mb-15">No Searched Item</h3>
 
                             {% endif %}
-                            <div class="breadcrumb">
+                                        <h3 class="mb-15">{% trans "No Searched Item" %}</h3>
                                 <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                                 <span></span> Shop <span></span> {{query}}
                             </div>
@@ -29,7 +30,7 @@
                     <div class="shop-product-fillter">
                         <div class="totall-product">
                             <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize}} for you!</p>
-                        </div>
+                                        <p>{% blocktrans %}We found <strong class="text-brand">{{ products.count }}</strong> item{{ products.count|pluralize }} for you!{% endblocktrans %}</p>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
                                 <div class="sort-by-product-wrap">
@@ -62,11 +63,11 @@
                                 <div class="sort-by-dropdown">
                                     <ul>
                                         <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
-                                    </ul>
+                                                    <li><a class="active" href="#">{% trans "Featured" %}</a></li>
+                                                    <li><a href="#">{% trans "Price: Low to High" %}</a></li>
+                                                    <li><a href="#">{% trans "Price: High to Low" %}</a></li>
+                                                    <li><a href="#">{% trans "Release Date" %}</a></li>
+                                                    <li><a href="#">{% trans "Avg. Rating" %}</a></li>
                                 </div>
                             </div>
                         </div>
@@ -118,10 +119,10 @@
                                           <input type="hidden" class="product-id-{{ p.id }}" value="{{ p.id }}">
                                           <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
                                           <div class="d-flex">
-                                              <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                                              <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button>
                                               <button style="border: none; background: none;" class="add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart" style="fill: aqua;"></i></button>
                                           </div>
-                                          <!-- <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button> -->
+                                          <!-- <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button> -->
                                       </div>
                                   </div>
                               </div>

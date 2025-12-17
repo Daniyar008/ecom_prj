@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     
     <main class="main">
@@ -14,7 +15,7 @@
         <div class="container mb-80 mt-50">
             <div class="row">
                 <div class="col-lg-8 mb-40">
-                    <h1 class="heading-2 mb-10">Checkout</h1>
+                    <h1 class="heading-2 mb-10">{% trans "Checkout" %}</h1>
                     <div class="d-flex justify-content-between"></div>
                 </div>
             </div>
@@ -31,9 +32,9 @@
                                     <div class="col-sm-8">
                                         <div class="card-body">
                                             <h5 class="card-title">{{o.item}}</h5>
-                                            <p class="card-text fs-sm">Qty: {{ o.qty }}</p>
-                                            <p class="card-text fs-sm">Price: ${{ o.price }}</p>
-                                            <p class="card-text fs-sm">Total: ${{ o.total }}</p>
+                                            <p class="card-text fs-sm">{% trans "Qty" %}: {{ o.qty }}</p>
+                                            <p class="card-text fs-sm">{% trans "Price" %}: ${{ o.price }}</p>
+                                            <p class="card-text fs-sm">{% trans "Total" %}: ${{ o.total }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -50,19 +51,19 @@
 
                         <div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="fw-bold">Tax</p>
+                                <p class="fw-bold">{% trans "Tax" %}</p>
                                 <p>$0</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="fw-bold">Shipping</p>
+                                <p class="fw-bold">{% trans "Shipping" %}</p>
                                 <p>$0</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="fw-bold">Discount</p>
+                                <p class="fw-bold">{% trans "Discount" %}</p>
                                 <p>${{ order.saved }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="fw-bold">Total</p>
+                                <p class="fw-bold">{% trans "Total" %}</p>
                                 <p>${{order.price}}</p>
                             </div>
                         </div>
@@ -72,13 +73,13 @@
                         <div class="col-lg-12">
                             <form method="POST" class="apply-coupon">
                                 {% csrf_token %}
-                                <input type="text" name="code" placeholder="Enter Coupon Code..." />
-                                <button class="btn btn-md" type="submit" name="login">Apply</button>
+                                <input type="text" name="code" placeholder="{% trans "Enter Coupon Code..." %}" />
+                                <button class="btn btn-md" type="submit" name="login">{% trans "Apply" %}</button>
                             </form>
                         </div>
                     </div>
 
-                    <button type="button" class="btn w-100" id="checkout-button" style="background-color: blueviolet;">Pay With Stripe (Credit or Debit Card)</button>
+                    <button type="button" class="btn w-100" id="checkout-button" style="background-color: blueviolet;">{% trans "Pay With Stripe (Credit or Debit Card)" %}</button>
                     <div id="paypal-button-container" class="mt-3"></div>
                 </div>
             </div>

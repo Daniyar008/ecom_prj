@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
 
+from django.utils.translation import gettext_lazy as _
+
 from environs import Env
 
 env = Env()
@@ -47,13 +49,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "modeltranslation",
     "django.contrib.humanize",
-
     "taggit",
     "crispy_bootstrap5",
     "ckeditor",
+    "django_ckeditor_5",
     "paypal.standard.ipn",
-
     "core",
     "userauths",
     "goods",
@@ -65,6 +67,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -100,11 +103,11 @@ WSGI_APPLICATION = "ecomprj.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ecomprj_2",
-        "USER": "Nutelliks",
-        "PASSWORD": "12345",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": env("NAME"),
+        "USER": env("USER"),
+        "PASSWORD": env("PASSWORD"),
+        "HOST": env("HOST"),
+        "PORT": env("PORT"),
     }
 }
 
@@ -131,7 +134,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
+
+LANGUAGES = (
+    ("en", _("English")),
+    ("ru", _("Русский")),
+    ("kk", _("Қазақша")),
+)
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
 
 TIME_ZONE = "UTC"
 

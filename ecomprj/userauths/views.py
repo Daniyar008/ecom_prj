@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from userauths.forms import UserRegisterForm, UserLoginForm, ProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from django.utils.translation import gettext as _
 from django.conf import settings
 from userauths.models import Profile, User
 
@@ -39,7 +40,7 @@ def register_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        messages.warning(request, f"Hey you are already Logged In.")
+        messages.warning(request, _("Hey you are already Logged In."))
         return redirect("core:index")
 
     if request.method == "POST":
@@ -47,7 +48,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, "You are logged in.")
+            messages.success(request, _("You are logged in."))
             next_url = request.GET.get("next", "core:index")
             return redirect(next_url)
     else:
@@ -62,7 +63,7 @@ def login_view(request):
 def logout_view(request):
 
     logout(request)
-    messages.success(request, "You logged out.")
+    messages.success(request, _("You logged out."))
     return redirect("userauths:sign-in")
 
 
@@ -74,7 +75,7 @@ def profile_update(request):
             new_form = form.save(commit=False)
             new_form.user = request.user
             new_form.save()
-            messages.success(request, "Profile Updated Successfully.")
+            messages.success(request, _("Profile Updated Successfully."))
             return redirect("core:dashboard")
     else:
         form = ProfileForm(instance=profile)

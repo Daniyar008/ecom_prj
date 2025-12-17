@@ -8,22 +8,21 @@ import calendar
 from django.db.models import Count, Avg
 from django.db.models.functions import ExtractMonth
 
+from django.utils.translation import gettext as _
+
 from goods.models import Product
 from cartorders.models import CartOrder, Address
 
 
 def index(request):
     # bannanas = Product.objects.all().order_by("-id")
-    products = Product.objects.filter(product_status="published", featured=True).order_by("-id")
+    products = Product.objects.filter(
+        product_status="published", featured=True
+    ).order_by("-id")
 
-    context = {
-        "products":products
-    }
+    context = {"products": products}
 
-    return render(request, 'core/index.html', context)
-
-
-
+    return render(request, "core/index.html", context)
 
 
 @login_required
@@ -31,8 +30,12 @@ def customer_dashboard(request):
     orders_list = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
 
-
-    orders = CartOrder.objects.annotate(month=ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
+    orders = (
+        CartOrder.objects.annotate(month=ExtractMonth("order_date"))
+        .values("month")
+        .annotate(count=Count("id"))
+        .values("month", "count")
+    )
     month = []
     total_orders = []
 
@@ -49,13 +52,13 @@ def customer_dashboard(request):
             address=address,
             mobile=mobile,
         )
-        messages.success(request, "Address Added Successfully.")
+        messages.success(request, _("Address Added Successfully."))
         return redirect("core:dashboard")
     else:
         print("Error")
-    
+
     user_profile = Profile.objects.get(user=request.user)
-    print("user profile is: #########################",  user_profile)
+    print("user profile is: #########################", user_profile)
 
     context = {
         "user_profile": user_profile,
@@ -65,9 +68,7 @@ def customer_dashboard(request):
         "month": month,
         "total_orders": total_orders,
     }
-    return render(request, 'core/dashboard.html', context)
-
-
+    return render(request, "core/dashboard.html", context)
 
 
 def contact(request):
@@ -75,11 +76,11 @@ def contact(request):
 
 
 def ajax_contact_form(request):
-    full_name = request.GET['full_name']
-    email = request.GET['email']
-    phone = request.GET['phone']
-    subject = request.GET['subject']
-    message = request.GET['message']
+    full_name = request.GET["full_name"]
+    email = request.GET["email"]
+    phone = request.GET["phone"]
+    subject = request.GET["subject"]
+    message = request.GET["message"]
 
     contact = ContactUs.objects.create(
         full_name=full_name,
@@ -89,12 +90,9 @@ def ajax_contact_form(request):
         message=message,
     )
 
-    data = {
-        "bool": True,
-        "message": "Message Sent Successfully"
-    }
+    data = {"bool": True, "message": "Message Sent Successfully"}
 
-    return JsonResponse({"data":data})
+    return JsonResponse({"data": data})
 
 
 def about_us(request):
@@ -104,10 +102,10 @@ def about_us(request):
 def purchase_guide(request):
     return render(request, "core/purchase_guide.html")
 
+
 def privacy_policy(request):
     return render(request, "core/privacy_policy.html")
 
+
 def terms_of_service(request):
     return render(request, "core/terms_of_service.html")
-
-

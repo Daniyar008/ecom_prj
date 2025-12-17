@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
     <main class="main pages">
@@ -23,7 +24,7 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
-                                            <h1 class="mb-5">Login</h1>
+                                            <h1 class="mb-5">{% trans "Login" %}</h1>
                                             <p class="mb-30">Don't have an account? <a href="{% url 'userauths:sign-up' %}">Create here</a></p>
                                         </div>
                                         <form method="POST"> 
@@ -56,7 +57,7 @@
                                                 <a class="text-muted" href="#">Forgot password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">{% trans "Log in" %}</button>
                                             </div>
                                         </form>
                                     </div>

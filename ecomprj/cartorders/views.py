@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
 from .models import Coupon, CartOrder, CartOrderProducts, Address
+from django.utils.translation import gettext as _
 from goods.models import Product
 
 
@@ -18,7 +19,7 @@ def add_to_cart(request):
     product_id = str(request.GET.get("id", ""))
 
     if not product_id:
-        return JsonResponse({"error": "Product ID is required"}, status=400)
+        return JsonResponse({"error": _("Product ID is required")}, status=400)
 
     cart_product[product_id] = {
         "title": request.GET.get("title", ""),
@@ -66,7 +67,7 @@ def cart_view(request):
             },
         )
     else:
-        messages.warning(request, "Your cart is empty")
+        messages.warning(request, _("Your cart is empty"))
         return redirect("core:index")
 
 
@@ -259,7 +260,7 @@ def checkout(request, oid):
         coupon = Coupon.objects.filter(code=code, active=True).first()
         if coupon:
             if coupon in order.coupons.all():
-                messages.warning(request, "Coupon already activated")
+                messages.warning(request, _("Coupon already activated"))
                 return redirect("cartorder:checkout", order.oid)
             else:
                 discount = order.price * coupon.discount / 100
@@ -269,10 +270,10 @@ def checkout(request, oid):
                 order.saved += discount
                 order.save()
 
-                messages.success(request, "Coupon Activated")
+                messages.success(request, _("Coupon Activated"))
                 return redirect("cartorder:checkout", order.oid)
         else:
-            messages.error(request, "Coupon Does Not Exists")
+            messages.error(request, _("Coupon Does Not Exists"))
 
     context = {
         "order": order,

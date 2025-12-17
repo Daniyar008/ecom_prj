@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main pages">
         <div class="page-header breadcrumb-wrap">
@@ -23,7 +24,7 @@
                                         </li>
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="page-login.html"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                            <a class="nav-link" href="page-login.html"><i class="fi-rs-sign-out mr-10"></i>{% trans "Logout" %}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -33,7 +34,7 @@
                                     <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="card">
                                             <div class="card-header border-bottom">
-                                                <h3 class="mb-0">Update Profile</h3>
+                                                <h3 class="mb-0">{% trans "Update Profile" %}</h3>
                                             </div>
                                             {% if form.errors %}
                                             <div class="alert-danger alert">
@@ -64,7 +65,7 @@
                                                             <div class="mb-3">
                                                                 {{form.image}}
                                                             </div>
-                                                            <button class="bxtn btn-succees" type="submit">Save Changes</button>
+                                                            <button class="bxtn btn-succees" type="submit">{% trans "Save Changes" %}</button>
                                                         </form>
                                                     </div>
                                                     

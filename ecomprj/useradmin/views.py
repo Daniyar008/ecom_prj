@@ -3,6 +3,7 @@ from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
+from django.utils.translation import gettext as _
 
 
 from goods.models import Product, Category, ProductReview
@@ -12,7 +13,6 @@ from useradmin.forms import AddProductForm
 from useradmin.decorators import admin_required
 
 import datetime
-
 
 
 @admin_required
@@ -25,9 +25,10 @@ def dashboard(request):
     latest_orders = CartOrder.objects.all()
 
     this_month = datetime.datetime.now().month
-    monthly_revenue = CartOrder.objects.filter(order_date__month=this_month).aggregate(price=Sum("price"))
+    monthly_revenue = CartOrder.objects.filter(order_date__month=this_month).aggregate(
+        price=Sum("price")
+    )
 
-    
     context = {
         "monthly_revenue": monthly_revenue,
         "revenue": revenue,
@@ -39,16 +40,18 @@ def dashboard(request):
     }
     return render(request, "useradmin/dashboard.html", context)
 
+
 @admin_required
 def products(request):
     all_products = Product.objects.all()
     all_categories = Category.objects.all()
-    
+
     context = {
         "all_products": all_products,
         "all_categories": all_categories,
     }
     return render(request, "useradmin/products.html", context)
+
 
 @admin_required
 def add_product(request):
@@ -62,10 +65,9 @@ def add_product(request):
             return redirect("useradmin:dashboard-products")
     else:
         form = AddProductForm()
-    context = {
-        'form':form
-    }
+    context = {"form": form}
     return render(request, "useradmin/add-products.html", context)
+
 
 @admin_required
 def edit_product(request, pid):
@@ -81,10 +83,11 @@ def edit_product(request, pid):
     else:
         form = AddProductForm(instance=product)
     context = {
-        'form':form,
-        'product':product,
+        "form": form,
+        "product": product,
     }
     return render(request, "useradmin/edit-products.html", context)
+
 
 @admin_required
 def delete_product(request, pid):
@@ -92,23 +95,23 @@ def delete_product(request, pid):
     product.delete()
     return redirect("useradmin:dashboard-products")
 
+
 @admin_required
 def orders(request):
     orders = CartOrder.objects.all()
     context = {
-        'orders':orders,
+        "orders": orders,
     }
     return render(request, "useradmin/orders.html", context)
+
 
 @admin_required
 def order_detail(request, id):
     order = CartOrder.objects.get(id=id)
     order_items = CartOrderProducts.objects.filter(order=order)
-    context = {
-        'order':order,
-        'order_items':order_items
-    }
+    context = {"order": order, "order_items": order_items}
     return render(request, "useradmin/order_detail.html", context)
+
 
 @admin_required
 @csrf_exempt
@@ -117,32 +120,39 @@ def change_order_status(request, oid):
     if request.method == "POST":
         status = request.POST.get("status")
         print("status =======", status)
-        messages.success(request, f"Order status changed to {status}")
+        messages.success(
+            request, _("Order status changed to %(status)s") % {"status": status}
+        )
         order.product_status = status
         order.save()
-    
+
     return redirect("useradmin:order_detail", order.id)
+
 
 @admin_required
 def shop_page(request):
     products = Product.objects.filter(user=request.user)
     revenue = CartOrder.objects.filter(paid_status=True).aggregate(price=Sum("price"))
-    total_sales = CartOrderProducts.objects.filter(order__paid_status=True).aggregate(qty=Sum("qty"))
+    total_sales = CartOrderProducts.objects.filter(order__paid_status=True).aggregate(
+        qty=Sum("qty")
+    )
 
     context = {
-        'products':products,
-        'revenue':revenue,
-        'total_sales':total_sales,
+        "products": products,
+        "revenue": revenue,
+        "total_sales": total_sales,
     }
     return render(request, "useradmin/shop_page.html", context)
+
 
 @admin_required
 def reviews(request):
     reviews = ProductReview.objects.all()
     context = {
-        'reviews':reviews,
+        "reviews": reviews,
     }
     return render(request, "useradmin/reviews.html", context)
+
 
 @admin_required
 def settings(request):
@@ -156,7 +166,7 @@ def settings(request):
         address = request.POST.get("address")
         country = request.POST.get("country")
         print("image ===========", image)
-        
+
         if image != None:
             profile.image = image
         profile.full_name = full_name
@@ -166,13 +176,14 @@ def settings(request):
         profile.country = country
 
         profile.save()
-        messages.success(request, "Profile Updated Successfully")
+        messages.success(request, _("Profile Updated Successfully"))
         return redirect("useradmin:settings")
-    
+
     context = {
-        'profile':profile,
+        "profile": profile,
     }
     return render(request, "useradmin/settings.html", context)
+
 
 @admin_required
 def change_password(request):
@@ -184,16 +195,18 @@ def change_password(request):
         confirm_new_password = request.POST.get("confirm_new_password")
 
         if confirm_new_password != new_password:
-            messages.error(request, "Confirm Password and New Password Does Not Match")
+            messages.error(
+                request, _("Confirm Password and New Password Does Not Match")
+            )
             return redirect("useradmin:change_password")
-        
+
         if check_password(old_password, user.password):
             user.set_password(new_password)
             user.save()
-            messages.success(request, "Password Changed Successfully")
+            messages.success(request, _("Password Changed Successfully"))
             return redirect("useradmin:change_password")
         else:
-            messages.error(request, "Old password is not correct")
+            messages.error(request, _("Old password is not correct"))
             return redirect("useradmin:change_password")
-    
+
     return render(request, "useradmin/change_password.html")

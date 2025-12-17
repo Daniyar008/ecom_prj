@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main">
         <div class="page-header breadcrumb-wrap">
@@ -114,7 +115,7 @@
                                     <span class="old-price">${{p.old_price}}</span>
                                 </div>
                                 <div class="mt-30 d-flex align-items-center">
-                                    <a aria-label="Buy now" class="btn" href="{% url "cartorder:add-to-cart" %}"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
+                                    <a aria-label="Buy now" class="btn" href="{% url "cartorder:add-to-cart" %}"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add to Cart" %}</a>
                                 
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
@@ -32,17 +33,17 @@
                                                 <figure class="border-radius-10">
                                                     <img src="{{p.image.url}}" alt="product image" />
                                                 </figure>
-                                                {% for p in p_image %}
+                                                {% for img in p_image %}
                                                 <figure class="border-radius-10">
-                                                    <img src="{{ p.images.url }}" alt="product image" />
+                                                    <img src="{{ img.images.url }}" alt="product image" />
                                                 </figure>
                                                {% endfor %}
                                             </div>
                                             <!-- THUMBNAILS -->
                                             <div class="slider-nav-thumbnails">
                                                 <div><img style="width: 140px; height: 140px; object-fit: cover;"  src="{{p.image.url}}" alt="product image" /></div>
-                                                {% for p in p_image %}
-                                                <div><img style="width: 140px; height: 140px; object-fit: cover;" src="{{p.images.url}}" alt="product image" /></div>
+                                                {% for img in p_image %}
+                                                <div><img style="width: 140px; height: 140px; object-fit: cover;" src="{{img.images.url}}" alt="product image" /></div>
                                                 {% endfor %}
                                             </div>
                                         </div>
@@ -64,7 +65,7 @@
                                                 <div class="product-price primary-color float-left">
                                                     <span class="current-price text-brand">$</span><span class="current-price text-brand current-price current-product-price-{{ p.id }}" id="current-product-price">{{p.price}}</span>
                                                     <span>
-                                                        <span class="save-price font-md color3 ml-15">-{{p.get_precentage|floatformat:0}}% Off</span>
+                                                        <span class="save-price font-md color3 ml-15">-{{p.get_precentage|floatformat:0}}% {% trans "Off" %}</span>
                                                     <span class="old-price font-md ml-15">${{p.old_price}}</span>
                                                     </span>
                                                 </div>
@@ -85,7 +86,7 @@
                                                         <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
 
                                                     
-                                                    <button type="submit" class="button button-add-to-cart add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                    <button type="submit" class="button button-add-to-cart add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>{% trans "Add to cart" %}</button>
                                                     <a aria-label="Add To Wishlist" class="action-btn hover-up add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart"></i></a>
                                                     {% comment %} <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> {% endcomment %}
                                                 </div>
@@ -437,10 +438,10 @@
                                                                 <input type="hidden" class="product-id-{{ p.id }}" value="{{ p.id }}">
                                                                 <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
                                                                 <div class="d-flex">
-                                                                    <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                                                                    <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button>
                                                                     <button style="border: none; background: none;" class="add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart" style="fill: aqua;"></i></button>
                                                                 </div>
-                                                                <!-- <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button> -->
+                                                                <!-- <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button> -->
                                                             </div>
                                                         </div>
                                                     </div>

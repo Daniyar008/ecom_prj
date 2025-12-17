@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main pages">
         <div class="page-header breadcrumb-wrap">
@@ -41,7 +42,7 @@
                                 <div class="col-lg-4 col-md-6 mb-24">
                                     <div class="featured-card">
                                         <img src="{% static 'assets/imgs/theme/icons/icon-1.svg' %}" alt="" />
-                                        <h4>Best Prices & Offers</h4>
+                                        <h4>{% trans "Best Prices & Offers" %}</h4>
                                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
                                     </div>
                                 </div>

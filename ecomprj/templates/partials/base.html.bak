@@ -151,7 +151,7 @@
                                             {% if request.user.is_authenticated %}
                                             <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-out mr-10"></i>{% trans "Sign out" %}</a></li>
                                             {% else %}
-                                            <li><a href="{% url 'userauths:sign-in' %}"><i class="fi fi-rs-sign-in mr-10"></i>{% trans \"Sign In\" %}</a></li>
+                                            <li><a href="{% url 'userauths:sign-in' %}"><i class="fi fi-rs-sign-in mr-10"></i>Sign In</a></li>
                                             {% endif %}
                                         </ul>
                                     </div>
@@ -265,7 +265,7 @@
                                                             Don't miss<br /> Trending
                                                         </h3>
                                                         <div class="menu-banner-price">
-                                                            <span class="new-price text-success">{% trans \"Save to 50%\" %}</span>
+                                                            <span class="new-price text-success">Save to 50%</span>
                                                         </div>
                                                         <div class="menu-banner-btn">
                                                             <a href="#">Shop now</a>
@@ -334,7 +334,7 @@
 
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-button">
-                                            <a href="{% url 'cartorder:cart' %}">{% trans \"View cart\" %}</a>
+                                            <a href="{% url 'cartorder:cart' %}">View cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -487,7 +487,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-1.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Best prices & offers" %}</h3>
+                                <h3 class="icon-box-title">Best prices & offers</h3>
                                 <p>Orders $50 or more</p>
                             </div>
                         </div>
@@ -498,7 +498,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-2.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Free delivery" %}</h3>
+                                <h3 class="icon-box-title">Free delivery</h3>
                                 <p>24/7 amazing services</p>
                             </div>
                         </div>
@@ -509,7 +509,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-3.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Great daily deal" %}</h3>
+                                <h3 class="icon-box-title">Great daily deal</h3>
                                 <p>When you sign up</p>
                             </div>
                         </div>
@@ -520,7 +520,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-4.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Wide assortment" %}</h3>
+                                <h3 class="icon-box-title">Wide assortment</h3>
                                 <p>Mega Discounts</p>
                             </div>
                         </div>
@@ -531,7 +531,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-5.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Easy returns" %}</h3>
+                                <h3 class="icon-box-title">Easy returns</h3>
                                 <p>Within 30 days</p>
                             </div>
                         </div>
@@ -542,7 +542,7 @@
                                 <img src="{% static 'assets/imgs/theme/icons/icon-6.svg' %}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">{% trans "Safe delivery" %}</h3>
+                                <h3 class="icon-box-title">Safe delivery</h3>
                                 <p>Within 30 days</p>
                             </div>
                         </div>
@@ -579,7 +579,7 @@
                         <h4 class="widget-title">Account</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="{% url "userauths:sign-in" %}">{% trans "Sign In" %}</a></li>
-                            <li><a href="{% url "cartorder:cart" %}">{% trans "View Cart" %}</a></li>
+                            <li><a href="{% url "cartorder:cart" %}">View Cart</a></li>
                             <li><a href="{% url "wishlist:wishlist" %}">My Wishlist</a></li>
                             <li><a href="{% url "core:dashboard" %}">Track My Order</a></li>
                         </ul>
