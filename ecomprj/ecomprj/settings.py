@@ -70,6 +70,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # Для статических файлов на Render
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # Локализация - после session, перед common
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -310,15 +311,29 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+from django.utils.translation import gettext_lazy as _
 
-TIME_ZONE = "UTC"
+# Поддерживаемые языки
+LANGUAGES = [
+    ("en", _("English")),
+    ("kk", _("Қазақша")),
+    ("ru", _("Русский")),
+]
 
-USE_I18N = True
+LANGUAGE_CODE = "en"  # Язык по умолчанию
 
-USE_L10N = True
+TIME_ZONE = "Asia/Almaty"  # Казахстан
+
+USE_I18N = True  # Включить интернационализацию
+
+USE_L10N = True  # Включить локализацию форматов
 
 USE_TZ = True
+
+# Путь к файлам переводов
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 
 
 # Static files (CSS, JavaScript, Images)

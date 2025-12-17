@@ -13,26 +13,35 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 
+# URL для переключения языка (не требует языкового префикса)
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),  # set_language view
+]
+
+# Основные URL с языковым префиксом (/en/, /kk/, /ru/)
+urlpatterns += i18n_patterns(
+    path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path("user/", include("userauths.urls")),
-    path("admin/", include("useradmin.urls")),
+    path(
+        "admin-panel/", include("useradmin.urls")
+    ),  # Переименовал чтобы не конфликтовать с admin/
     path("catalog/", include("goods.urls", namespace="catalog")),
     path("vendors/", include("vendors.urls", namespace="vendors")),
     path("wishlists/", include("wishlists.urls", namespace="wishlist")),
     path("cartorders/", include("cartorders.urls", namespace="cartorder")),
-
-    # path("ckeditor/", include("ckeditor_uploader.urls")),
-    path("ckeditor5/", include('django_ckeditor_5.urls')),
-]
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
+    prefix_default_language=False,  # Не добавлять /en/ для языка по умолчанию
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

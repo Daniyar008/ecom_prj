@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
 
@@ -25,9 +26,9 @@
                                 <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-2.png' %})">
                                     <div class="slider-content">
                                         <h1 class="display-2 mb-40">
-                                            Fresh Vegetables<br /> Big discount
+                                            {% trans "Fresh Vegetables" %}<br /> {% trans "Big discount" %}
                                         </h1>
-                                        <p class="mb-65">Save up to 50% off on your first order</p>
+                                        <p class="mb-65">{% trans "Save up to 50% off on your first order" %}</p>
                                         {% comment %} <form class="form-subcriber d-flex">
                                             <input type="email" placeholder="Your emaill address" />
                                             <button class="btn" type="submit">Subscribe</button>
@@ -41,10 +42,10 @@
                     <!--End hero-->
                     <section class="product-tabs section-padding position-relative">
                         <div class="section-title style-2">
-                            <h3>Popular Products</h3>
+                            <h3>{% trans "Popular Products" %}</h3>
                             <ul class="nav nav-tabs links" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
+                                    <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">{% trans "All" %}</button>
                                 </li>
                                 {% for c in categories %}
                                 <li class="nav-item" role="presentation">
@@ -70,7 +71,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Add To Wishlist"  class="action-btn add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="{% trans 'Add To Wishlist' %}"  class="action-btn add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart"></i></a>
                                                     <!-- <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> -->
                                                     <a href="{% url 'catalog:product-detail' p.pid %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                                 </div>
@@ -91,7 +92,7 @@
                                                     <span class="font-small ml-5 text-muted"> ({{ p.reviews.all.count }})</span>
                                                 </div>
                                                 <div>
-                                                    <span class="font-small text-muted">By <a href="">{{p.vendor.title}}</a></span>
+                                                    <span class="font-small text-muted">{% trans "By" %} <a href="">{{p.vendor.title}}</a></span>
                                                 </div>
                                                 <div class="product-card-bottom">
                                                     <div class="product-price">
@@ -106,7 +107,7 @@
                                                         <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
 
                                                         <div class="d-flex">
-                                                            <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                                                            <button class="add add-to-cart-btn" data-index="{{ p.id }}" style="border: none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>{% trans "Add" %}</button>
                                                             <button style="border: none; background: none;" class="add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart" style="fill: aqua;"></i></button>
                                                         </div>
                                                     </div>
@@ -3005,9 +3006,9 @@
             <div class="container">
                 <div class="section-title">
                     <div class="title">
-                        <h3>Shop by Categories</h3>
+                        <h3>{% trans "Shop by Categories" %}</h3>
                         <a class="show-all" href="{% url "catalog:category-list" %}">
-                            All Categories
+                            {% trans "All Categories" %}
                             <i class="fi-rs-angle-right"></i>
                         </a>
                     </div>

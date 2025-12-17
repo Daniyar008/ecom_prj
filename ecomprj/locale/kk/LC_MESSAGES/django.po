@@ -1,0 +1,1166 @@
+# Kazakh translations for E-commerce project.
+# Copyright (C) 2025
+# This file is distributed under the same license as the ecomprj project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ecomprj 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-17 12:00+0000\n"
+"PO-Revision-Date: 2025-12-17 12:00+0000\n"
+"Last-Translator: Daniyar <daniyar@example.com>\n"
+"Language-Team: Kazakh\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Navigation
+msgid "Home"
+msgstr "Басты бет"
+
+msgid "Shop"
+msgstr "Дүкен"
+
+msgid "Category"
+msgstr "Санат"
+
+msgid "Vendors"
+msgstr "Сатушылар"
+
+msgid "Contact"
+msgstr "Байланыс"
+
+msgid "About Us"
+msgstr "Біз туралы"
+
+msgid "My Account"
+msgstr "Менің аккаунтым"
+
+msgid "Wishlist"
+msgstr "Таңдаулылар"
+
+msgid "Order Tracking"
+msgstr "Тапсырысты бақылау"
+
+msgid "Cart"
+msgstr "Себет"
+
+msgid "Account"
+msgstr "Аккаунт"
+
+msgid "Sign In"
+msgstr "Кіру"
+
+msgid "Sign Out"
+msgstr "Шығу"
+
+msgid "Register"
+msgstr "Тіркелу"
+
+# Header
+msgid "Need help? Call Us:"
+msgstr "Көмек керек пе? Бізге қоңырау шалыңыз:"
+
+msgid "All Categories"
+msgstr "Барлық санаттар"
+
+msgid "Browse"
+msgstr "Шолу"
+
+msgid "Search for items..."
+msgstr "Тауарларды іздеу..."
+
+msgid "View cart"
+msgstr "Себетті көру"
+
+msgid "Deals"
+msgstr "Акциялар"
+
+msgid "Pages"
+msgstr "Беттер"
+
+msgid "Privacy Policy"
+msgstr "Құпиялылық саясаты"
+
+msgid "Terms of Service"
+msgstr "Қызмет көрсету шарттары"
+
+msgid "Purchase Guide"
+msgstr "Сатып алу нұсқаулығы"
+
+msgid "My Dashboard"
+msgstr "Менің панелім"
+
+# Product
+msgid "Add to Cart"
+msgstr "Себетке қосу"
+
+msgid "Add to Wishlist"
+msgstr "Таңдаулыларға қосу"
+
+msgid "Price"
+msgstr "Баға"
+
+msgid "Description"
+msgstr "Сипаттама"
+
+msgid "Reviews"
+msgstr "Пікірлер"
+
+msgid "In Stock"
+msgstr "Қоймада бар"
+
+msgid "Out of Stock"
+msgstr "Қоймада жоқ"
+
+msgid "Quantity"
+msgstr "Саны"
+
+# Cart & Checkout
+msgid "Shopping Cart"
+msgstr "Сатып алу себеті"
+
+msgid "Checkout"
+msgstr "Тапсырыс беру"
+
+msgid "Total"
+msgstr "Жалпы"
+
+msgid "Subtotal"
+msgstr "Аралық сома"
+
+msgid "Shipping"
+msgstr "Жеткізу"
+
+msgid "Place Order"
+msgstr "Тапсырыс беру"
+
+msgid "Apply Coupon"
+msgstr "Купонды қолдану"
+
+msgid "Order placed successfully!"
+msgstr "Тапсырыс сәтті орналастырылды!"
+
+# Footer
+msgid "Best prices & offers"
+msgstr "Үздік бағалар мен ұсыныстар"
+
+msgid "Free delivery"
+msgstr "Тегін жеткізу"
+
+msgid "Great daily deal"
+msgstr "Күнделікті тамаша ұсыныстар"
+
+msgid "Wide assortment"
+msgstr "Кең ассортимент"
+
+msgid "Easy returns"
+msgstr "Оңай қайтару"
+
+msgid "Safe delivery"
+msgstr "Қауіпсіз жеткізу"
+
+msgid "Follow Us"
+msgstr "Бізді қадағалаңыз"
+
+msgid "Company"
+msgstr "Компания"
+
+msgid "Corporate"
+msgstr "Корпоративтік"
+
+msgid "Popular"
+msgstr "Танымал"
+
+msgid "Install App"
+msgstr "Қосымшаны орнату"
+
+# Auth
+msgid "Email"
+msgstr "Электрондық пошта"
+
+msgid "Password"
+msgstr "Құпия сөз"
+
+msgid "Username"
+msgstr "Пайдаланушы аты"
+
+msgid "Confirm Password"
+msgstr "Құпия сөзді растау"
+
+msgid "Remember me"
+msgstr "Мені есте сақта"
+
+msgid "Forgot Password?"
+msgstr "Құпия сөзді ұмыттыңыз ба?"
+
+msgid "Create Account"
+msgstr "Аккаунт жасау"
+
+msgid "Already have an account?"
+msgstr "Аккаунтыңыз бар ма?"
+
+msgid "Don't have an account?"
+msgstr "Аккаунтыңыз жоқ па?"
+
+# Messages
+msgid "Welcome back!"
+msgstr "Қайта оралуыңызбен!"
+
+msgid "Registration successful!"
+msgstr "Тіркелу сәтті аяқталды!"
+
+msgid "Item added to cart"
+msgstr "Тауар себетке қосылды"
+
+msgid "Item removed from cart"
+msgstr "Тауар себеттен алынды"
+
+msgid "Item added to wishlist"
+msgstr "Тауар таңдаулыларға қосылды"
+
+# Title
+msgid "E-commerce - Multipurpose eCommerce"
+msgstr "E-commerce - Көп мақсатты электрондық сауда"
+
+msgid "English"
+msgstr "English"
+
+msgid "Қазақша"
+msgstr "Қазақша"
+
+msgid "Русский"
+msgstr "Русский"
+
+# Additional translations
+msgid "Browse"
+msgstr "Шолу"
+
+msgid "Show more..."
+msgstr "Көбірек көрсету..."
+
+msgid "Deals"
+msgstr "Акциялар"
+
+msgid "Pages"
+msgstr "Беттер"
+
+msgid "My Dashboard"
+msgstr "Менің панелім"
+
+msgid "Admin Dashboard"
+msgstr "Әкімші панелі"
+
+msgid "Settings"
+msgstr "Баптаулар"
+
+msgid "Sign out"
+msgstr "Шығу"
+
+msgid "24/7 Support Center"
+msgstr "24/7 Қолдау орталығы"
+
+msgid "Stay home & get your daily"
+msgstr "Үйде қалыңыз және күнделікті"
+
+msgid "needs from our shop"
+msgstr "қажеттіліктерді біздің дүкеннен алыңыз"
+
+msgid "Start Your Daily Shopping with"
+msgstr "Күнделікті сауданы бастаңыз"
+
+msgid "Orders $50 or more"
+msgstr "$50 және одан жоғары тапсырыстар"
+
+msgid "24/7 amazing services"
+msgstr "24/7 керемет қызметтер"
+
+msgid "When you sign up"
+msgstr "Тіркелгенде"
+
+msgid "Mega Discounts"
+msgstr "Үлкен жеңілдіктер"
+
+msgid "Within 30 days"
+msgstr "30 күн ішінде"
+
+msgid "Address"
+msgstr "Мекенжай"
+
+msgid "Call Us"
+msgstr "Бізге қоңырау шалыңыз"
+
+msgid "Hours"
+msgstr "Жұмыс уақыты"
+
+msgid "Terms & Conditions"
+msgstr "Шарттар мен ережелер"
+
+msgid "Contact Us"
+msgstr "Бізбен байланыс"
+
+msgid "View Cart"
+msgstr "Себетті көру"
+
+msgid "My Wishlist"
+msgstr "Менің тізімім"
+
+msgid "Track My Order"
+msgstr "Тапсырысымды бақылау"
+
+msgid "Become a Vendor"
+msgstr "Сатушы болу"
+
+msgid "Affiliate Program"
+msgstr "Серіктестік бағдарлама"
+
+msgid "Farm Business"
+msgstr "Ферма бизнесі"
+
+msgid "Farm Careers"
+msgstr "Ферма мансаптары"
+
+msgid "From App Store or Google Play"
+msgstr "App Store немесе Google Play-ден"
+
+msgid "Secured Payment Gateways"
+msgstr "Қауіпсіз төлем жүйелері"
+
+msgid "Follow Us"
+msgstr "Бізді қадағалаңыз"
+
+msgid "Search for items..."
+msgstr "Тауарларды іздеу..."
+
+msgid "View cart"
+msgstr "Себетті көру"
+
+# Contact Page
+msgid "How can we help you?"
+msgstr "Сізге қалай көмектесе аламыз?"
+
+msgid "Let us know how we can help you"
+msgstr "Сізге қалай көмектесе алатынымызды айтыңыз"
+
+msgid "We are always ready to help you with any questions. Feel free to contact us anytime."
+msgstr "Біз әрқашан сұрақтарыңызға көмектесуге дайынбыз. Кез келген уақытта бізге хабарласыңыз."
+
+msgid "Our team of experts is available 24/7 to assist you with your inquiries."
+msgstr "Біздің сарапшылар тобы сіздің сұрақтарыңызға 24/7 көмектесуге дайын."
+
+msgid "01. Visit Feedback"
+msgstr "01. Кері байланыс"
+
+msgid "Share your experience with us. Your feedback helps us improve our services."
+msgstr "Тәжірибеңізбен бөлісіңіз. Сіздің пікіріңіз қызметімізді жақсартуға көмектеседі."
+
+msgid "02. Employer Services"
+msgstr "02. Серіктестік қызметтер"
+
+msgid "Looking to partner with us? Contact our business development team."
+msgstr "Бізбен серіктес болғыңыз келе ме? Бизнес даму тобымызбен байланысыңыз."
+
+msgid "03. Billing Inquiries"
+msgstr "03. Төлем сұрақтары"
+
+msgid "Questions about your orders or payments? Our billing team is here to help."
+msgstr "Тапсырыстар немесе төлемдер туралы сұрақтарыңыз бар ма? Біздің төлем тобы көмектесуге дайын."
+
+msgid "04. General Inquiries"
+msgstr "04. Жалпы сұрақтар"
+
+msgid "For any other questions, please don't hesitate to reach out to us."
+msgstr "Басқа сұрақтар бойынша бізге хабарласуға тартынбаңыз."
+
+msgid "Office"
+msgstr "Кеңсе"
+
+msgid "Warehouse"
+msgstr "Қойма"
+
+msgid "Kazakhstan"
+msgstr "Қазақстан"
+
+msgid "Industrial District"
+msgstr "Өнеркәсіп ауданы"
+
+msgid "Main Street"
+msgstr "Бас көше"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "View map"
+msgstr "Картаны көру"
+
+msgid "Contact form"
+msgstr "Байланыс формасы"
+
+msgid "Drop Us a Line"
+msgstr "Бізге жазыңыз"
+
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr "Сіздің email жарияланбайды. Міндетті өрістер * белгіленген"
+
+msgid "Your Name"
+msgstr "Сіздің атыңыз"
+
+msgid "Your Email"
+msgstr "Сіздің email"
+
+msgid "Your Phone"
+msgstr "Сіздің телефоныңыз"
+
+msgid "Subject"
+msgstr "Тақырып"
+
+msgid "Message"
+msgstr "Хабарлама"
+
+msgid "Send message"
+msgstr "Хабарлама жіберу"
+
+# About Page
+msgid "Welcome to E-commerce"
+msgstr "E-commerce-ке қош келдіңіз"
+
+msgid "We are a leading online marketplace connecting buyers with quality vendors. Our platform offers a wide range of products at competitive prices with fast delivery."
+msgstr "Біз сатып алушыларды сапалы сатушылармен байланыстыратын жетекші онлайн сауда алаңымыз. Платформамыз бәсекеге қабілетті бағамен жылдам жеткізілетін өнімдердің кең ассортиментін ұсынады."
+
+msgid "Our mission is to provide the best shopping experience with secure payments, reliable delivery, and excellent customer service. We work with trusted vendors to ensure product quality."
+msgstr "Біздің миссиямыз - қауіпсіз төлемдер, сенімді жеткізу және тамаша қызмет көрсетумен ең жақсы сауда тәжірибесін қамтамасыз ету. Біз өнім сапасын қамтамасыз ету үшін сенімді сатушылармен жұмыс істейміз."
+
+msgid "What We Provide?"
+msgstr "Біз не ұсынамыз?"
+
+msgid "Best Prices & Offers"
+msgstr "Үздік бағалар мен ұсыныстар"
+
+msgid "We offer competitive prices and regular discounts to help you save money on every purchase."
+msgstr "Біз әр сатып алуда ақша үнемдеуге көмектесетін бәсекеге қабілетті бағалар мен тұрақты жеңілдіктер ұсынамыз."
+
+msgid "Wide Assortment"
+msgstr "Кең ассортимент"
+
+msgid "Browse through thousands of products from various categories to find exactly what you need."
+msgstr "Қажеттісін табу үшін әртүрлі санаттардағы мыңдаған өнімдерді шолыңыз."
+
+msgid "Free Delivery"
+msgstr "Тегін жеткізу"
+
+msgid "Enjoy free delivery on orders over a certain amount. Fast and reliable shipping nationwide."
+msgstr "Белгілі бір сомадан асатын тапсырыстарға тегін жеткізуден ләззат алыңыз. Бүкіл ел бойынша жылдам және сенімді жеткізу."
+
+msgid "Easy Returns"
+msgstr "Оңай қайтару"
+
+msgid "Not satisfied? Return products within 30 days for a full refund. No questions asked."
+msgstr "Қанағаттанбадыңыз ба? 30 күн ішінде толық қайтару үшін өнімдерді қайтарыңыз. Сұрақсыз."
+
+msgid "100% Satisfaction"
+msgstr "100% қанағаттану"
+
+msgid "We guarantee your satisfaction with every purchase. Quality products and excellent service."
+msgstr "Біз әр сатып алудан қанағаттануыңызға кепілдік береміз. Сапалы өнімдер мен тамаша қызмет."
+
+msgid "Great Daily Deal"
+msgstr "Күнделікті тамаша ұсыныстар"
+
+msgid "Check our daily deals section for amazing discounts on popular products every day."
+msgstr "Күн сайын танымал өнімдерге керемет жеңілдіктер алу үшін күнделікті ұсыныстар бөлімін тексеріңіз."
+
+msgid "Our performance"
+msgstr "Біздің көрсеткіштер"
+
+msgid "Your Partner for e-commerce grocery solution"
+msgstr "E-commerce азық-түлік шешімі үшін сіздің серіктесіңіз"
+
+msgid "We strive to be your trusted partner in online shopping, offering a seamless experience from browsing to delivery."
+msgstr "Біз онлайн сауда саласындағы сенімді серіктесіңіз болуға ұмтыламыз, шолудан жеткізуге дейін үздіксіз тәжірибе ұсынамыз."
+
+msgid "Our platform connects you with verified vendors, ensuring quality products and reliable service every time."
+msgstr "Біздің платформа сізді тексерілген сатушылармен байланыстырады, әр уақытта сапалы өнімдер мен сенімді қызметті қамтамасыз етеді."
+
+msgid "Who we are"
+msgstr "Біз кімбіз"
+
+msgid "We are a team of passionate professionals dedicated to revolutionizing online shopping in Kazakhstan."
+msgstr "Біз Қазақстандағы онлайн сауданы төңкеріске ұшыратуға арналған құмарлы мамандар тобымыз."
+
+msgid "Our history"
+msgstr "Біздің тарихымыз"
+
+msgid "Founded with a vision to make quality products accessible to everyone, we continue to grow and improve."
+msgstr "Сапалы өнімдерді бәріне қолжетімді ету көзқарасымен құрылған, біз өсуді және жақсартуды жалғастырамыз."
+
+msgid "Our mission"
+msgstr "Біздің миссиямыз"
+
+msgid "To provide the best online shopping experience with competitive prices, quality products, and excellent service."
+msgstr "Бәсекеге қабілетті бағалармен, сапалы өнімдермен және тамаша қызметпен ең жақсы онлайн сауда тәжірибесін қамтамасыз ету."
+
+msgid "Glorious years"
+msgstr "Даңқты жылдар"
+
+msgid "Happy clients"
+msgstr "Бақытты клиенттер"
+
+msgid "Projects complete"
+msgstr "Аяқталған жобалар"
+
+msgid "Team advisor"
+msgstr "Топ кеңесшілері"
+
+msgid "Products Sale"
+msgstr "Сатылған өнімдер"
+
+msgid "Our Team"
+msgstr "Біздің топ"
+
+msgid "Meet Our Expert Team"
+msgstr "Біздің сарапшылар тобымен танысыңыз"
+
+msgid "Our team consists of experienced professionals dedicated to providing the best service."
+msgstr "Біздің топ ең жақсы қызмет көрсетуге арналған тәжірибелі мамандардан тұрады."
+
+msgid "We work together to ensure your shopping experience is seamless and enjoyable."
+msgstr "Біз сіздің сауда тәжірибеңіздің үздіксіз және жағымды болуын қамтамасыз ету үшін бірге жұмыс істейміз."
+
+msgid "Daniyar S."
+msgstr "Данияр С."
+
+msgid "CEO & Co-Founder"
+msgstr "Бас директор және тең құрушы"
+
+msgid "Nurislam A."
+msgstr "Нұрислам А."
+
+msgid "Head Engineer"
+msgstr "Бас инженер"
+
+# Login Page
+msgid "Login"
+msgstr "Кіру"
+
+msgid "Don't have an account?"
+msgstr "Аккаунтыңыз жоқ па?"
+
+msgid "Create here"
+msgstr "Мұнда жасаңыз"
+
+msgid "Forgot password?"
+msgstr "Құпия сөзді ұмыттыңыз ба?"
+
+msgid "Log in"
+msgstr "Кіру"
+
+# Registration Page
+msgid "Create an Account"
+msgstr "Аккаунт жасау"
+
+msgid "Submit & Register"
+msgstr "Жіберу және тіркелу"
+
+msgid "Note:"
+msgstr "Ескерту:"
+
+msgid "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy"
+msgstr "Сіздің жеке деректеріңіз осы веб-сайт бойынша тәжірибеңізді қолдау, аккаунтыңызға қолжетімділікті басқару және құпиялылық саясатымызда сипатталған басқа мақсаттар үшін пайдаланылады"
+
+msgid "Continue with Facebook"
+msgstr "Facebook арқылы жалғастыру"
+
+msgid "Continue with Google"
+msgstr "Google арқылы жалғастыру"
+
+msgid "Continue with Apple"
+msgstr "Apple арқылы жалғастыру"
+
+# Dashboard
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Dashboard"
+msgstr "Панель"
+
+msgid "Orders"
+msgstr "Тапсырыстар"
+
+msgid "My Address"
+msgstr "Менің мекенжайым"
+
+msgid "Account details"
+msgstr "Аккаунт мәліметтері"
+
+msgid "Logout"
+msgstr "Шығу"
+
+msgid "My Profile"
+msgstr "Менің профилім"
+
+msgid "Name"
+msgstr "Аты"
+
+msgid "Bio"
+msgstr "Өмірбаян"
+
+msgid "Verified"
+msgstr "Расталған"
+
+msgid "Not verified"
+msgstr "Расталмаған"
+
+msgid "Edit Profile"
+msgstr "Профильді өңдеу"
+
+msgid "Hello"
+msgstr "Сәлем"
+
+msgid "From your account dashboard you can easily check & view your"
+msgstr "Аккаунт панеліңізден сіз оңай тексере және көре аласыз"
+
+msgid "recent orders"
+msgstr "соңғы тапсырыстар"
+
+msgid "manage your"
+msgstr "басқара аласыз"
+
+msgid "shipping and billing addresses"
+msgstr "жеткізу және төлем мекенжайлары"
+
+msgid "and"
+msgstr "және"
+
+msgid "edit your password and account details"
+msgstr "құпия сөзіңіз бен аккаунт мәліметтерін өңдеу"
+
+msgid "Your Orders"
+msgstr "Сіздің тапсырыстарыңыз"
+
+msgid "Order"
+msgstr "Тапсырыс"
+
+msgid "Date"
+msgstr "Күні"
+
+msgid "Status"
+msgstr "Күй"
+
+msgid "Paid Status"
+msgstr "Төлем күйі"
+
+msgid "Actions"
+msgstr "Әрекеттер"
+
+msgid "View"
+msgstr "Көру"
+
+msgid "Orders tracking"
+msgstr "Тапсырыстарды бақылау"
+
+msgid "To track your order please enter your OrderID in the box below and press Track button. This was given to you on your receipt and in the confirmation email you should have received."
+msgstr "Тапсырысыңызды бақылау үшін төмендегі өріске тапсырыс нөмірін енгізіңіз және Бақылау түймесін басыңыз. Бұл сізге чекте және растау электрондық хатында берілген."
+
+msgid "Order ID"
+msgstr "Тапсырыс нөмірі"
+
+msgid "Found in your order confirmation email"
+msgstr "Тапсырысты растау электрондық хатында табылған"
+
+msgid "Billing email"
+msgstr "Төлем email"
+
+msgid "Email you used during checkout"
+msgstr "Тапсырыс беру кезінде пайдаланған email"
+
+msgid "Track"
+msgstr "Бақылау"
+
+msgid "Add Address"
+msgstr "Мекенжай қосу"
+
+msgid "Save Address"
+msgstr "Мекенжайды сақтау"
+
+msgid "Make Default"
+msgstr "Әдепкі ету"
+
+msgid "Account Details"
+msgstr "Аккаунт мәліметтері"
+
+msgid "Log in instead!"
+msgstr "Оның орнына кіріңіз!"
+
+msgid "First Name"
+msgstr "Аты"
+
+msgid "Last Name"
+msgstr "Тегі"
+
+msgid "Display Name"
+msgstr "Көрсетілетін аты"
+
+msgid "Email Address"
+msgstr "Email мекенжайы"
+
+msgid "Current Password"
+msgstr "Ағымдағы құпия сөз"
+
+msgid "New Password"
+msgstr "Жаңа құпия сөз"
+
+msgid "Confirm Password"
+msgstr "Құпия сөзді растау"
+
+msgid "Save Change"
+msgstr "Өзгерісті сақтау"
+
+# Privacy Policy Page
+msgid "By"
+msgstr "Автор"
+
+msgid "Administration"
+msgstr "Әкімшілік"
+
+msgid "Last updated"
+msgstr "Соңғы жаңарту"
+
+msgid "Welcome to Our Privacy Policy"
+msgstr "Құпиялылық саясатымызға қош келдіңіз"
+
+msgid "This Privacy Policy describes how we collect, use, and protect your personal information when you use our e-commerce platform."
+msgstr "Бұл Құпиялылық саясаты біздің электрондық сауда платформамызды пайдаланған кезде жеке ақпаратыңызды қалай жинайтынымызды, пайдаланатынымызды және қорғайтынымызды сипаттайды."
+
+msgid "Information We Collect"
+msgstr "Біз жинайтын ақпарат"
+
+msgid "We collect the following types of personal information:"
+msgstr "Біз келесі жеке ақпарат түрлерін жинаймыз:"
+
+msgid "Name, email address, and contact information"
+msgstr "Аты, email мекенжайы және байланыс ақпараты"
+
+msgid "Billing and shipping addresses"
+msgstr "Төлем және жеткізу мекенжайлары"
+
+msgid "Payment information (processed securely through our payment providers)"
+msgstr "Төлем ақпараты (біздің төлем провайдерлері арқылы қауіпсіз өңделеді)"
+
+msgid "Order history and preferences"
+msgstr "Тапсырыс тарихы және таңдаулылар"
+
+msgid "Device and browser information for analytics"
+msgstr "Аналитика үшін құрылғы және браузер ақпараты"
+
+msgid "How We Use Your Information"
+msgstr "Ақпаратыңызды қалай пайдаланамыз"
+
+msgid "We use your personal information to:"
+msgstr "Біз сіздің жеке ақпаратыңызды пайдаланамыз:"
+
+msgid "Process and fulfill your orders"
+msgstr "Тапсырыстарыңызды өңдеу және орындау"
+
+msgid "Communicate with you about your orders and account"
+msgstr "Тапсырыстарыңыз бен аккаунтыңыз туралы сізбен байланысу"
+
+msgid "Improve our products and services"
+msgstr "Өнімдер мен қызметтерімізді жақсарту"
+
+msgid "Send promotional offers (with your consent)"
+msgstr "Жарнамалық ұсыныстар жіберу (сіздің келісіміңізбен)"
+
+msgid "Prevent fraud and ensure security"
+msgstr "Алаяқтықтың алдын алу және қауіпсіздікті қамтамасыз ету"
+
+msgid "Data Protection"
+msgstr "Деректерді қорғау"
+
+msgid "We implement industry-standard security measures to protect your personal information, including SSL encryption, secure servers, and regular security audits."
+msgstr "Біз жеке ақпаратыңызды қорғау үшін SSL шифрлауын, қауіпсіз серверлерді және тұрақты қауіпсіздік тексерулерін қоса алғанда, салалық стандартты қауіпсіздік шараларын енгіземіз."
+
+msgid "Your Rights"
+msgstr "Сіздің құқықтарыңыз"
+
+msgid "You have the right to:"
+msgstr "Сізде мынадай құқықтар бар:"
+
+msgid "Access your personal data"
+msgstr "Жеке деректеріңізге қол жеткізу"
+
+msgid "Request correction of inaccurate data"
+msgstr "Дұрыс емес деректерді түзетуді сұрау"
+
+msgid "Request deletion of your data"
+msgstr "Деректеріңізді жоюды сұрау"
+
+msgid "Opt-out of marketing communications"
+msgstr "Маркетингтік хабарламалардан бас тарту"
+
+msgid "Export your data in a portable format"
+msgstr "Деректеріңізді тасымалданатын форматта экспорттау"
+
+msgid "Cookies"
+msgstr "Cookie файлдары"
+
+msgid "We use cookies to improve your browsing experience, analyze site traffic, and personalize content. You can manage cookie preferences in your browser settings."
+msgstr "Біз cookie файлдарын шолу тәжірибесін жақсарту, сайт трафигін талдау және контентті жекелендіру үшін пайдаланамыз. Браузер параметрлерінде cookie таңдауларын басқара аласыз."
+
+msgid "If you have questions about this Privacy Policy, please contact us through our Contact page."
+msgstr "Осы Құпиялылық саясаты туралы сұрақтарыңыз болса, Байланыс бетіміз арқылы бізге хабарласыңыз."
+
+msgid "Search..."
+msgstr "Іздеу..."
+
+# Terms of Service Page
+msgid "Please read these Terms of Service carefully before using our website and services."
+msgstr "Веб-сайтымыз бен қызметтерімізді пайдаланбас бұрын осы Қызмет көрсету шарттарын мұқият оқыңыз."
+
+msgid "Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms."
+msgstr "Қызметке қол жеткізу және пайдалану осы Шарттарды қабылдауыңызға және орындауыңызға байланысты."
+
+msgid "User Agreement"
+msgstr "Пайдаланушы келісімі"
+
+msgid "By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service."
+msgstr "Қызметімізге кіру немесе пайдалану арқылы сіз осы Шарттармен байланысуға келісесіз. Шарттардың кез келген бөлігімен келіспесеңіз, Қызметке кіре алмайсыз."
+
+msgid "Rights & Restrictions"
+msgstr "Құқықтар мен шектеулер"
+
+msgid "Users must be at least 18 years of age"
+msgstr "Пайдаланушылар кем дегенде 18 жаста болуы керек"
+
+msgid "Users are responsible for maintaining the confidentiality of their account"
+msgstr "Пайдаланушылар өз аккаунтының құпиялылығын сақтауға жауапты"
+
+msgid "Users agree not to use the service for any illegal purposes"
+msgstr "Пайдаланушылар қызметті заңсыз мақсаттарда пайдаланбауға келіседі"
+
+msgid "All content remains the property of respective owners"
+msgstr "Барлық мазмұн тиісті иелердің меншігі болып қалады"
+
+msgid "Orders and Payments"
+msgstr "Тапсырыстар мен төлемдер"
+
+msgid "When placing an order, you agree to provide accurate and complete information. All payments are processed securely through our payment providers."
+msgstr "Тапсырыс бергенде, дәл және толық ақпарат беруге келісесіз. Барлық төлемдер біздің төлем провайдерлері арқылы қауіпсіз өңделеді."
+
+msgid "Shipping and Delivery"
+msgstr "Жеткізу"
+
+msgid "Delivery times may vary depending on your location and the products ordered. We are not responsible for delays caused by customs or other factors beyond our control."
+msgstr "Жеткізу уақыты орналасқан жеріңізге және тапсырыс берілген өнімдерге байланысты өзгеруі мүмкін. Біз кеден немесе біздің бақылауымыздан тыс басқа факторлармен туындаған кідірістерге жауапты емеспіз."
+
+msgid "Returns and Refunds"
+msgstr "Қайтару және ақшаны қайтару"
+
+msgid "Products may be returned within 14 days of delivery for a full refund, provided they are in original condition. Some items may not be eligible for return."
+msgstr "Өнімдер түпнұсқа күйінде болса, жеткізілгеннен кейін 14 күн ішінде толық қайтару үшін қайтарылуы мүмкін. Кейбір тауарлар қайтаруға жарамсыз болуы мүмкін."
+
+msgid "Limitation of Liability"
+msgstr "Жауапкершілікті шектеу"
+
+msgid "We shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service."
+msgstr "Біз қызметті пайдаланудан туындайтын жанама, кездейсоқ, арнайы, салдарлық немесе жазалау шығындары үшін жауапты емеспіз."
+
+msgid "Changes to Terms"
+msgstr "Шарттарға өзгерістер"
+
+msgid "We reserve the right to modify or replace these Terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms."
+msgstr "Біз осы Шарттарды кез келген уақытта өзгерту немесе ауыстыру құқығын өзімізде сақтаймыз. Өзгерістерден кейін Қызметті пайдалануды жалғастыру жаңа шарттарды қабылдауды білдіреді."
+
+msgid "If you have any questions about these Terms, please contact us through our Contact page."
+msgstr "Осы Шарттар туралы сұрақтарыңыз болса, Байланыс бетіміз арқылы бізге хабарласыңыз."
+
+# Purchase Guide Page
+msgid "1. Account Registration"
+msgstr "1. Аккаунтты тіркеу"
+
+msgid "To make purchases on our platform, you need to create an account. Here's what you'll need:"
+msgstr "Біздің платформада сатып алу үшін аккаунт жасау қажет. Сізге қажет нәрселер:"
+
+msgid "Full name (required)"
+msgstr "Толық аты (міндетті)"
+
+msgid "Email address (required)"
+msgstr "Email мекенжайы (міндетті)"
+
+msgid "Phone number (required)"
+msgstr "Телефон нөмірі (міндетті)"
+
+msgid "Delivery address (required)"
+msgstr "Жеткізу мекенжайы (міндетті)"
+
+msgid "Password (required)"
+msgstr "Құпия сөз (міндетті)"
+
+msgid "2. Browse and Select Products"
+msgstr "2. Өнімдерді шолу және таңдау"
+
+msgid "Browse through our categories or use the search function to find products. Click on any product to view details, specifications, and customer reviews."
+msgstr "Өнімдерді табу үшін санаттарымызды шолыңыз немесе іздеу функциясын пайдаланыңыз. Мәліметтерді, сипаттамаларды және тұтынушы пікірлерін көру үшін кез келген өнімді басыңыз."
+
+msgid "3. Add to Cart"
+msgstr "3. Себетке қосу"
+
+msgid "Once you've found a product you like, select the quantity and click 'Add to Cart'. You can continue shopping or proceed to checkout."
+msgstr "Ұнаған өнімді тапқаннан кейін санын таңдаңыз және 'Себетке қосу' түймесін басыңыз. Сауданы жалғастыра аласыз немесе тапсырыс беруге өтуге болады."
+
+msgid "4. Review Your Order"
+msgstr "4. Тапсырысыңызды тексеру"
+
+msgid "Before checkout, review your cart to ensure you have the correct items and quantities. You can modify quantities or remove items at this stage."
+msgstr "Тапсырыс бермес бұрын, дұрыс тауарлар мен сандар бар екеніне көз жеткізу үшін себетіңізді тексеріңіз. Бұл кезеңде сандарды өзгертуге немесе тауарларды алып тастауға болады."
+
+msgid "5. Checkout and Payment"
+msgstr "5. Тапсырыс беру және төлем"
+
+msgid "Enter your shipping details and select your preferred payment method. We accept the following payment options:"
+msgstr "Жеткізу мәліметтерін енгізіңіз және қалаған төлем әдісін таңдаңыз. Біз келесі төлем опцияларын қабылдаймыз:"
+
+msgid "Bank Transfer"
+msgstr "Банк аударымы"
+
+msgid "*Taxes are calculated based on your location."
+msgstr "*Салықтар орналасқан жеріңізге байланысты есептеледі."
+
+msgid "6. Order Confirmation"
+msgstr "6. Тапсырысты растау"
+
+msgid "After successful payment, you'll receive an order confirmation email with:"
+msgstr "Сәтті төлемнен кейін сіз келесілерді қамтитын тапсырысты растау электрондық хатын аласыз:"
+
+msgid "Order number and details"
+msgstr "Тапсырыс нөмірі мен мәліметтері"
+
+msgid "Estimated delivery date"
+msgstr "Болжалды жеткізу күні"
+
+msgid "Tracking information (when available)"
+msgstr "Бақылау ақпараты (қолжетімді болғанда)"
+
+msgid "Access to order history in your dashboard"
+msgstr "Панеліңіздегі тапсырыс тарихына қол жеткізу"
+
+msgid "7. Need Help?"
+msgstr "7. Көмек керек пе?"
+
+msgid "If you have any questions or need assistance with your purchase, please don't hesitate to contact our customer support team through the Contact page."
+msgstr "Сатып алуыңыз туралы сұрақтарыңыз немесе көмек қажет болса, Байланыс беті арқылы тұтынушыларға қолдау көрсету тобымызға хабарласуға тартынбаңыз."
+
+# Product List Page
+msgid "Filter"
+msgstr "Сүзгі"
+
+msgid "Filters"
+msgstr "Сүзгілер"
+
+msgid "By Categories"
+msgstr "Санаттар бойынша"
+
+msgid "By Vendors"
+msgstr "Сатушылар бойынша"
+
+msgid "By Price"
+msgstr "Баға бойынша"
+
+msgid "From"
+msgstr "Бастап"
+
+msgid "To"
+msgstr "Дейін"
+
+msgid "On Sale"
+msgstr "Сатылымда"
+
+msgid "Sort by"
+msgstr "Сұрыптау"
+
+msgid "Default"
+msgstr "Әдепкі"
+
+msgid "Price: Low to High"
+msgstr "Баға: төменнен жоғарыға"
+
+msgid "Price: High to Low"
+msgstr "Баға: жоғарыдан төменге"
+
+msgid "Newest First"
+msgstr "Алдымен жаңалары"
+
+msgid "Apply Filters"
+msgstr "Сүзгілерді қолдану"
+
+msgid "Clear Filters"
+msgstr "Сүзгілерді тазалау"
+
+msgid "We found"
+msgstr "Біз таптық"
+
+msgid "items for you!"
+msgstr "тауар сіз үшін!"
+
+msgid "Show"
+msgstr "Көрсету"
+
+msgid "All"
+msgstr "Барлығы"
+
+msgid "Featured"
+msgstr "Ерекше"
+
+msgid "Release Date"
+msgstr "Шығу күні"
+
+msgid "Avg. Rating"
+msgstr "Орташа рейтинг"
+
+msgid "Add"
+msgstr "Қосу"
+
+# Index/Home Page
+msgid "Don't miss amazing"
+msgstr "Керемет мүмкіндіктерді"
+
+msgid "grocery deals"
+msgstr "жіберіп алмаңыз"
+
+msgid "Sign up for the daily newsletter"
+msgstr "Күнделікті жаңалықтарға жазылыңыз"
+
+msgid "Your email address"
+msgstr "Сіздің email мекенжайыңыз"
+
+msgid "Subscribe"
+msgstr "Жазылу"
+
+msgid "Fresh Vegetables"
+msgstr "Жаңа көкөністер"
+
+msgid "Big discount"
+msgstr "Үлкен жеңілдік"
+
+msgid "Save up to 50% off on your first order"
+msgstr "Бірінші тапсырысыңызда 50% дейін үнемдеңіз"
+
+msgid "Popular Products"
+msgstr "Танымал өнімдер"
+
+msgid "Add To Wishlist"
+msgstr "Тізімге қосу"
+
+msgid "Shop by Categories"
+msgstr "Санаттар бойынша сатып алу"
+
+msgid "All Categories"
+msgstr "Барлық санаттар"
+
+# Product Detail Page
+msgid "reviews"
+msgstr "пікірлер"
+
+msgid "Off"
+msgstr "жеңілдік"
+
+msgid "Add to cart"
+msgstr "Себетке қосу"
+
+msgid "Stock"
+msgstr "Қор"
+
+msgid "Items In Stock"
+msgstr "тауар қорда"
+
+msgid "Description"
+msgstr "Сипаттама"
+
+msgid "Additional info"
+msgstr "Қосымша ақпарат"
+
+msgid "Vendor"
+msgstr "Сатушы"
+
+msgid "Reviews"
+msgstr "Пікірлер"
+
+# Cart Page
+msgid "Shop"
+msgstr "Дүкен"
+
+msgid "Cart"
+msgstr "Себет"
+
+msgid "Your Cart"
+msgstr "Сіздің себетіңіз"
+
+msgid "There are"
+msgstr "Себетте"
+
+msgid "products in your cart"
+msgstr "тауар бар"
+
+msgid "Product"
+msgstr "Тауар"
+
+msgid "Title"
+msgstr "Атауы"
+
+msgid "Unit Price"
+msgstr "Бірлік бағасы"
+
+msgid "Quantity"
+msgstr "Саны"
+
+msgid "Subtotal"
+msgstr "Аралық сома"
+
+msgid "Refresh"
+msgstr "Жаңарту"
+
+msgid "Remove"
+msgstr "Жою"
+
+msgid "Bio Data"
+msgstr "Жеке деректер"
+
+msgid "Full Name"
+msgstr "Толық аты"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Mobile"
+msgstr "Телефон"
+
+msgid "Shipping Details"
+msgstr "Жеткізу мәліметтері"
+
+msgid "Address"
+msgstr "Мекенжай"
+
+msgid "City"
+msgstr "Қала"
+
+msgid "State"
+msgstr "Облыс"
+
+msgid "Country"
+msgstr "Ел"
+
+msgid "Tax"
+msgstr "Салық"
+
+msgid "Shipping"
+msgstr "Жеткізу"
+
+msgid "Discount"
+msgstr "Жеңілдік"
+
+msgid "Total"
+msgstr "Жалпы"
+
+msgid "Proceed To CheckOut"
+msgstr "Төлемге өту"
