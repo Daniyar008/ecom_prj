@@ -15,23 +15,13 @@ from cartorders.models import CartOrder, Address
 
 
 def index(request):
-    # Пробуем получить из кеша
+    # Оптимизированный запрос с select_related для избежания N+1
     try:
-        cache_key = "homepage_products"
-        products = cache.get(cache_key)
-
-        if products is None:
-            # Если нет в кеше, запрашиваем из БД
-            products = Product.objects.filter(
-                product_status="published", featured=True
-            ).order_by("-id")
-            # Сохраняем в кеш на 5 минут
-            cache.set(cache_key, products, 60 * 5)
-    except Exception:
-        # Если кеш не работает, просто берем из БД
         products = Product.objects.filter(
             product_status="published", featured=True
-        ).order_by("-id")
+        ).select_related('category', 'vendor').prefetch_related('reviews').order_by("-id")[:20]
+    except Exception:
+        products = []
 
     context = {"products": products}
 
