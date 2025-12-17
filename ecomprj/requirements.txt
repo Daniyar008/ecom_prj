@@ -26,3 +26,4 @@ redis
 celery
 kombu
 amqp
+babel
