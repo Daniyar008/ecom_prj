@@ -66,6 +66,9 @@ msgstr "Нужна помощь? Позвоните нам:"
 msgid "All Categories"
 msgstr "Все категории"
 
+msgid "Mega menu"
+msgstr "Мега-меню"
+
 msgid "Browse"
 msgstr "Обзор"
 
@@ -1042,6 +1045,12 @@ msgstr "Свежие овощи"
 
 msgid "Big discount"
 msgstr "Большая скидка"
+
+msgid "Don’t miss amazing"
+msgstr "Тамаша ұсыныстарды"
+
+msgid "grocery deals"
+msgstr "жіберіп алмаңыз"
 
 msgid "Save up to 50% off on your first order"
 msgstr "Сэкономьте до 50% на первом заказе"

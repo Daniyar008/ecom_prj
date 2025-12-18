@@ -66,6 +66,9 @@ msgstr "Көмек керек пе? Бізге қоңырау шалыңыз:"
 msgid "All Categories"
 msgstr "Барлық санаттар"
 
+msgid "Mega menu"
+msgstr "Толық мәзір"
+
 msgid "Browse"
 msgstr "Шолу"
 
@@ -1042,6 +1045,12 @@ msgstr "Жаңа көкөністер"
 
 msgid "Big discount"
 msgstr "Үлкен жеңілдік"
+
+msgid "Don’t miss amazing"
+msgstr "Тамаша ұсыныстарды"
+
+msgid "grocery deals"
+msgstr "жіберіп алмаңыз"
 
 msgid "Save up to 50% off on your first order"
 msgstr "Бірінші тапсырысыңызда 50% дейін үнемдеңіз"
