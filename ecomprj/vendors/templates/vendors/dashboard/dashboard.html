@@ -1,0 +1,154 @@
+{% extends 'vendors/dashboard/base.html' %}
+
+{% block title %}Дашборд - {{ vendor.title }}{% endblock %}
+
+{% block page_title %}Дашборд{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Stats Cards -->
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="icon primary">
+                <i class="fas fa-box"></i>
+            </div>
+            <h3>{{ products_count }}</h3>
+            <p>Всего товаров</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>{{ published_count }}</h3>
+            <p>Опубликовано</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="icon warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h3>{{ in_review_count }}</h3>
+            <p>На модерации</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="icon info">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>{{ total_orders }}</h3>
+            <p>Заказов</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="icon success">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3>{{ revenue|floatformat:0 }} ₸</h3>
+            <p>Общий доход</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="icon warning">
+                <i class="fas fa-star"></i>
+            </div>
+            <h3>{{ avg_rating }}</h3>
+            <p>Средний рейтинг</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="icon info">
+                <i class="fas fa-comment"></i>
+            </div>
+            <h3>{{ reviews_count }}</h3>
+            <p>Отзывов</p>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Orders -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">Последние заказы</h6>
+                <a href="{% url 'vendors:vendor-orders' %}" class="btn btn-sm btn-outline-primary">Все заказы</a>
+            </div>
+            <div class="card-body">
+                {% if recent_order_items %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Заказа</th>
+                                <th>Товар</th>
+                                <th>Кол-во</th>
+                                <th>Сумма</th>
+                                <th>Дата</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in recent_order_items %}
+                            <tr>
+                                <td>#{{ item.order.oid|slice:":8" }}</td>
+                                <td>{{ item.product_obj.title|truncatechars:30 }}</td>
+                                <td>{{ item.qty }}</td>
+                                <td>{{ item.total }} ₸</td>
+                                <td>{{ item.order.order_date|date:"d.m.Y" }}</td>
+                                <td>
+                                    <span class="badge-status badge-{% if item.order.product_status == 'delivered' %}published{% elif item.order.product_status == 'processing' %}in_review{% else %}draft{% endif %}">
+                                        {{ item.order.product_status }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-4">Пока нет заказов</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Быстрые действия</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex gap-3">
+                    <a href="{% url 'vendors:vendor-add-product' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Добавить товар
+                    </a>
+                    <a href="{% url 'vendors:vendor-products' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-box me-2"></i>Мои товары
+                    </a>
+                    <a href="{% url 'vendors:vendor-settings' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-cog me-2"></i>Настройки магазина
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

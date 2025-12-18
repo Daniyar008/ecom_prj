@@ -1,0 +1,87 @@
+{% extends 'vendors/dashboard/base.html' %}
+
+{% block title %}Заказы - {{ vendor.title }}{% endblock %}
+
+{% block page_title %}Заказы{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h6 class="mb-0">Заказы с вашими товарами</h6>
+    </div>
+    <div class="card-body">
+        {% if order_items %}
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>ID Заказа</th>
+                        <th>Товар</th>
+                        <th>Кол-во</th>
+                        <th>Цена</th>
+                        <th>Сумма</th>
+                        <th>Покупатель</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order_items %}
+                    <tr>
+                        <td>
+                            <strong>#{{ item.order.oid|slice:":8" }}</strong>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{% if item.product_obj.image %}{{ item.product_obj.image.url }}{% else %}https://via.placeholder.com/40{% endif %}" 
+                                     alt="{{ item.product_obj.title }}" 
+                                     class="rounded me-2" 
+                                     width="40" height="40" 
+                                     style="object-fit: cover;">
+                                <div>
+                                    <strong>{{ item.product_obj.title|truncatechars:30 }}</strong>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item.qty }}</td>
+                        <td>{{ item.price }} ₸</td>
+                        <td><strong>{{ item.total }} ₸</strong></td>
+                        <td>
+                            {{ item.order.full_name|default:item.order.user.username }}
+                            <br>
+                            <small class="text-muted">{{ item.order.email|default:item.order.user.email }}</small>
+                        </td>
+                        <td>{{ item.order.order_date|date:"d.m.Y H:i" }}</td>
+                        <td>
+                            <span class="badge-status badge-{% if item.order.product_status == 'delivered' %}published{% elif item.order.product_status == 'processing' %}in_review{% elif item.order.product_status == 'shipped' %}info{% else %}draft{% endif %}">
+                                {% if item.order.product_status == 'delivered' %}
+                                    Доставлен
+                                {% elif item.order.product_status == 'processing' %}
+                                    Обработка
+                                {% elif item.order.product_status == 'shipped' %}
+                                    Отправлен
+                                {% else %}
+                                    {{ item.order.product_status }}
+                                {% endif %}
+                            </span>
+                            {% if item.order.paid_status %}
+                            <br><small class="text-success"><i class="fas fa-check"></i> Оплачен</small>
+                            {% else %}
+                            <br><small class="text-warning"><i class="fas fa-clock"></i> Не оплачен</small>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-shopping-bag fa-3x text-muted mb-3"></i>
+            <h5>Нет заказов</h5>
+            <p class="text-muted">Пока никто не заказывал ваши товары</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

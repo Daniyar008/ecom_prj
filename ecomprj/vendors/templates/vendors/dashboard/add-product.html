@@ -1,0 +1,171 @@
+{% extends 'vendors/dashboard/base.html' %}
+
+{% block title %}Добавить товар - {{ vendor.title }}{% endblock %}
+
+{% block page_title %}Добавить товар{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h6 class="mb-0">Новый товар</h6>
+    </div>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Basic Info -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Основная информация</h6>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Название товара *</label>
+                            {{ form.title }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Категория *</label>
+                            {{ form.category }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            {{ form.description }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Характеристики</label>
+                            {{ form.specifications }}
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Цены</h6>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Цена *</label>
+                                    {{ form.price }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Старая цена (для скидки)</label>
+                                    {{ form.old_price }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Inventory -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Склад</h6>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Количество на складе</label>
+                                    {{ form.stock_count }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Тип товара</label>
+                                    {{ form.type }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Срок годности</label>
+                                    {{ form.life }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Дата производства</label>
+                                    {{ form.mfd }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    {{ form.in_stock }}
+                                    <label class="form-check-label">В наличии</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    {{ form.digital }}
+                                    <label class="form-check-label">Цифровой товар</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <!-- Image -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Изображение</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Фото товара</label>
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                            <small class="text-muted">Рекомендуемый размер: 800x800px</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Теги</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Теги (через запятую)</label>
+                            {{ form.tags }}
+                            <small class="text-muted">Например: органик, веган, без глютена</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Info -->
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Важно:</strong> После добавления товар будет отправлен на модерацию. 
+                        Администратор проверит его и опубликует.
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'vendors:vendor-products' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Назад
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>Добавить товар
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        padding: 10px 15px;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+    }
+</style>
+{% endblock %}
