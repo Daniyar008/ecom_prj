@@ -2,6 +2,7 @@ asgiref
 boto3
 botocore
 Django==4.2.7
+django-modeltranslation
 dj-database-url
 gunicorn
 environs
