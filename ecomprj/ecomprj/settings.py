@@ -375,12 +375,12 @@ if USE_SUPABASE_STORAGE:
     # Files are served directly from Supabase CDN, no S3 backend needed for reading
     SUPABASE_PROJECT_ID = env.str("SUPABASE_STORAGE_ACCESS_KEY", default="")
     SUPABASE_BUCKET = env.str("SUPABASE_STORAGE_BUCKET", default="media")
-    
+
     # Public URL for accessing files from Supabase Storage
     # Format: https://<project-id>.supabase.co/storage/v1/object/public/<bucket>/
     MEDIA_URL = f"https://{SUPABASE_PROJECT_ID}.supabase.co/storage/v1/object/public/{SUPABASE_BUCKET}/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-    
+
     # Don't use S3 storage backend - files are already in Supabase
     # For new uploads, we'll handle separately or use local + sync
 else:
