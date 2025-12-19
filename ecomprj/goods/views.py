@@ -129,25 +129,9 @@ def category_list_view(request):
 def category_product_list__view(request, cid):
 
     category = Category.objects.get(cid=cid)  # food, Cosmetics
-<<<<<<< HEAD
     products = Product.objects.filter(
         product_status="published", category=category
     ).select_related("category", "vendor")[:50]
-=======
-    products_qs = (
-        Product.objects.filter(product_status="published", category=category)
-        .select_related("category", "vendor")
-        .order_by("-id")
-    )
-    page = request.GET.get("page", 1)
-    paginator = Paginator(products_qs, 100)
-    try:
-        products = paginator.page(page)
-    except PageNotAnInteger:
-        products = paginator.page(1)
-    except EmptyPage:
-        products = paginator.page(paginator.num_pages)
->>>>>>> d1d31fdf31351ec52100b1ce0d0f61720c9410c4
 
     context = {
         "category": category,
