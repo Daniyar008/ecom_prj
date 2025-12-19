@@ -12,7 +12,9 @@ cache/
 
 db.sqlite3
 
-media/
+# media/
+
+docs/
 
 # Environment variables
 .env
