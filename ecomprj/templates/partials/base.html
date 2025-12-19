@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load currency_tags %}
 
 
 <!DOCTYPE html>
@@ -94,16 +95,37 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">KZT <i class="fi-rs-angle-small-down"></i></a>
-                                    <ul class="language-dropdown Right-aligned lg">
+                                    <a class="language-dropdown-active" href="#">{{ current_currency }} <i class="fi-rs-angle-small-down"></i></a>
+                                    <ul class="language-dropdown" style="right: 10px;">
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-kz.png' %}" alt="" />KZT</a>
+                                            <form action="{% url 'core:set-currency' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="currency" value="KZT">
+                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-kz.png' %}" alt="KZT" style="width:20px;margin-right:8px;" />KZT ₸
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />RUB</a>
+                                            <form action="{% url 'core:set-currency' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="currency" value="RUB">
+                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="RUB" style="width:20px;margin-right:8px;" />RUB ₽
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#"><img src="{% static 'assets/imgs/theme/flag-us.png' %}" alt="" />USD</a>
+                                            <form action="{% url 'core:set-currency' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="currency" value="USD">
+                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <button type="submit" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;width:100%;padding:5px 10px;">
+                                                    <img src="{% static 'assets/imgs/theme/flag-us.png' %}" alt="USD" style="width:20px;margin-right:8px;" />USD $
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </li>
@@ -608,7 +630,7 @@
                     <div class="footer-link-widget col">
                         <h4 class="widget-title">{% trans "Corporate" %}</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">{% trans "Become a Vendor" %}</a></li>
+                            <li><a href="{% url 'vendors:vendor-register' %}">{% trans "Become a Vendor" %}</a></li>
                             <li><a href="#">{% trans "Affiliate Program" %}</a></li>
                             <li><a href="#">{% trans "Farm Business" %}</a></li>
                             <li><a href="#">{% trans "Farm Careers" %}</a></li>

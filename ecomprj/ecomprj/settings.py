@@ -46,6 +46,7 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 # Application definition
 
 INSTALLED_APPS = [
+    "modeltranslation",  # Должен быть ПЕРЕД django.contrib.admin
     "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -322,6 +323,11 @@ LANGUAGES = [
 
 LANGUAGE_CODE = "en"  # Язык по умолчанию
 
+# Modeltranslation settings
+MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
+MODELTRANSLATION_LANGUAGES = ("en", "kk", "ru")
+MODELTRANSLATION_FALLBACK_LANGUAGES = ("en", "ru")
+
 TIME_ZONE = "Asia/Almaty"  # Казахстан
 
 USE_I18N = True  # Включить интернационализацию
@@ -334,6 +340,15 @@ USE_TZ = True
 LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
+
+# Currency settings
+# Base currency in database is USD
+CURRENCIES = {
+    "USD": {"symbol": "$", "rate": 1.0, "name": "Dollar"},
+    "KZT": {"symbol": "₸", "rate": 500.0, "name": "Тенге"},  # 1 USD = 500 KZT
+    "RUB": {"symbol": "₽", "rate": 100.0, "name": "Рубль"},  # 1 USD = 100 RUB
+}
+DEFAULT_CURRENCY = "USD"
 
 
 # Static files (CSS, JavaScript, Images)

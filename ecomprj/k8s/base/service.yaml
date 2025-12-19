@@ -1,0 +1,84 @@
+# =============================================================================
+# Services for E-commerce Application
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-web-service
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: web
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: web
+---
+# =============================================================================
+# PostgreSQL Service
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: database
+spec:
+  type: ClusterIP
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  selector:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: database
+---
+# =============================================================================
+# Redis Service
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: cache
+spec:
+  type: ClusterIP
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379
+  selector:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: cache
+---
+# =============================================================================
+# Headless Service for StatefulSets (PostgreSQL)
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-headless
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: database
+spec:
+  clusterIP: None
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  selector:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: database

@@ -1,0 +1,61 @@
+# =============================================================================
+# Docker Compose for Testing (CI)
+# =============================================================================
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # Test Database
+  # ===========================================================================
+  test_db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: test_ecommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===========================================================================
+  # Test Redis
+  # ===========================================================================
+  test_redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===========================================================================
+  # Test Runner
+  # ===========================================================================
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: >
+      sh -c "
+        pip install pytest pytest-django pytest-cov flake8 &&
+        python manage.py migrate --noinput &&
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics &&
+        pytest --cov=. --cov-report=xml --cov-report=term-missing -v
+      "
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=test-secret-key-not-for-production
+      - DATABASE_URL=postgresql://postgres:postgres@test_db:5432/test_ecommerce
+      - REDIS_URL=redis://test_redis:6379/0
+      - CELERY_BROKER_URL=redis://test_redis:6379/0
+    depends_on:
+      test_db:
+        condition: service_healthy
+      test_redis:
+        condition: service_healthy
+    volumes:
+      - ./coverage.xml:/app/coverage.xml
+      - ./htmlcov:/app/htmlcov

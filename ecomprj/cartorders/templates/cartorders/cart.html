@@ -1,6 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load currency_tags %}
 {% block content %}
     <main class="main" id="cart-list">
         <div class="page-header breadcrumb-wrap">
@@ -48,7 +49,7 @@
                                         
                                         </td>
                                         <td class="price" data-title="Price">
-                                            <h4 class="text-body">${{item.price|floatformat:2}}</h4>
+                                            <h4 class="text-body">{% price_with_symbol item.price %}</h4>
                                         </td>
                                         <td class="text-center detail-info" data-title="Stock">
                                             <div class="mr-15">
@@ -122,7 +123,7 @@
                                     
                                     <div class="d-flex justify-content-between mb-2">
                                         <p class="fw-bold">{% trans "Total" %}</p>
-                                        <p>${{cart_total_amount}}</p>
+                                        <p>{% price_with_symbol cart_total_amount %}</p>
                                     </div>
                                 </div>
                             </div>

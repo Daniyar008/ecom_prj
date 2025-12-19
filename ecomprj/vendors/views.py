@@ -206,8 +206,11 @@ def vendor_dashboard(request):
     published_count = products.filter(product_status="published").count()
     in_review_count = products.filter(product_status="in_review").count()
 
-    # Получаем заказы с товарами этого вендора
-    order_items = CartOrderProducts.objects.filter(product_obj__vendor=vendor)
+    # Получаем названия товаров вендора для поиска в заказах
+    vendor_product_titles = list(products.values_list("title", flat=True))
+
+    # Получаем заказы с товарами этого вендора (по названию товара)
+    order_items = CartOrderProducts.objects.filter(item__in=vendor_product_titles)
     total_orders = order_items.values("order").distinct().count()
 
     # Доход (сумма всех проданных товаров)
@@ -219,7 +222,7 @@ def vendor_dashboard(request):
     )
 
     # Последние заказы
-    recent_order_items = order_items.select_related("order", "product_obj").order_by(
+    recent_order_items = order_items.select_related("order").order_by(
         "-order__order_date"
     )[:10]
 

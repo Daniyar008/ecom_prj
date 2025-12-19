@@ -1,0 +1,115 @@
+# =============================================================================
+# ArgoCD Application Configuration (GitOps)
+# =============================================================================
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecommerce
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/your-org/ecommerce.git
+    targetRevision: main
+    path: k8s/overlays/production
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ecommerce
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  
+  # Health checks
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
+  
+  revisionHistoryLimit: 5
+---
+# =============================================================================
+# ArgoCD Application for Development
+# =============================================================================
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecommerce-dev
+  namespace: argocd
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/your-org/ecommerce.git
+    targetRevision: develop
+    path: k8s/overlays/development
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ecommerce-dev
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+# =============================================================================
+# ArgoCD Project Configuration
+# =============================================================================
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ecommerce
+  namespace: argocd
+spec:
+  description: E-commerce Application Project
+  
+  sourceRepos:
+    - 'https://github.com/your-org/ecommerce.git'
+    - 'https://charts.bitnami.com/bitnami'
+  
+  destinations:
+    - namespace: ecommerce
+      server: https://kubernetes.default.svc
+    - namespace: ecommerce-dev
+      server: https://kubernetes.default.svc
+  
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+    - group: networking.k8s.io
+      kind: Ingress
+  
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+  
+  roles:
+    - name: developer
+      description: Developer role
+      policies:
+        - p, proj:ecommerce:developer, applications, get, ecommerce/*, allow
+        - p, proj:ecommerce:developer, applications, sync, ecommerce/*, allow
+      groups:
+        - developers

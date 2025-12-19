@@ -1,6 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load currency_tags %}
 {% block content %}
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
@@ -63,10 +64,10 @@
                                             </div>
                                             <div class="clearfix product-price-cover">
                                                 <div class="product-price primary-color float-left">
-                                                    <span class="current-price text-brand">$</span><span class="current-price text-brand current-price current-product-price-{{ p.id }}" id="current-product-price">{{p.price}}</span>
+                                                    <span class="current-price text-brand">{% get_currency_symbol %}</span><span class="current-price text-brand current-price current-product-price-{{ p.id }}" id="current-product-price">{% convert_price p.price %}</span>
                                                     <span>
                                                         <span class="save-price font-md color3 ml-15">-{{p.get_precentage|floatformat:0}}% {% trans "Off" %}</span>
-                                                    <span class="old-price font-md ml-15">${{p.old_price}}</span>
+                                                    <span class="old-price font-md ml-15">{% price_with_symbol p.old_price %}</span>
                                                     </span>
                                                 </div>
                                             </div>

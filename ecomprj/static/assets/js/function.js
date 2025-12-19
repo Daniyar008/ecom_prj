@@ -147,7 +147,7 @@ $(document).ready(function () {
 
         let product_pid = $(".product-pid-" + index).val()
         let product_image = $(".product-image-" + index).val()
-        
+
         // var add_to_cart_url = $(this).attr("href");
 
         console.log("Quantity:", quantity);
@@ -179,6 +179,15 @@ $(document).ready(function () {
 
                 console.log("Added Product to Cart!");
                 $(".cart-items-count").text(response.totalcartitems)
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 401) {
+                    // User not logged in - redirect to login
+                    alert("Пожалуйста, войдите в систему чтобы добавить товар в корзину");
+                    window.location.href = '/user/sign-in/';
+                } else {
+                    console.error("Error adding to cart:", error);
+                }
             }
         })
     })
@@ -217,7 +226,7 @@ $(document).ready(function () {
         let product_id = $(this).attr("data-product")
         let this_val = $(this)
         let product_quantity = parseInt($(".product-qty-" + product_id).val())
-        
+
         // Validate quantity
         if (product_quantity < 1 || isNaN(product_quantity)) {
             product_quantity = 1

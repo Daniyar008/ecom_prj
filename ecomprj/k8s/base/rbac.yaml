@@ -1,0 +1,129 @@
+# =============================================================================
+# Service Account
+# =============================================================================
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-sa
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+---
+# =============================================================================
+# Pod Disruption Budget - Ensure high availability
+# =============================================================================
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ecommerce-web-pdb
+  namespace: ecommerce
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ecommerce
+      app.kubernetes.io/component: web
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ecommerce-celery-pdb
+  namespace: ecommerce
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ecommerce
+      app.kubernetes.io/component: celery-worker
+---
+# =============================================================================
+# Network Policy - Restrict traffic
+# =============================================================================
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ecommerce-network-policy
+  namespace: ecommerce
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: ecommerce
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Allow from ingress controller
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8000
+    # Allow internal communication
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ecommerce
+  egress:
+    # Allow DNS
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+    # Allow internal communication
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ecommerce
+    # Allow external HTTPS (for payment gateways, etc.)
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+      ports:
+        - protocol: TCP
+          port: 443
+---
+# =============================================================================
+# Resource Quota for namespace
+# =============================================================================
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ecommerce-quota
+  namespace: ecommerce
+spec:
+  hard:
+    requests.cpu: "8"
+    requests.memory: "16Gi"
+    limits.cpu: "16"
+    limits.memory: "32Gi"
+    persistentvolumeclaims: "10"
+    pods: "50"
+    services: "20"
+---
+# =============================================================================
+# Limit Range - Default resource limits
+# =============================================================================
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: ecommerce-limit-range
+  namespace: ecommerce
+spec:
+  limits:
+    - default:
+        cpu: "500m"
+        memory: "512Mi"
+      defaultRequest:
+        cpu: "100m"
+        memory: "128Mi"
+      type: Container

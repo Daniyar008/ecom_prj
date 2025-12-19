@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
+from django.db import connection
+from django.views.decorators.http import require_GET, require_POST
+from django.conf import settings
 
 import calendar
 from django.db.models import Count, Avg
@@ -12,6 +15,18 @@ from django.db.models.functions import ExtractMonth
 
 from goods.models import Product
 from cartorders.models import CartOrder, Address
+
+
+def set_currency(request):
+    """View to set the currency in session"""
+    if request.method == "POST":
+        currency = request.POST.get("currency", "KZT")
+        if currency in settings.CURRENCIES:
+            request.session["currency"] = currency
+
+    # Redirect back to the previous page
+    next_url = request.POST.get("next", request.META.get("HTTP_REFERER", "/"))
+    return redirect(next_url)
 
 
 def index(request):
@@ -222,3 +237,59 @@ def privacy_policy(request):
 
 def terms_of_service(request):
     return render(request, "core/terms_of_service.html")
+
+
+# =============================================================================
+# Health Check Endpoints for Kubernetes
+# =============================================================================
+@require_GET
+def health_check(request):
+    """
+    Health check endpoint for Kubernetes liveness/readiness probes.
+    Checks database and cache connectivity.
+    """
+    health = {"status": "healthy", "checks": {}}
+
+    # Check database connection
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        health["checks"]["database"] = "ok"
+    except Exception as e:
+        health["status"] = "unhealthy"
+        health["checks"]["database"] = f"error: {str(e)}"
+
+    # Check Redis/Cache connection
+    try:
+        cache.set("health_check", "ok", 10)
+        cache_result = cache.get("health_check")
+        if cache_result == "ok":
+            health["checks"]["cache"] = "ok"
+        else:
+            health["checks"]["cache"] = "error: cache write/read failed"
+    except Exception as e:
+        health["checks"]["cache"] = f"warning: {str(e)}"
+
+    status_code = 200 if health["status"] == "healthy" else 503
+    return JsonResponse(health, status=status_code)
+
+
+@require_GET
+def liveness_check(request):
+    """
+    Simple liveness check - just confirms the app is running.
+    """
+    return JsonResponse({"status": "alive"})
+
+
+@require_GET
+def readiness_check(request):
+    """
+    Readiness check - confirms app can handle traffic.
+    """
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        return JsonResponse({"status": "ready"})
+    except Exception as e:
+        return JsonResponse({"status": "not ready", "error": str(e)}, status=503)
