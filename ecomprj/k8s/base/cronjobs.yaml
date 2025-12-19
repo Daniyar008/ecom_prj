@@ -1,0 +1,130 @@
+# =============================================================================
+# CronJob for Database Backups
+# =============================================================================
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: database-backup
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: backup
+spec:
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: postgres:15-alpine
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  pg_dump -h postgres-service -U $POSTGRES_USER $POSTGRES_DB | gzip > /backup/backup-$(date +%Y%m%d-%H%M%S).sql.gz
+                  # Keep only last 7 days of backups
+                  find /backup -name "*.sql.gz" -mtime +7 -delete
+              env:
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: ecommerce-secrets
+                      key: DB_USER
+                - name: POSTGRES_DB
+                  value: ecommerce
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: ecommerce-secrets
+                      key: DB_PASSWORD
+              volumeMounts:
+                - name: backup-storage
+                  mountPath: /backup
+          volumes:
+            - name: backup-storage
+              persistentVolumeClaim:
+                claimName: backup-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-pvc
+  namespace: ecommerce
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 10Gi
+---
+# =============================================================================
+# CronJob for Static Files Collection
+# =============================================================================
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: collectstatic
+  namespace: ecommerce
+spec:
+  schedule: "0 3 * * *"  # Daily at 3 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: collectstatic
+              image: ${DOCKER_REGISTRY}/ecommerce:${IMAGE_TAG}
+              command:
+                - python
+                - manage.py
+                - collectstatic
+                - --noinput
+              envFrom:
+                - configMapRef:
+                    name: ecommerce-config
+                - secretRef:
+                    name: ecommerce-secrets
+              volumeMounts:
+                - name: static-volume
+                  mountPath: /app/staticfiles
+          volumes:
+            - name: static-volume
+              persistentVolumeClaim:
+                claimName: static-pvc
+---
+# =============================================================================
+# CronJob for Expired Sessions Cleanup
+# =============================================================================
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clearsessions
+  namespace: ecommerce
+spec:
+  schedule: "0 4 * * 0"  # Weekly on Sunday at 4 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: clearsessions
+              image: ${DOCKER_REGISTRY}/ecommerce:${IMAGE_TAG}
+              command:
+                - python
+                - manage.py
+                - clearsessions
+              envFrom:
+                - configMapRef:
+                    name: ecommerce-config
+                - secretRef:
+                    name: ecommerce-secrets

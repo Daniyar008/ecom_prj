@@ -1,0 +1,69 @@
+# =============================================================================
+# Development Overlay Kustomization
+# =============================================================================
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: ecommerce-dev
+
+namePrefix: dev-
+
+resources:
+  - ../../base
+
+# Override images for development
+images:
+  - name: ${DOCKER_REGISTRY}/ecommerce
+    newName: ghcr.io/your-org/ecommerce
+    newTag: develop
+
+# Patches for development
+patches:
+  # Reduce replicas in development
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: ecommerce-web
+  
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: ecommerce-celery-worker
+  
+  # Reduce HPA min replicas
+  - patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 1
+      - op: replace
+        path: /spec/maxReplicas
+        value: 3
+    target:
+      kind: HorizontalPodAutoscaler
+      name: ecommerce-web-hpa
+  
+  # Enable debug mode
+  - patch: |-
+      - op: replace
+        path: /data/DEBUG
+        value: "True"
+    target:
+      kind: ConfigMap
+      name: ecommerce-config
+
+# Development specific ConfigMap
+configMapGenerator:
+  - name: dev-config
+    literals:
+      - DEBUG=True
+      - LOG_LEVEL=DEBUG
+      - ALLOWED_HOSTS=localhost,127.0.0.1,*.dev.local
+
+# Reduce resource limits for dev
+patchesStrategicMerge: []

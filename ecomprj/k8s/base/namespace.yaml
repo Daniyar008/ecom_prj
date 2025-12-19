@@ -1,0 +1,11 @@
+# =============================================================================
+# Kubernetes Namespace for E-commerce Application
+# =============================================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: namespace
+    environment: production

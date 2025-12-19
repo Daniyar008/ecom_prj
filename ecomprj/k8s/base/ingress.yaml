@@ -1,0 +1,204 @@
+# =============================================================================
+# Ingress Controller Configuration with Nginx
+# =============================================================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-ingress
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: ingress
+  annotations:
+    # Nginx Ingress Controller
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    
+    # SSL/TLS
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    
+    # Security Headers
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Frame-Options "SAMEORIGIN" always;
+      add_header X-Content-Type-Options "nosniff" always;
+      add_header X-XSS-Protection "1; mode=block" always;
+      add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+      add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    
+    # Rate Limiting
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    nginx.ingress.kubernetes.io/limit-connections: "50"
+    
+    # Compression
+    nginx.ingress.kubernetes.io/enable-compression: "true"
+    
+    # CORS (if needed)
+    nginx.ingress.kubernetes.io/enable-cors: "false"
+    
+    # Caching
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - ecommerce.example.com
+        - www.ecommerce.example.com
+      secretName: ecommerce-tls-secret
+  rules:
+    - host: ecommerce.example.com
+      http:
+        paths:
+          # Static files
+          - path: /static
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-static-service
+                port:
+                  number: 80
+          
+          # Media files
+          - path: /media
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-static-service
+                port:
+                  number: 80
+          
+          # API and Web application
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecommerce-web-service
+                port:
+                  number: 80
+    
+    # WWW redirect
+    - host: www.ecommerce.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecommerce-web-service
+                port:
+                  number: 80
+---
+# =============================================================================
+# Nginx Static Files Service (for serving static/media via Nginx)
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-static
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: nginx-static
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ecommerce
+      app.kubernetes.io/component: nginx-static
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ecommerce
+        app.kubernetes.io/component: nginx-static
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.25-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: static-volume
+              mountPath: /usr/share/nginx/html/static
+              readOnly: true
+            - name: media-volume
+              mountPath: /usr/share/nginx/html/media
+              readOnly: true
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+      volumes:
+        - name: static-volume
+          persistentVolumeClaim:
+            claimName: static-pvc
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: media-pvc
+        - name: nginx-config
+          configMap:
+            name: nginx-static-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-static-service
+  namespace: ecommerce
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: nginx-static
+---
+# =============================================================================
+# Nginx ConfigMap for Static Files
+# =============================================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-static-config
+  namespace: ecommerce
+data:
+  default.conf: |
+    server {
+        listen 80;
+        server_name _;
+        
+        # Static files
+        location /static/ {
+            alias /usr/share/nginx/html/static/;
+            expires 30d;
+            add_header Cache-Control "public, immutable";
+            add_header X-Content-Type-Options "nosniff";
+            
+            # Gzip
+            gzip on;
+            gzip_types text/css application/javascript application/json image/svg+xml;
+            gzip_min_length 1000;
+        }
+        
+        # Media files
+        location /media/ {
+            alias /usr/share/nginx/html/media/;
+            expires 7d;
+            add_header Cache-Control "public";
+            add_header X-Content-Type-Options "nosniff";
+        }
+        
+        # Health check
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+        }
+    }

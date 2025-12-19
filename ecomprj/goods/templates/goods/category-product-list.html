@@ -1,5 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load i18n %}
+{% load currency_tags %}
 {% block content %}
     <main class="main">
         <div class="page-header mt-30 mb-50">
@@ -102,8 +104,8 @@
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
-                                            <span>$</span> <span class="current-product-price-{{ p.id }}">{{p.price}}</span>
-                                            <span class="old-price">${{p.old_price}}</span>
+                                            <span>{% get_currency_symbol %}</span> <span class="current-product-price-{{ p.id }}">{% convert_price p.price %}</span>
+                                            <span class="old-price">{% price_with_symbol p.old_price %}</span>
                                         </div>
                                         <div class="add-cart">
                                             <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{ p.id }}">

@@ -1,0 +1,33 @@
+# =============================================================================
+# Helm Chart - Chart.yaml
+# =============================================================================
+apiVersion: v2
+name: ecommerce
+description: A Helm chart for Django E-commerce Application
+
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+
+home: https://github.com/your-org/ecommerce
+icon: https://your-domain.com/logo.png
+
+maintainers:
+  - name: Your Name
+    email: your-email@example.com
+
+keywords:
+  - django
+  - ecommerce
+  - python
+  - kubernetes
+
+dependencies:
+  - name: postgresql
+    version: "12.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: "17.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled

@@ -20,29 +20,28 @@ app_name = "vendors"
 
 urlpatterns = [
     # Public views
-    path("vendors/", vendor_list_view, name="vendor-list"),
-    path("vendor/<vid>/", vendor_detail_view, name="vendor-detail"),
+    path("", vendor_list_view, name="vendor-list"),
     # Vendor Auth
-    path("vendor/register/", vendor_register_view, name="vendor-register"),
-    path("vendor/login/", vendor_login_view, name="vendor-login"),
-    path("vendor/logout/", vendor_logout_view, name="vendor-logout"),
+    path("register/", vendor_register_view, name="vendor-register"),
+    path("login/", vendor_login_view, name="vendor-login"),
+    path("logout/", vendor_logout_view, name="vendor-logout"),
     # Vendor Dashboard
-    path("vendor/dashboard/", vendor_dashboard, name="vendor-dashboard"),
-    path("vendor/dashboard/products/", vendor_products, name="vendor-products"),
+    path("dashboard/", vendor_dashboard, name="vendor-dashboard"),
+    path("dashboard/products/", vendor_products, name="vendor-products"),
+    path("dashboard/products/add/", vendor_add_product, name="vendor-add-product"),
     path(
-        "vendor/dashboard/products/add/", vendor_add_product, name="vendor-add-product"
-    ),
-    path(
-        "vendor/dashboard/products/edit/<pid>/",
+        "dashboard/products/edit/<pid>/",
         vendor_edit_product,
         name="vendor-edit-product",
     ),
     path(
-        "vendor/dashboard/products/delete/<pid>/",
+        "dashboard/products/delete/<pid>/",
         vendor_delete_product,
         name="vendor-delete-product",
     ),
-    path("vendor/dashboard/orders/", vendor_orders, name="vendor-orders"),
-    path("vendor/dashboard/reviews/", vendor_reviews, name="vendor-reviews"),
-    path("vendor/dashboard/settings/", vendor_settings, name="vendor-settings"),
+    path("dashboard/orders/", vendor_orders, name="vendor-orders"),
+    path("dashboard/reviews/", vendor_reviews, name="vendor-reviews"),
+    path("dashboard/settings/", vendor_settings, name="vendor-settings"),
+    # Vendor detail - MUST BE LAST (catches all <vid>/)
+    path("<vid>/", vendor_detail_view, name="vendor-detail"),
 ]

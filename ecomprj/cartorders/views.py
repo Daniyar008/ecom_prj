@@ -14,6 +14,13 @@ from goods.models import Product
 
 
 def add_to_cart(request):
+    # Check if user is authenticated
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {"error": "login_required", "message": "Please login to add items to cart"},
+            status=401,
+        )
+
     cart_product = {}
     product_id = str(request.GET.get("id", ""))
 

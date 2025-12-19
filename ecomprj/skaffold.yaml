@@ -1,0 +1,49 @@
+# =============================================================================
+# Skaffold Configuration for Local Kubernetes Development
+# =============================================================================
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: ecommerce
+
+build:
+  artifacts:
+    - image: ecommerce
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+    useBuildkit: true
+
+deploy:
+  kustomize:
+    paths:
+      - k8s/overlays/development
+
+portForward:
+  - resourceType: service
+    resourceName: dev-ecommerce-web-service
+    namespace: ecommerce-dev
+    port: 80
+    localPort: 8000
+
+profiles:
+  - name: dev
+    activation:
+      - command: dev
+    build:
+      local:
+        push: false
+    deploy:
+      kustomize:
+        paths:
+          - k8s/overlays/development
+  
+  - name: prod
+    build:
+      local:
+        push: true
+    deploy:
+      kustomize:
+        paths:
+          - k8s/overlays/production

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Milky grey background */
+            background: #f0f0f0;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,14 +23,15 @@
         }
         
         .register-card {
-            background: #fff;
+            /* White milky component */
+            background: #fefefe;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         
         .register-header {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #c4ae92 100%);
             padding: 40px;
             text-align: center;
             color: #fff;
@@ -38,6 +40,7 @@
         .register-header h2 {
             margin: 0;
             font-weight: 700;
+            {% comment %} text-color: #252A34; {% endcomment %}
         }
         
         .register-header p {
@@ -56,12 +59,12 @@
         }
         
         .form-control:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+            border-color: #3bb77e;
+            box-shadow: 0 0 0 3px rgba(59,183,126,0.1);
         }
         
         .btn-register {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #3bb77e 0%, #2a9d68 100%);
             border: none;
             padding: 15px;
             border-radius: 10px;
@@ -71,7 +74,7 @@
         
         .btn-register:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(79,70,229,0.4);
+            box-shadow: 0 5px 20px rgba(59,183,126,0.4);
         }
         
         .section-title {
@@ -83,6 +86,30 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #e2e8f0;
         }
+        
+        /* Password strength indicator */
+        .password-strength-container {
+            margin-top: 5px;
+        }
+        .password-strength-bar {
+            height: 5px;
+            border-radius: 3px;
+            background-color: #e0e0e0;
+            overflow: hidden;
+        }
+        .password-strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        .password-strength-text {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        .strength-weak { background-color: #ff4444; }
+        .strength-fair { background-color: #ffbb33; }
+        .strength-good { background-color: #00C851; }
+        .strength-strong { background-color: #007E33; }
     </style>
 </head>
 <body>
@@ -130,6 +157,12 @@
                                 <div class="mb-3">
                                     <label class="form-label">Пароль</label>
                                     {{ form.password1 }}
+                                    <div class="password-strength-container">
+                                        <div class="password-strength-bar">
+                                            <div class="password-strength-fill" id="strengthBar"></div>
+                                        </div>
+                                        <div class="password-strength-text" id="strengthText"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -199,5 +232,50 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Password strength checker
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.querySelector('input[name="password1"]');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+        
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = checkPasswordStrength(password);
+                
+                strengthBar.style.width = strength.percent + '%';
+                strengthBar.className = 'password-strength-fill ' + strength.class;
+                strengthText.textContent = strength.text;
+                strengthText.style.color = strength.color;
+            });
+        }
+        
+        function checkPasswordStrength(password) {
+            let score = 0;
+            
+            if (password.length === 0) {
+                return { percent: 0, class: '', text: '', color: '#666' };
+            }
+            
+            if (password.length >= 8) score += 1;
+            if (password.length >= 12) score += 1;
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/\d/.test(password)) score += 1;
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score += 1;
+            
+            if (score <= 2) {
+                return { percent: 25, class: 'strength-weak', text: 'Слабый', color: '#ff4444' };
+            } else if (score <= 3) {
+                return { percent: 50, class: 'strength-fair', text: 'Средний', color: '#ffbb33' };
+            } else if (score <= 5) {
+                return { percent: 75, class: 'strength-good', text: 'Хороший', color: '#00C851' };
+            } else {
+                return { percent: 100, class: 'strength-strong', text: 'Надёжный', color: '#007E33' };
+            }
+        }
+    });
+    </script>
 </body>
 </html>

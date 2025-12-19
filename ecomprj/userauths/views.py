@@ -3,6 +3,7 @@ from userauths.forms import UserRegisterForm, UserLoginForm, ProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
+from django.db import transaction
 from userauths.models import Profile, User
 import logging
 
@@ -14,38 +15,43 @@ def register_view(request):
         form = UserRegisterForm(request.POST or None)
         if form.is_valid():
             try:
-                new_user = form.save()
-                username = form.cleaned_data.get("username")
-                messages.success(
-                    request, f"Hey {username}, Your account was created successfully."
-                )
-
-                # Authenticate user
-                new_user = authenticate(
-                    request,
-                    username=form.cleaned_data["email"],
-                    password=form.cleaned_data["password1"],
-                )
-
-                if new_user is not None:
-                    login(request, new_user)
-                    next_url = request.GET.get("next", "core:index")
-                    return redirect(next_url)
-                else:
-                    messages.error(
-                        request, "Authentication failed. Please try logging in."
+                with transaction.atomic():
+                    new_user = form.save()
+                    username = form.cleaned_data.get("username")
+                    messages.success(
+                        request,
+                        f"Hey {username}, Your account was created successfully.",
                     )
-                    return redirect("userauths:sign-in")
+
+                    # Authenticate user
+                    new_user = authenticate(
+                        request,
+                        username=form.cleaned_data["email"],
+                        password=form.cleaned_data["password1"],
+                    )
+
+                    if new_user is not None:
+                        login(request, new_user)
+                        next_url = request.GET.get("next", "core:index")
+                        return redirect(next_url)
+                    else:
+                        messages.error(
+                            request, "Authentication failed. Please try logging in."
+                        )
+                        return redirect("userauths:sign-in")
 
             except Exception as e:
                 logger.error(f"Registration error: {str(e)}", exc_info=True)
                 messages.error(request, f"Registration failed: {str(e)}")
-                # Не возвращаем ошибку, показываем форму снова
+                # Транзакция откатится автоматически
         else:
             # Показываем ошибки валидации формы
             for field, errors in form.errors.items():
                 for error in errors:
-                    messages.error(request, f"{field}: {error}")
+                    if field == "__all__":
+                        messages.error(request, error)
+                    else:
+                        messages.error(request, f"{error}")
     else:
         form = UserRegisterForm()
 

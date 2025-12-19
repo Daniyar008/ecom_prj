@@ -11,6 +11,10 @@ from .views import (
     terms_of_service,
     redis_stats,
     celery_stats,
+    health_check,
+    liveness_check,
+    readiness_check,
+    set_currency,
 )
 
 app_name = "core"
@@ -24,6 +28,12 @@ urlpatterns = [
     path("dashboard/", customer_dashboard, name="dashboard"),
     path("contact/", contact, name="contact"),
     path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
+    # Currency switcher
+    path("set-currency/", set_currency, name="set-currency"),
+    # Health checks for Kubernetes
+    path("health/", health_check, name="health-check"),
+    path("healthz/", liveness_check, name="liveness-check"),
+    path("readyz/", readiness_check, name="readiness-check"),
     # Redis stats для отладки
     path("redis-stats/", redis_stats, name="redis-stats"),
     # Celery stats для отладки

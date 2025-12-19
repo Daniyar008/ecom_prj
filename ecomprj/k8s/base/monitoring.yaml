@@ -1,0 +1,196 @@
+# =============================================================================
+# Prometheus Monitoring Configuration
+# =============================================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+      
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: []
+    
+    rule_files: []
+    
+    scrape_configs:
+      # Prometheus self-monitoring
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']
+      
+      # Django application metrics
+      - job_name: 'django'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - ecommerce
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+            action: keep
+            regex: web
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+            action: keep
+            regex: true
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+            action: replace
+            target_label: __metrics_path__
+            regex: (.+)
+          - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+            action: replace
+            regex: ([^:]+)(?::\d+)?;(\d+)
+            replacement: $1:$2
+            target_label: __address__
+      
+      # PostgreSQL metrics (if using postgres_exporter)
+      - job_name: 'postgres'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - ecommerce
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+            action: keep
+            regex: database
+      
+      # Redis metrics (if using redis_exporter)
+      - job_name: 'redis'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - ecommerce
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+            action: keep
+            regex: cache
+      
+      # Celery metrics
+      - job_name: 'celery'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - ecommerce
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+            action: keep
+            regex: celery-worker
+---
+# =============================================================================
+# ServiceMonitor for Prometheus Operator
+# =============================================================================
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ecommerce-monitor
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ecommerce
+      app.kubernetes.io/component: web
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+  namespaceSelector:
+    matchNames:
+      - ecommerce
+---
+# =============================================================================
+# PrometheusRule - Alerting Rules
+# =============================================================================
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ecommerce-alerts
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: ecommerce
+    release: prometheus
+spec:
+  groups:
+    - name: ecommerce.rules
+      rules:
+        # High error rate
+        - alert: HighErrorRate
+          expr: |
+            sum(rate(django_http_responses_total_by_status_total{status=~"5.."}[5m])) 
+            / sum(rate(django_http_responses_total_by_status_total[5m])) > 0.05
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High HTTP error rate detected"
+            description: "Error rate is {{ $value | humanizePercentage }} for the last 5 minutes"
+        
+        # High response time
+        - alert: HighResponseTime
+          expr: |
+            histogram_quantile(0.95, sum(rate(django_http_requests_latency_seconds_bucket[5m])) by (le)) > 2
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High response time detected"
+            description: "95th percentile response time is {{ $value }}s"
+        
+        # Pod not ready
+        - alert: PodNotReady
+          expr: |
+            kube_pod_status_ready{namespace="ecommerce", condition="true"} == 0
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod not ready"
+            description: "Pod {{ $labels.pod }} is not ready"
+        
+        # Database connection errors
+        - alert: DatabaseConnectionError
+          expr: |
+            django_db_execute_total{status="error"} > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Database connection errors detected"
+            description: "Database errors are occurring"
+        
+        # High memory usage
+        - alert: HighMemoryUsage
+          expr: |
+            container_memory_usage_bytes{namespace="ecommerce"} 
+            / container_spec_memory_limit_bytes{namespace="ecommerce"} > 0.9
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High memory usage"
+            description: "Container {{ $labels.container }} is using more than 90% memory"
+        
+        # Celery queue backlog
+        - alert: CeleryQueueBacklog
+          expr: |
+            celery_queue_length > 100
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Celery queue backlog"
+            description: "Celery queue has {{ $value }} pending tasks"
