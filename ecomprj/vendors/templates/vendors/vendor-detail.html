@@ -77,10 +77,21 @@
                 <div class="col-lg-4-5">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">{{products.count}}</strong> items for you!</p>
+                            <p>We found <strong class="text-brand">{{ products.paginator.count }}</strong> items for you!</p>
                         </div>
                     </div>
                     <div class="product-list mb-50">
+                        <form method="get" action="" style="margin-bottom:12px; display:flex; gap:8px; align-items:center;">
+                            <label style="margin-right:6px;">Show:</label>
+                            <select name="per_page" class="form-select" style="width:120px;">
+                                <option value="10" {% if per_page == 10 %}selected{% endif %}>10</option>
+                                <option value="25" {% if per_page == 25 %}selected{% endif %}>25</option>
+                                <option value="50" {% if per_page == 50 %}selected{% endif %}>50</option>
+                                <option value="100" {% if per_page == 100 %}selected{% endif %}>100</option>
+                                <option value="0">All</option>
+                            </select>
+                            <button class="btn" type="submit">Apply</button>
+                        </form>
                         {% for p in products %}
                         <div class="product-cart-wrap">
                             <div class="product-img-action-wrap">
@@ -125,17 +136,33 @@
                     <div class="pagination-area mt-20 mb-20">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
+                                {% if products.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
+                                    <a class="page-link" href="?page={{ products.previous_page_number }}"><i class="fi-rs-arrow-small-left"></i></a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fi-rs-arrow-small-left"></i></span>
+                                </li>
+                                {% endif %}
+
+                                {% for num in products.paginator.page_range %}
+                                    {% if products.number == num %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if products.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
+                                    <a class="page-link" href="?page={{ products.next_page_number }}"><i class="fi-rs-arrow-small-right"></i></a>
                                 </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fi-rs-arrow-small-right"></i></span>
+                                </li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>

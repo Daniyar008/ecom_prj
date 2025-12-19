@@ -14,13 +14,11 @@
                                 <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-1.png' %})">
                                     <div class="slider-content">
                                         <h1 class="display-2 mb-40">
-                                            Don’t miss amazing<br /> grocery deals
+                                            {% trans "Don’t miss amazing" %}<br /> {% trans "grocery deals" %}
                                         </h1>
-                                        <p class="mb-65">Sign up for the daily newsletter</p>
-                                        <form class="form-subcriber d-flex">
-                                            <input type="email" placeholder="Your emaill address" />
-                                            <button class="btn" type="submit">Subscribe</button>
-                                        </form>
+                                        {% if not request.user.is_authenticated %}
+                                        <button class="btn" type="button" onclick="window.location.href='{% url 'userauths:sign-up' %}'">{% trans "Sign up for the daily newsletter" %}</button>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-2.png' %})">
@@ -28,11 +26,10 @@
                                         <h1 class="display-2 mb-40">
                                             {% trans "Fresh Vegetables" %}<br /> {% trans "Big discount" %}
                                         </h1>
-                                        <p class="mb-65">{% trans "Save up to 50% off on your first order" %}</p>
-                                        {% comment %} <form class="form-subcriber d-flex">
-                                            <input type="email" placeholder="Your emaill address" />
-                                            <button class="btn" type="submit">Subscribe</button>
-                                        </form> {% endcomment %}
+                                        <p class="mb-65">{% trans "Save up to 50% off on your orders" %}</p>
+                                        {% if not request.user.is_authenticated %}
+                                        <button class="btn" type="button" onclick="window.location.href='{% url 'userauths:sign-in' %}'">{% trans "Sign In" %}</button>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

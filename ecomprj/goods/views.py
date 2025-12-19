@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 
 from .models import Product, Category, ProductImages, ProductReview
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from cartorders.models import Address
 from .forms import ProductReviewForm
 
@@ -90,8 +91,17 @@ def product_list_view(request, category_cid=None):
 
     price_range = products.aggregate(min_price=Min("price"), max_price=Max("price"))
 
+    # paginate products (100 per page)
+    paginator = Paginator(products, 100)
+    try:
+        products_page = paginator.page(page)
+    except PageNotAnInteger:
+        products_page = paginator.page(1)
+    except EmptyPage:
+        products_page = paginator.page(paginator.num_pages)
+
     context = {
-        "products": products,
+        "products": products_page,
         "tags": tags,
         "categories": categories,
         "current_category": category_cid if category_cid else None,
@@ -119,9 +129,25 @@ def category_list_view(request):
 def category_product_list__view(request, cid):
 
     category = Category.objects.get(cid=cid)  # food, Cosmetics
+<<<<<<< HEAD
     products = Product.objects.filter(
         product_status="published", category=category
     ).select_related("category", "vendor")[:50]
+=======
+    products_qs = (
+        Product.objects.filter(product_status="published", category=category)
+        .select_related("category", "vendor")
+        .order_by("-id")
+    )
+    page = request.GET.get("page", 1)
+    paginator = Paginator(products_qs, 100)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+>>>>>>> d1d31fdf31351ec52100b1ce0d0f61720c9410c4
 
     context = {
         "category": category,
